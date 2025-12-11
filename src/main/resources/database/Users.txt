@@ -1,0 +1,13 @@
+KOSA_Admin,KOSA@Adm#2025,admin
+EngDeptHead01,EngHd01!@#,head
+EngDept01,Eng01$Stf!,staff 
+ITDeptHead02,ITHd02#@!,head
+ITDept02,IT02*Stf$,staff
+FinDeptHead03,FinHd03$%!,head
+FinDept03,Fin03@Stf*,staff
+HRDeptHead04,HRHd04!*#,head
+HRDept04,HR04$Stf!,staff
+MktDeptHead05,MktHd05#@!,head
+MktDept05,Mkt05*Stf$,staff
+LogDeptHead06,LogHd06!$#,head
+LogDept06,Log08@Stf*,staff
