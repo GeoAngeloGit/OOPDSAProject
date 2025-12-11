@@ -10,6 +10,14 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -17,8 +25,10 @@ import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.event.DocumentEvent;
@@ -63,6 +73,8 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         orderComboBox = new javax.swing.JComboBox<>();
         searchTxtField = new javax.swing.JTextField();
+        viewRequestBtn = new javax.swing.JButton();
+        requestBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +122,10 @@ public class GUIRequestInventory extends javax.swing.JFrame {
 
         searchTxtField.addActionListener(this::searchTxtFieldActionPerformed);
 
+        viewRequestBtn.setText("View Request");
+
+        requestBtn.setText("Request");
+
         javax.swing.GroupLayout requestInventoryPnlLayout = new javax.swing.GroupLayout(requestInventoryPnl);
         requestInventoryPnl.setLayout(requestInventoryPnlLayout);
         requestInventoryPnlLayout.setHorizontalGroup(
@@ -128,6 +144,10 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                         .addGap(185, 185, 185))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
                         .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(requestInventoryPnlLayout.createSequentialGroup()
+                                .addComponent(viewRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(requestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(requestInventoryPnlLayout.createSequentialGroup()
                                 .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,7 +182,11 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                             .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(requestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -245,6 +269,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         DefaultTableCellRenderer center = new DefaultTableCellRenderer();
         center.setHorizontalAlignment(JLabel.CENTER);
         requestInventoryTbl.getColumnModel().getColumn(2).setCellRenderer(center);
+        requestInventoryTbl.getColumnModel().getColumn(4).setCellRenderer(center);
 
         for(Items item : itemsManager.getItems())
         {
@@ -313,7 +338,16 @@ public class GUIRequestInventory extends javax.swing.JFrame {
 
         orderComboBox.addActionListener(e -> applySorting());
 
+        requestInventoryTbl.getColumnModel().getColumn(4).setCellEditor(new SpinnerEditor());
+
+        viewRequestBtn.addActionListener(e -> showRequestedItems(requestInventoryTbl));
+
+        RequestManager requestManager = new RequestManager();
+        requestBtn.addActionListener(e -> requestManager.saveRequests(requestInventoryTbl, loginUser.getDepartment(), 
+                    loginUser.getRole(), loginUser.getFilePath() ));
     }
+
+
 
     private void moveRowToTop(String name) {
         DefaultTableModel model = (DefaultTableModel) requestInventoryTbl.getModel();
@@ -340,6 +374,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         model.insertRow(0, targetRow);
 
         requestInventoryTbl.setRowSorter(oldSorter);
+
     }
 
     private void applySorting()
@@ -360,6 +395,46 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         sorter.sort();
     }
 
+    private void showRequestedItems(JTable table)
+    {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+        List<Object[]> requestedRows = new ArrayList<>();
+        for(int i = 0; i < model.getRowCount(); i ++)
+        {
+            Object quantityObject = model.getValueAt(i, 4);
+            int quantity = 0;
+            if(quantityObject instanceof Number)
+            {
+                quantity = ((Number) quantityObject).intValue();
+            }
+
+            if(quantity > 0)
+            {
+                String itemName = model.getValueAt(i, 1).toString();
+                String unit = model.getValueAt(i, 3).toString();
+                requestedRows.add(new Object[]{itemName, quantity, unit});
+            }
+        }
+
+        if(requestedRows.isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "No items have been requested.", "Requested Items", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        String[] columnNames = {"Item Name", "Quantity", "Unit"};
+        Object[][] data = requestedRows.toArray(new Object[0][]);
+        JTable requestedTable = new JTable(data, columnNames);
+        requestedTable.setEnabled(false);
+        JScrollPane scrollPane = new JScrollPane(requestedTable);
+        scrollPane.setPreferredSize(new Dimension(300,200));
+
+        JOptionPane.showMessageDialog(this, scrollPane, "Requested Items", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel homeLbl;
@@ -368,9 +443,11 @@ public class GUIRequestInventory extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> orderComboBox;
+    private javax.swing.JButton requestBtn;
     private javax.swing.JPanel requestInventoryPnl;
     private javax.swing.JTable requestInventoryTbl;
     private javax.swing.JLabel requestLbl;
     private javax.swing.JTextField searchTxtField;
+    private javax.swing.JButton viewRequestBtn;
     // End of variables declaration//GEN-END:variables
 }

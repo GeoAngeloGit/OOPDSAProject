@@ -60,6 +60,11 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
+                                  <Component id="viewRequestBtn" min="-2" pref="114" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="requestBtn" min="-2" pref="114" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel4" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
                                       <Component id="searchTxtField" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
@@ -107,7 +112,12 @@
                       </Group>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="336" max="-2" attributes="0"/>
-                  <EmptySpace pref="84" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="viewRequestBtn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="requestBtn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="41" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -177,6 +187,16 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchTxtFieldActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="viewRequestBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="View Request"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="requestBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Request"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

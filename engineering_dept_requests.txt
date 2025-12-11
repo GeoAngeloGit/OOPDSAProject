@@ -1,0 +1,4 @@
+REQ20251212-001,20251212,a4BP,A4 Bond Paper,8,Ream,Pending
+REQ20251212-001,20251212,AT,Adhesive Tape,3,Piece,Pending
+REQ20251212-001,20251212,blbp,HBW Black Ballpen,5,Box,Pending
+REQ20251212-001,20251212,rbp,HBW Read Ballpen,4,Box,Pending

@@ -26,8 +26,10 @@ public class UserManager {
                 String username = parts[0];
                 String password = parts[1];
                 String role = parts[2];
+                String department = parts[3];
+                String filePath = parts[4];
 
-                users.add(new User(username, password, role));
+                users.add(new User(username, password, role, department, filePath));
             }
         } catch (IOException e) {
             e.printStackTrace();

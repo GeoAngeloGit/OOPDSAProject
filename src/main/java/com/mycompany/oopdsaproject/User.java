@@ -12,11 +12,15 @@ public class User {
     private String username;
     private String password;
     private String role;
+    private String department;
+    private String filePath;
 
-    public User(String username, String password, String role) {
+    public User(String username, String password, String role, String department, String filePath) {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.department = department;
+        this.filePath = filePath;
     }
 
     //getters and setters
@@ -32,6 +36,14 @@ public class User {
     {
         return role;
     }
+    public String getDepartment()
+    {
+        return department;
+    }
+    public String getFilePath()
+    {
+        return "data/" + filePath;
+    }
 
     public void setUsername(String username)
     {
@@ -44,5 +56,9 @@ public class User {
     public void setRole(String role)
     {
         this.role = role;
+    }
+    public void setDepartment(String department)
+    {
+        this.department = department;
     }
 }
