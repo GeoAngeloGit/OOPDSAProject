@@ -13,22 +13,27 @@ import java.util.List;
  */
 public class Request {
     private String requestId;
-    private String department;
-    private List<RequestItem> items;
+    private String itemCode;
+    private String itemName;
+    private String dateCreated;
+    private int quantity;
+    private String unit;
     private String status;
-    private LocalDateTime dateCreated;
 
-    public Request(String requestId, String department, 
-        List<RequestItem> items, String status, LocalDateTime dateCreated)
+    public Request(String requestId, String itemCode, String itemName, 
+        String dateCreated, int quantity, String unit, String status)
         {
             this.requestId = requestId;
-            this.department = department;
-            this.items = items;
+            this.itemCode = itemCode;
+            this.itemName = itemName;
+            this.dateCreated = dateCreated;
+            this.quantity = quantity;
+            this.unit = unit;
             this.status = status;
             this.dateCreated = dateCreated;
         }
     
-    public LocalDateTime getDateCreated() 
+    public String getDateCreated() 
     { 
         return dateCreated; 
     }
@@ -36,17 +41,25 @@ public class Request {
     { 
         return requestId; 
     }
-    public List<RequestItem> getItems() 
+    public String getItemName() 
     { 
-        return items; 
+        return itemName; 
     }
-    public String getDepartment() 
+    public String getItemCode() 
     { 
-        return department; 
+        return itemCode; 
     }
     public String getStatus() 
     { 
         return status; 
+    }
+    public int getQuantity()
+    {
+        return quantity;
+    }
+    public String getUnit()
+    {
+        return unit;
     }
     
 }

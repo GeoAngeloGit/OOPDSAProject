@@ -1,3 +1,0 @@
-REQ20251212-001,20251212,AT,Adhesive Tape,3,Piece,Approved
-REQ20251212-001,20251212,bubp,HBW Blue Ballpen,4,Box,Approved
-REQ20251212-001,20251212,rbp,HBW Read Ballpen,5,Box,Approved

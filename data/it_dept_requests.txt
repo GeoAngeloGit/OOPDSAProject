@@ -1,5 +1,0 @@
-REQ20251212-001,20251212,a4BP,A4 Bond Paper,8,Ream,Approved
-REQ20251212-001,20251212,AT,Adhesive Tape,5,Piece,Approved
-REQ20251212-001,20251212,blbp,HBW Black Ballpen,4,Box,Approved
-REQ20251212-001,20251212,rbp,HBW Read Ballpen,6,Box,Approved
-REQ20251212-001,20251212,stap,Stapler,4,Piece,Approved

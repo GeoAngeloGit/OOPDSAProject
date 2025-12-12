@@ -4,6 +4,9 @@
  */
 package com.mycompany.oopdsaproject;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -22,39 +26,39 @@ import javax.swing.table.DefaultTableModel;
  * @author USER
  */
 public class RequestManager {
-    public static void saveRequest(String dept, Request request)
-    {
-        String fileNameDept = toFileSafeName(dept);
-        String path = "database/" + fileNameDept + "_requests.txt";
+    // public static void saveRequest(String dept, Request request)
+    // {
+    //     String fileNameDept = toFileSafeName(dept);
+    //     String path = "database/" + fileNameDept + "_requests.txt";
 
-        StringBuilder itemsString = new StringBuilder();
-        for(RequestItem item : request.getItems())
-        {
-            itemsString.append(item.getItemName())
-                    .append(":")
-                    .append(item.getQuantity())
-                    .append(";");
-        }
+    //     StringBuilder itemsString = new StringBuilder();
+    //     for(RequestItem item : request.getItems())
+    //     {
+    //         itemsString.append(item.getItemName())
+    //                 .append(":")
+    //                 .append(item.getQuantity())
+    //                 .append(";");
+    //     }
 
-        try(FileWriter fw = new FileWriter(path, true))
-        {
-            fw.write(request.getRequestId() + "," +
-                     request.getDepartment() + "," +
-                     request.getStatus() + "," +
-                     request.getDateCreated() + "," +
-                     itemsString.toString() +
-                     "\n");
-        } 
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
+    //     try(FileWriter fw = new FileWriter(path, true))
+    //     {
+    //         fw.write(request.getRequestId() + "," +
+    //                  request.getDepartment() + "," +
+    //                  request.getStatus() + "," +
+    //                  request.getDateCreated() + "," +
+    //                  itemsString.toString() +
+    //                  "\n");
+    //     } 
+    //     catch (Exception e)
+    //     {
+    //         e.printStackTrace();
+    //     }
+    // }
 
-    private static String toFileSafeName(String dept)
-    {
-        return dept.toLowerCase().replace(" ", "_");
-    }
+    // private static String toFileSafeName(String dept)
+    // {
+    //     return dept.toLowerCase().replace(" ", "_");
+    // }
 
     public boolean saveRequests(JTable table, String department, String role, String filePath, User loginUser)
     {
@@ -139,4 +143,37 @@ public class RequestManager {
 
         return "REQ" + date + "-" + counterPart;
     }
+
+
+    public Map<String, List<Request>> loadAllRequests(String filePath) throws IOException
+    {
+        Map<String, List<Request>> requestsMap = new LinkedHashMap<>();
+
+        try(BufferedReader br = new BufferedReader(new FileReader(filePath)))
+        {
+            String line;
+            while((line = br.readLine()) != null)
+            {
+                String[] parts = line.split(",");
+
+                if(parts.length != 7) continue;
+
+                String requestId = parts[0];
+                String date = parts[1];
+                String itemCode = parts[2];
+                String itemName = parts[3];
+                int quantity = Integer.parseInt(parts[4]);
+                String unit = parts[5];
+                String status = parts[6];
+
+                Request request = new Request(requestId, itemCode, itemName, date, quantity, unit, status);
+
+                requestsMap.putIfAbsent(requestId, new ArrayList<>());
+                requestsMap.get(requestId).add(request);
+            }
+        }
+
+        return requestsMap;
+    }
+
 }

@@ -382,7 +382,12 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                 else if(choice == 1)
                 {
                     dispose();
-                    new GUIRequestStatus(loginUser).setVisible(true);
+                    try {
+                        new GUIRequestStatus(loginUser).setVisible(true);
+                    } catch (IOException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
                 }
             }
         );

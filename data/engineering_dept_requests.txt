@@ -1,24 +1,10 @@
-REQ20251212-001,20251212,a4BP,A4 Bond Paper,5,Ream,Approved
-REQ20251212-001,20251212,AT,Adhesive Tape,7,Piece,Approved
-REQ20251212-001,20251212,blbp,HBW Black Ballpen,5,Box,Approved
-REQ20251212-001,20251212,rbp,HBW Read Ballpen,2,Box,Approved
-REQ20251212-005,20251212,AT,Adhesive Tape,4,Piece,Approved
-REQ20251212-005,20251212,blbp,HBW Black Ballpen,5,Box,Approved
-REQ20251212-005,20251212,rbp,HBW Read Ballpen,4,Box,Approved
-REQ20251212-008,20251212,a4BP,A4 Bond Paper,6,Ream,Approved
-REQ20251212-008,20251212,AT,Adhesive Tape,5,Piece,Approved
-REQ20251212-008,20251212,bubp,HBW Blue Ballpen,5,Box,Approved
-REQ20251212-008,20251212,stap,Stapler,2,Piece,Approved
-REQ20251212-012,20251212,a4BP,A4 Bond Paper,6,Ream,Approved
-REQ20251212-012,20251212,AT,Adhesive Tape,5,Piece,Approved
-REQ20251212-012,20251212,bubp,HBW Blue Ballpen,5,Box,Approved
-REQ20251212-012,20251212,stap,Stapler,2,Piece,Approved
-REQ20251212-016,20251212,a4BP,A4 Bond Paper,9,Ream,Approved
-REQ20251212-016,20251212,blbp,HBW Black Ballpen,4,Box,Approved
-REQ20251212-016,20251212,stap,Stapler,4,Piece,Approved
-REQ20251212-019,20251212,AT,Adhesive Tape,3,Piece,Approved
-REQ20251212-019,20251212,blbp,HBW Black Ballpen,6,Box,Approved
-REQ20251212-019,20251212,stap,Stapler,4,Piece,Approved
-REQ20251212-022,20251212,a4BP,A4 Bond Paper,5,Ream,Approved
-REQ20251212-022,20251212,blbp,HBW Black Ballpen,7,Box,Approved
-REQ20251212-022,20251212,rbp,HBW Read Ballpen,6,Box,Approved
+REQ20251212-001,2025-12-12,a4BP,A4 Bond Paper,5,Ream,Approved
+REQ20251212-001,2025-12-12,AT,Adhesive Tape,4,Piece,Approved
+REQ20251212-001,2025-12-12,bubp,HBW Blue Ballpen,4,Box,Approved
+REQ20251212-004,2025-12-12,a4BP,A4 Bond Paper,4,Ream,Approved
+REQ20251212-004,2025-12-12,blbp,HBW Black Ballpen,4,Box,Approved
+REQ20251212-004,2025-12-12,bubp,HBW Blue Ballpen,6,Box,Approved
+REQ20251212-004,2025-12-12,stap,Stapler,5,Piece,Approved
+REQ20251212-008,2025-12-12,a4BP,A4 Bond Paper,5,Ream,Approved
+REQ20251212-008,2025-12-12,blbp,HBW Black Ballpen,30,Box,Approved
+REQ20251212-008,2025-12-12,stap,Stapler,4,Piece,Approved

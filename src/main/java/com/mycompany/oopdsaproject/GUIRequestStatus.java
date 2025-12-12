@@ -4,6 +4,18 @@
  */
 package com.mycompany.oopdsaproject;
 
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author USER
@@ -33,9 +45,9 @@ public class GUIRequestStatus extends javax.swing.JFrame {
         requestIDComboBox = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         requestStatusTbl = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        homeLbl = new javax.swing.JLabel();
+        createRequestLbl = new javax.swing.JLabel();
+        requestStatusLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,8 +55,6 @@ public class GUIRequestStatus extends javax.swing.JFrame {
         requestStatusPnl.setBackground(new java.awt.Color(255, 255, 255));
 
         departmentNameLbl.setText("request Status");
-
-        requestIDComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         requestStatusTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,11 +84,11 @@ public class GUIRequestStatus extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(requestStatusTbl);
 
-        jLabel1.setText("Home");
+        homeLbl.setText("Home");
 
-        jLabel2.setText("Create Request");
+        createRequestLbl.setText("Create Request");
 
-        jLabel3.setText("Request Status");
+        requestStatusLbl.setText("Request Status");
 
         javax.swing.GroupLayout requestStatusPnlLayout = new javax.swing.GroupLayout(requestStatusPnl);
         requestStatusPnl.setLayout(requestStatusPnlLayout);
@@ -86,12 +96,12 @@ public class GUIRequestStatus extends javax.swing.JFrame {
             requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestStatusPnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(55, 55, 55)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(jLabel3)
-                .addGap(149, 149, 149))
+                .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(createRequestLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(requestStatusLbl)
+                .addGap(141, 141, 141))
             .addGroup(requestStatusPnlLayout.createSequentialGroup()
                 .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(requestStatusPnlLayout.createSequentialGroup()
@@ -111,9 +121,9 @@ public class GUIRequestStatus extends javax.swing.JFrame {
             .addGroup(requestStatusPnlLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(homeLbl)
+                    .addComponent(createRequestLbl)
+                    .addComponent(requestStatusLbl))
                 .addGap(8, 8, 8)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
@@ -166,19 +176,118 @@ public class GUIRequestStatus extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new GUIRequestStatus().setVisible(true));
     }
 
-    public GUIRequestStatus(User loginUser)
+    private Map<String, List<Request>> requestsMap;   // <-- CLASS FIELD
+    private RequestManager requestManager;
+
+    public GUIRequestStatus(User loginUser) throws IOException
     {
         initComponents();
+
+        setLbl(loginUser);
+
+        requestManager = new RequestManager();
+        requestsMap = requestManager.loadAllRequests(loginUser.getFilePath());
+
+        for(String requestId : requestsMap.keySet())
+        {
+            requestIDComboBox.addItem(requestId);
+        }
+
+        if(!requestsMap.isEmpty())
+        {
+            String latestId = getLatestRequestID();
+            requestIDComboBox.setSelectedItem(latestId);
+            loadRequestOnTable(latestId);
+        }
+
+        requestIDComboBox.addActionListener(e ->
+            {
+                String selected = requestIDComboBox.getSelectedItem().toString();
+                loadRequestOnTable(selected);
+            }
+        );
+
+
     }
 
+
+
+
+    private void setLbl(User loginUser)
+    {
+        homeLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
+        homeLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        homeLbl.setToolTipText("Go back Home");
+        homeLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt)
+            {
+                if(loginUser.getRole().equals("head"))
+                {
+                    GUIHeadDashboard headDashboard = new GUIHeadDashboard(loginUser);
+                    headDashboard.setVisible(true);
+                }
+                else if(loginUser.getRole().equals("staff"))
+                {
+                    GUIStaffDashboard staffDashboard = new GUIStaffDashboard(loginUser);
+                    staffDashboard.setVisible(true);
+                }
+                dispose();
+            }
+        });
+
+        createRequestLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
+        createRequestLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        createRequestLbl.setToolTipText("Create New Request");
+        createRequestLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt)
+            {
+                GUIRequestInventory requestInventory = new GUIRequestInventory(loginUser);
+                requestInventory.setVisible(true);
+                dispose();
+            }
+        });
+
+        requestStatusLbl.setFont(new Font("Verdana", Font.BOLD, 12));
+        
+    }
+
+    private void loadRequestOnTable(String requestId)
+    {
+        List<Request> list = requestsMap.get(requestId);
+
+        DefaultTableModel model = (DefaultTableModel) requestStatusTbl.getModel();
+        model.setRowCount(0);
+
+        for(Request req : list){
+            model.addRow(new Object[]
+                {
+                    req.getItemCode(), req.getItemName(), req.getQuantity(), req.getUnit(), req.getStatus()
+                }
+            );
+        }
+
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(JLabel.CENTER);
+        requestStatusTbl.getColumnModel().getColumn(2).setCellRenderer(center);
+    }
+
+    private String getLatestRequestID() 
+    {
+        return requestsMap.keySet().stream()
+                .sorted()
+                .reduce((first, second) -> second)  // get last
+                .orElse(null);
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel createRequestLbl;
     private javax.swing.JLabel departmentNameLbl;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel homeLbl;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JComboBox<String> requestIDComboBox;
+    private javax.swing.JLabel requestStatusLbl;
     private javax.swing.JPanel requestStatusPnl;
     private javax.swing.JTable requestStatusTbl;
     // End of variables declaration//GEN-END:variables
