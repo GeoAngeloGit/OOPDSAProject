@@ -56,8 +56,9 @@ public class RequestManager {
         return dept.toLowerCase().replace(" ", "_");
     }
 
-    public void saveRequests(JTable table, String department, String role, String filePath)
+    public boolean saveRequests(JTable table, String department, String role, String filePath, User loginUser)
     {
+        boolean savedRequest = false;
         if(table.isEditing())
         {
             table.getCellEditor().stopCellEditing();
@@ -65,7 +66,7 @@ public class RequestManager {
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-        String date = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE);
+        String date = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
         String requestId = generateRequestID(department, filePath);
 
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true)))
@@ -82,6 +83,7 @@ public class RequestManager {
 
                 if(quantity > 0)
                 {
+                    savedRequest = true;
                     String itemCode = model.getValueAt(i, 0).toString();
                     String itemName = model.getValueAt(i, 1).toString();
                     String unit = model.getValueAt(i, 3).toString();
@@ -98,11 +100,12 @@ public class RequestManager {
             }
 
             bw.flush();
-            JOptionPane.showMessageDialog(null, "Requests saved successfully for " + department + ".");
+
+            return savedRequest;
         } catch (IOException e)
         {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error saving requests: " + e.getMessage());
+            return false;
         }
     }
 

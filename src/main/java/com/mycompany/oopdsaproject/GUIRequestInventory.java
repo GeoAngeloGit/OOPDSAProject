@@ -343,8 +343,49 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         viewRequestBtn.addActionListener(e -> showRequestedItems(requestInventoryTbl));
 
         RequestManager requestManager = new RequestManager();
-        requestBtn.addActionListener(e -> requestManager.saveRequests(requestInventoryTbl, loginUser.getDepartment(), 
-                    loginUser.getRole(), loginUser.getFilePath() ));
+        requestBtn.addActionListener(e -> 
+            {
+                boolean savedRequest = requestManager.saveRequests(requestInventoryTbl, loginUser.getDepartment(), 
+                    loginUser.getRole(), loginUser.getFilePath(), loginUser);
+                
+                if(!savedRequest)
+                {
+                    JOptionPane.showMessageDialog(this, "No items were requested or an error has occured", 
+                        "Save Failed", JOptionPane.ERROR_MESSAGE);
+                    
+                        return;
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Requested items successfully saved!",
+                        "Save Successfull", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                
+
+                int choice = JOptionPane.showOptionDialog(
+                    this,
+                    "Request successfully created!\nWhat do you want to do next?",
+                    "Request Created",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    new String[]{"Create New Request", "View Request Status"},
+                    "Create New Request"
+                );
+                
+                if(choice == 0)
+                {   
+                    dispose();
+                    new GUIRequestInventory(loginUser).setVisible(true);
+                }
+                else if(choice == 1)
+                {
+                    dispose();
+                    new GUIRequestStatus(loginUser).setVisible(true);
+                }
+            }
+        );
     }
 
 
