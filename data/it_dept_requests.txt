@@ -1,0 +1,8 @@
+REQ20251213-001,2025-12-13,a4BP,A4 Bond Paper,5,Ream,Approved
+REQ20251213-001,2025-12-13,blbp,HBW Black Ballpen,5,Box,Rejected
+REQ20251213-001,2025-12-13,bubp,HBW Blue Ballpen,2,Box,Approved
+REQ20251213-001,2025-12-13,rbp,HBW Read Ballpen,7,Box,Approved
+REQ20251213-005,2025-12-13,a4BP,A4 Bond Paper,3,Ream,Approved
+REQ20251213-005,2025-12-13,blbp,HBW Black Ballpen,3,Box,Rejected
+REQ20251213-005,2025-12-13,rbp,HBW Read Ballpen,2,Box,Approved
+REQ20251213-005,2025-12-13,stap,Stapler,3,Piece,Rejected

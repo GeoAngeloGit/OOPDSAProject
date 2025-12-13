@@ -61,5 +61,34 @@ public class Request {
     {
         return unit;
     }
+
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     
 }

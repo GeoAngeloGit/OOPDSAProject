@@ -4,6 +4,8 @@
  */
 package com.mycompany.oopdsaproject;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -20,12 +22,15 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -48,6 +53,7 @@ public class GUIInventory extends javax.swing.JFrame {
     /**
      * Creates new form GUIInventory with login user
      */
+
     public GUIInventory(User loginUser) {
         initComponents();
         this.loginUser = loginUser;
@@ -91,10 +97,32 @@ public class GUIInventory extends javax.swing.JFrame {
                 }
             );
         }
+        inventoryTable.setFillsViewportHeight(true);
 
         DefaultTableCellRenderer center = new DefaultTableCellRenderer();
         center.setHorizontalAlignment(JLabel.CENTER);
         inventoryTable.getColumnModel().getColumn(3).setCellRenderer(center);
+        inventoryTable.setRowHeight(24);
+
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                                                        boolean isSelected, boolean hasFocus,
+                                                        int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+                if (!isSelected) {
+                    c.setBackground(row % 2 == 1 ? new Color(240, 240, 240) : Color.WHITE);
+                }
+
+                return c;
+            }
+        };
+
+        for (int i = 0; i < inventoryTable.getColumnCount(); i++) {
+            inventoryTable.getColumnModel().getColumn(i).setCellRenderer(renderer);
+        }
+
 
         JPopupMenu popup = new JPopupMenu();
         popup.setFocusable(false);
@@ -162,7 +190,18 @@ public class GUIInventory extends javax.swing.JFrame {
 
     private void applySorting()
     {
-        TableRowSorter<TableModel> sorter = (TableRowSorter<TableModel>) inventoryTable.getRowSorter();
+        DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+
+        sorter.setRowFilter((new RowFilter<DefaultTableModel, Integer>() {
+            public boolean include(RowFilter.Entry<? extends DefaultTableModel, ? extends Integer> entry)
+            {
+                String itemCode = entry.getStringValue(0);
+                return itemCode != null && !itemCode.isEmpty();
+            }
+        }));
+
+        inventoryTable.setRowSorter(sorter);
 
         String sortBy = sortByComboBox.getSelectedItem().toString();
         String order = orderComboBox.getSelectedItem().toString();
@@ -190,6 +229,8 @@ public class GUIInventory extends javax.swing.JFrame {
 
         sorter.setSortKeys(newKeys);
         sorter.sort();
+
+        inventoryTable.setFillsViewportHeight(true);
     }
 
     /**
@@ -325,8 +366,8 @@ public class GUIInventory extends javax.swing.JFrame {
                     .addComponent(sortByComboBox)
                     .addComponent(orderComboBox))
                 .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

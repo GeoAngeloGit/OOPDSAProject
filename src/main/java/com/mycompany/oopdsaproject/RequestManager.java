@@ -176,4 +176,42 @@ public class RequestManager {
         return requestsMap;
     }
 
+    //to update if the requested item is either approved or rejected
+    public void updateRequestStatus(String filePath, Request updatedRequest) throws IOException
+    {
+        List<String> lines = new ArrayList<>();
+
+        try(BufferedReader br = new BufferedReader(new FileReader(filePath)))
+        {
+            String line;
+
+            while((line = br.readLine()) != null)
+            {
+                String[] parts = line.split(",");
+                if(parts.length != 7) continue;
+
+                String requestId = parts[0];
+                String itemCode = parts[2];
+
+                //if matches change status
+                if(requestId.equals(updatedRequest.getRequestId()) && itemCode.equals(updatedRequest.getItemCode()))
+                {
+                    parts[6] = updatedRequest.getStatus();
+                }
+
+                lines.add(String.join(",", parts));
+            }
+        }
+
+        //rewrite the file
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(filePath)))
+        {
+            for(String l : lines)
+            {
+                bw.write(l);
+                bw.newLine();
+            }
+        }
+    }
+
 }

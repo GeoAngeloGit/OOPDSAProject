@@ -4,17 +4,37 @@
  */
 package com.mycompany.oopdsaproject;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -49,6 +69,12 @@ public class GUIRequestStatus extends javax.swing.JFrame {
         createRequestLbl = new javax.swing.JLabel();
         requestStatusLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        sortByComboBox = new javax.swing.JComboBox<>();
+        orderComboBox = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        searchTxtField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +116,16 @@ public class GUIRequestStatus extends javax.swing.JFrame {
 
         requestStatusLbl.setText("Request Status");
 
+        sortByComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Status" }));
+
+        orderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ascending", "Descending" }));
+
+        jLabel4.setText("Order:");
+
+        jLabel2.setText("Search:");
+
+        jLabel3.setText("Sort By:");
+
         javax.swing.GroupLayout requestStatusPnlLayout = new javax.swing.GroupLayout(requestStatusPnl);
         requestStatusPnl.setLayout(requestStatusPnlLayout);
         requestStatusPnlLayout.setHorizontalGroup(
@@ -106,11 +142,22 @@ public class GUIRequestStatus extends javax.swing.JFrame {
                 .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(requestStatusPnlLayout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
+                            .addComponent(requestIDComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(departmentNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(requestIDComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE))))
+                            .addGroup(requestStatusPnlLayout.createSequentialGroup()
+                                .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sortByComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(requestStatusPnlLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -126,11 +173,19 @@ public class GUIRequestStatus extends javax.swing.JFrame {
                     .addComponent(requestStatusLbl))
                 .addGap(8, 8, 8)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(departmentNameLbl)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(requestIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(23, 23, 23)
+                .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(sortByComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(60, Short.MAX_VALUE))
         );
@@ -150,6 +205,7 @@ public class GUIRequestStatus extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
 
     /**
      * @param args the command line arguments
@@ -177,7 +233,6 @@ public class GUIRequestStatus extends javax.swing.JFrame {
     }
 
     private Map<String, List<Request>> requestsMap;   // <-- CLASS FIELD
-    private RequestManager requestManager;
 
     public GUIRequestStatus(User loginUser) throws IOException
     {
@@ -185,7 +240,7 @@ public class GUIRequestStatus extends javax.swing.JFrame {
 
         setLbl(loginUser);
 
-        requestManager = new RequestManager();
+        RequestManager requestManager = new RequestManager();
         requestsMap = requestManager.loadAllRequests(loginUser.getFilePath());
 
         for(String requestId : requestsMap.keySet())
@@ -207,6 +262,15 @@ public class GUIRequestStatus extends javax.swing.JFrame {
             }
         );
 
+        searching(requestsMap);
+
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(requestStatusTbl.getModel());
+        requestStatusTbl.setRowSorter(sorter);
+
+        sortByComboBox.addActionListener(e -> applySorting());
+        orderComboBox.addActionListener(e -> applySorting());
+        
+        approveOrReject(loginUser);
 
     }
 
@@ -248,12 +312,14 @@ public class GUIRequestStatus extends javax.swing.JFrame {
         });
 
         requestStatusLbl.setFont(new Font("Verdana", Font.BOLD, 12));
+
         
     }
 
     private void loadRequestOnTable(String requestId)
     {
         List<Request> list = requestsMap.get(requestId);
+        if(list == null) return;
 
         DefaultTableModel model = (DefaultTableModel) requestStatusTbl.getModel();
         model.setRowCount(0);
@@ -266,9 +332,27 @@ public class GUIRequestStatus extends javax.swing.JFrame {
             );
         }
 
+        requestStatusTbl.setFillsViewportHeight(true);
+
+        requestStatusTbl.setRowHeight(24);
         DefaultTableCellRenderer center = new DefaultTableCellRenderer();
         center.setHorizontalAlignment(JLabel.CENTER);
         requestStatusTbl.getColumnModel().getColumn(2).setCellRenderer(center);
+
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                                                        boolean isSelected, boolean hasFocus,
+                                                        int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+                if (!isSelected) {
+                    c.setBackground(row % 2 == 1 ? new Color(240, 240, 240) : Color.WHITE);
+                }
+
+                return c;
+            }
+        };
     }
 
     private String getLatestRequestID() 
@@ -279,16 +363,182 @@ public class GUIRequestStatus extends javax.swing.JFrame {
                 .orElse(null);
     }
 
+    private void searching(Map<String, List<Request>> requestMap)
+    {
+
+        JPopupMenu popup = new JPopupMenu();
+        popup.setFocusable(false);
+
+        JList<String> suggestionList = new JList<>();
+        JScrollPane scrollPane = new JScrollPane(suggestionList);
+        scrollPane.setPreferredSize(new Dimension(searchTxtField.getWidth(), 100));
+        popup.add(scrollPane);
+
+        searchTxtField.getDocument().addDocumentListener(new DocumentListener() {
+            public void update()
+            {
+                String text = searchTxtField.getText().toLowerCase();
+                DefaultListModel<String> model = new DefaultListModel<>();
+                
+                String selectedReqID = requestIDComboBox.getSelectedItem().toString();
+                List<Request> requestItems = requestMap.get(selectedReqID);
+                if(requestItems == null) return;
+
+                for (Request req : requestItems) {
+                    if (req.getItemName().toLowerCase().contains(text) && !text.isEmpty()) {
+                        model.addElement(req.getItemName() + "(" + req.getRequestId() + ")");
+                    }
+                }
+                suggestionList.setModel(model);
+
+                if (!model.isEmpty()) {
+                    popup.show(searchTxtField, 0, searchTxtField.getHeight());
+                    popup.revalidate();
+                    popup.repaint();
+                } else {
+                    popup.setVisible(false);
+                }
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) { update(); }
+            @Override
+            public void removeUpdate(DocumentEvent e) { update(); }
+            @Override
+            public void changedUpdate(DocumentEvent e) { update(); }
+        });
+
+        suggestionList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                String selected = suggestionList.getSelectedValue();
+                if (selected != null) {
+                    String selectedName = selected.split("\\(")[0].trim();
+
+                    String selectedReqID = requestIDComboBox.getSelectedItem().toString();
+                    List<Request> requestItems = requestMap.get(selectedReqID);
+                    if(requestItems == null) return;
+
+                    for (Request req : requestItems) {
+                        if (req.getItemName().equalsIgnoreCase(selectedName)) {
+                            JOptionPane.showMessageDialog(requestStatusPnl,
+                                "Item Code: " + req.getItemCode() + 
+                                "\nItem Name: " + req.getItemName() + 
+                                "\nQuantity: " + req.getQuantity() + 
+                                "\nUnit: " + req.getUnit() + 
+                                "\nStatus: " + req.getStatus());
+                            break;
+                        }
+                    }
+                    popup.setVisible(false);
+                }
+            }
+        });
+    }
+
+    private void applySorting()
+    {
+        TableRowSorter<TableModel> sorter = (TableRowSorter<TableModel>) requestStatusTbl.getRowSorter();
+
+        String sortBy = sortByComboBox.getSelectedItem().toString();
+        String order = orderComboBox.getSelectedItem().toString();
+
+        int columnIndex = 0;
+
+        switch(sortBy)
+        {
+            case "Name":
+                columnIndex = 1;
+                break;
+            case "Status":
+                columnIndex = 4;
+                break;
+        }
+
+        SortOrder sortOrder = order.equals("Ascending")
+            ? SortOrder.ASCENDING : SortOrder.DESCENDING;
+        
+        List<RowSorter.SortKey> newKeys = new ArrayList<>();
+        newKeys.add(new RowSorter.SortKey(columnIndex, sortOrder));
+
+        sorter.setSortKeys(newKeys);
+        sorter.sort();
+    }
+
+    //diplays JOptionPane if the head want to Approve or Reject the item to be requested by the staff
+    private void approveOrReject(User loginUser)
+    {
+        requestStatusTbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt)
+            {
+                if(!loginUser.getRole().equalsIgnoreCase("head"))
+                {
+                    return;
+                }
+
+                int row = requestStatusTbl.rowAtPoint(evt.getPoint());
+                int col = requestStatusTbl.columnAtPoint(evt.getPoint());
+
+                if(col == 4)
+                {
+                    String status = (String) requestStatusTbl.getValueAt(row, col);
+                    if("Pending".equalsIgnoreCase(status))
+                    {
+                        String selectedRequestId = requestIDComboBox.getSelectedItem().toString();
+                        List<Request> requests = requestsMap.get(selectedRequestId);
+
+                        if(requests == null || row >= requests.size()) return;
+
+                        Request req = requests.get(row);
+
+                        int choice = JOptionPane.showOptionDialog(requestStatusPnl, 
+                            "Item: " + req.getItemName() + 
+                            "\nQuantity: " + req.getQuantity() + 
+                            "\nUnit: " + req.getUnit(), "Request Approval", 
+                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+                            null, new String [] {"Approve", "Reject"}, "Approve");
+
+                        if(choice == 0)
+                        {
+                            req.setStatus("Approved");
+                        }
+                        else if(choice == 1)
+                        {
+                            req.setStatus("Rejected");
+                        }
+
+                        requestStatusTbl.setValueAt(req.getStatus(), row, col);
+
+                        try
+                        {
+                            RequestManager requestManager = new RequestManager();
+                            requestManager.updateRequestStatus(loginUser.getFilePath(), req);
+                        }
+                        catch(IOException e)
+                        {
+                            e.printStackTrace();
+                            JOptionPane.showMessageDialog(requestStatusPnl, "Failed to update request file.");
+                        }
+                    }
+                }
+            }
+        });
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel createRequestLbl;
     private javax.swing.JLabel departmentNameLbl;
     private javax.swing.JLabel homeLbl;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JComboBox<String> orderComboBox;
     private javax.swing.JComboBox<String> requestIDComboBox;
     private javax.swing.JLabel requestStatusLbl;
     private javax.swing.JPanel requestStatusPnl;
     private javax.swing.JTable requestStatusTbl;
+    private javax.swing.JTextField searchTxtField;
+    private javax.swing.JComboBox<String> sortByComboBox;
     // End of variables declaration//GEN-END:variables
 }

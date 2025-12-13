@@ -4,6 +4,8 @@
  */
 package com.mycompany.oopdsaproject;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -75,6 +77,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         searchTxtField = new javax.swing.JTextField();
         viewRequestBtn = new javax.swing.JButton();
         requestBtn = new javax.swing.JButton();
+        requestStatusLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,6 +129,8 @@ public class GUIRequestInventory extends javax.swing.JFrame {
 
         requestBtn.setText("Request");
 
+        requestStatusLbl.setText("Request Status");
+
         javax.swing.GroupLayout requestInventoryPnlLayout = new javax.swing.GroupLayout(requestInventoryPnl);
         requestInventoryPnl.setLayout(requestInventoryPnlLayout);
         requestInventoryPnlLayout.setHorizontalGroup(
@@ -141,23 +146,22 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                         .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(requestLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(185, 185, 185))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(requestStatusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
-                        .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(requestInventoryPnlLayout.createSequentialGroup()
-                                .addComponent(viewRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(requestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(requestInventoryPnlLayout.createSequentialGroup()
-                                .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(51, 51, 51)
-                                .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(98, 98, 98))))
+                        .addComponent(viewRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(requestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
+                        .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(51, 51, 51)
+                        .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(98, 98, 98))
         );
         requestInventoryPnlLayout.setVerticalGroup(
             requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,14 +169,15 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(homeLbl)
-                    .addComponent(requestLbl))
+                    .addComponent(requestLbl)
+                    .addComponent(requestStatusLbl))
                 .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(requestInventoryPnlLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(jLabel1)
-                        .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(requestInventoryPnlLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                         .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5))
@@ -180,9 +185,9 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                         .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(searchTxtField)
                             .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(requestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -232,6 +237,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new GUIRequestInventory().setVisible(true));
     }
 
+
     public GUIRequestInventory(User loginUser)
     {
         initComponents();
@@ -257,6 +263,38 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         });
 
         requestLbl.setFont(new Font("Verdana", Font.BOLD, 12));
+
+        requestStatusLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
+        requestStatusLbl.setToolTipText("View Request Status");
+        requestStatusLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        requestStatusLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt)
+            {
+                if(loginUser.equals("head"))
+                {
+                    GUIRequestStatus requestStatus = null;
+                    try {
+                        requestStatus = new GUIRequestStatus(loginUser);
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    requestStatus.setVisible(true);
+                }
+                else
+                {
+                    GUIRequestStatus requestStatus = null;
+                    try {
+                        requestStatus = new GUIRequestStatus(loginUser);
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    requestStatus.setVisible(true);
+                }
+                dispose();
+            }
+        });
         
 
         ItemsManager itemsManager = new ItemsManager();
@@ -270,6 +308,22 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         center.setHorizontalAlignment(JLabel.CENTER);
         requestInventoryTbl.getColumnModel().getColumn(2).setCellRenderer(center);
         requestInventoryTbl.getColumnModel().getColumn(4).setCellRenderer(center);
+        requestInventoryTbl.setRowHeight(24);
+
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                                                        boolean isSelected, boolean hasFocus,
+                                                        int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+                if (!isSelected) {
+                    c.setBackground(row % 2 == 1 ? new Color(240, 240, 240) : Color.WHITE);
+                }
+
+                return c;
+            }
+        };
 
         for(Items item : itemsManager.getItems())
         {
@@ -283,6 +337,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                 }
             );
         }
+        requestInventoryTbl.setFillsViewportHeight(true);
 
         JPopupMenu popup = new JPopupMenu();
         popup.setFocusable(false);
@@ -477,6 +532,9 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         scrollPane.setPreferredSize(new Dimension(300,200));
 
         JOptionPane.showMessageDialog(this, scrollPane, "Requested Items", JOptionPane.INFORMATION_MESSAGE);
+        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
+        center.setHorizontalAlignment(JLabel.CENTER);
+        requestedTable.getColumnModel().getColumn(1).setCellRenderer(center);
     }
 
     
@@ -493,6 +551,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
     private javax.swing.JPanel requestInventoryPnl;
     private javax.swing.JTable requestInventoryTbl;
     private javax.swing.JLabel requestLbl;
+    private javax.swing.JLabel requestStatusLbl;
     private javax.swing.JTextField searchTxtField;
     private javax.swing.JButton viewRequestBtn;
     // End of variables declaration//GEN-END:variables

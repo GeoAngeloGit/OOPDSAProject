@@ -8,6 +8,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 /**
  *
@@ -38,6 +39,7 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
         requestLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        requestStatusLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +50,8 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
         requestLbl.setText("Request");
 
         jLabel1.setText("Head Dashboard");
+
+        requestStatusLbl.setText("Request Status");
 
         javax.swing.GroupLayout headDashboardLayout = new javax.swing.GroupLayout(headDashboard);
         headDashboard.setLayout(headDashboardLayout);
@@ -64,7 +68,9 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
                         .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(requestLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(250, 250, 250))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(requestStatusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(168, 168, 168))
                     .addComponent(jSeparator1))
                 .addGap(16, 16, 16))
         );
@@ -74,7 +80,8 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(headDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(homeLbl)
-                    .addComponent(requestLbl))
+                    .addComponent(requestLbl)
+                    .addComponent(requestStatusLbl))
                 .addGap(8, 8, 8)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
@@ -139,6 +146,25 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
             }
         });
 
+        requestStatusLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
+        requestStatusLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        requestStatusLbl.setToolTipText("Create a Request");
+        requestStatusLbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt)
+            {
+                GUIRequestStatus requestForm = null;
+                try {
+                    requestForm = new GUIRequestStatus(loginUser);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                requestForm.setVisible(true);
+                dispose();
+            }
+        });
+
         
     }
 
@@ -150,5 +176,6 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel requestLbl;
+    private javax.swing.JLabel requestStatusLbl;
     // End of variables declaration//GEN-END:variables
 }

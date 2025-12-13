@@ -55,31 +55,28 @@
                           <Component id="homeLbl" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="requestLbl" min="-2" pref="116" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="requestStatusLbl" min="-2" pref="97" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="viewRequestBtn" min="-2" pref="114" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                  <Component id="requestBtn" min="-2" pref="114" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel4" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
-                                      <Component id="searchTxtField" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="orderComboBox" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                                      <Component id="jLabel5" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="jScrollPane1" min="-2" pref="767" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                          <Component id="viewRequestBtn" min="-2" pref="114" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="requestBtn" min="-2" pref="114" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel4" alignment="0" min="-2" pref="88" max="-2" attributes="0"/>
+                              <Component id="searchTxtField" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="orderComboBox" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
+                              <Component id="jLabel5" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="jScrollPane1" alignment="1" min="-2" pref="767" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -90,15 +87,16 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="homeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="requestLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="requestStatusLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace pref="22" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -108,11 +106,11 @@
                               <Component id="searchTxtField" alignment="0" max="32767" attributes="0"/>
                               <Component id="orderComboBox" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="336" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="330" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="viewRequestBtn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="requestBtn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
@@ -196,6 +194,11 @@
         <Component class="javax.swing.JButton" name="requestBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Request"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="requestStatusLbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Request Status"/>
           </Properties>
         </Component>
       </SubComponents>

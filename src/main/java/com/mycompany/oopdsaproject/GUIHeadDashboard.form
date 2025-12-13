@@ -55,7 +55,9 @@
                           <Component id="homeLbl" min="-2" pref="71" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="requestLbl" min="-2" pref="97" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="requestStatusLbl" min="-2" pref="94" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -70,6 +72,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="homeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="requestLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="requestStatusLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
@@ -96,6 +99,11 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Head Dashboard"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="requestStatusLbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Request Status"/>
           </Properties>
         </Component>
       </SubComponents>
