@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,13 +49,6 @@ public class GUIRequestStatus extends javax.swing.JFrame {
         requestStatusLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         requestsTabbedPane = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,116 +56,9 @@ public class GUIRequestStatus extends javax.swing.JFrame {
 
         homeLbl.setText("Home");
 
-        createRequestLbl.setText("Create Request");
-
         requestStatusLbl.setText("Request Status");
 
         requestsTabbedPane.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 793, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 393, Short.MAX_VALUE)
-        );
-
-        requestsTabbedPane.addTab("ENGINEERING", null, jPanel1, "View Engineering Requests");
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 793, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 393, Short.MAX_VALUE)
-        );
-
-        requestsTabbedPane.addTab("FINANCIAL", null, jPanel2, "View Financial Requests");
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 793, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 393, Short.MAX_VALUE)
-        );
-
-        requestsTabbedPane.addTab("HR", null, jPanel3, "View HR Requests");
-
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 793, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 393, Short.MAX_VALUE)
-        );
-
-        requestsTabbedPane.addTab("IT", null, jPanel4, "View IT Requests");
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 793, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 393, Short.MAX_VALUE)
-        );
-
-        requestsTabbedPane.addTab("LOGISTICS", null, jPanel5, "View Logistics Requests");
-
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 793, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 393, Short.MAX_VALUE)
-        );
-
-        requestsTabbedPane.addTab("LCC AYALA", null, jPanel6, "View LCC Ayala Requests");
-
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 793, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 393, Short.MAX_VALUE)
-        );
-
-        requestsTabbedPane.addTab("LCC DARAGA", null, jPanel8, "View LCC Daraga Requests");
 
         javax.swing.GroupLayout requestStatusPnlLayout = new javax.swing.GroupLayout(requestStatusPnl);
         requestStatusPnl.setLayout(requestStatusPnlLayout);
@@ -199,15 +86,16 @@ public class GUIRequestStatus extends javax.swing.JFrame {
             requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(requestStatusPnlLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(homeLbl)
-                    .addComponent(createRequestLbl)
-                    .addComponent(requestStatusLbl))
-                .addGap(8, 8, 8)
+                .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(homeLbl)
+                        .addComponent(requestStatusLbl))
+                    .addComponent(createRequestLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -258,22 +146,31 @@ public class GUIRequestStatus extends javax.swing.JFrame {
 
         setLbl(loginUser);
 
+        Map<String, String> deptFiles = new HashMap<>();
+
         if(loginUser.getRole().equalsIgnoreCase("admin"))
         {
-            String[] departments = {"Engineering", "Financial", "HR", "IT", "Logistics", "LCC Ayala", "LCC Daraga"};
+            deptFiles.put("Engineering", "data/engineering_dept_requests.txt");
+            deptFiles.put("Financial", "data/financial_dept_requests.txt");
+            deptFiles.put("HR","data/human_resource_dept_requests.txt");
+            deptFiles.put("IT", "data/it_dept_requests.txt");
+            deptFiles.put("Logistics", "data/logistics_dept_requests.txt");
+            deptFiles.put("LCC Ayala", "data/lcc_ayala_branch_requests.txt");
+            deptFiles.put("LCC Daraga", "data/lcc_daraga_branch_requests.txt");   
 
-            for(String dept : departments)
+            for(String dept : deptFiles.keySet())
             {
-                RequestStatusPanel statusPanel = new RequestStatusPanel(loginUser, dept);
-                addDepartmentTab(dept, statusPanel);
+                String filePath = deptFiles.get(dept);
+                RequestStatusPanel statusPanel = new RequestStatusPanel(loginUser, dept, filePath, requestStatusPnl);
+                requestsTabbedPane.addTab(dept, statusPanel);
             }
         }
         else{
             requestsTabbedPane.setVisible(false);
-            RequestStatusPanel statusPanel = new RequestStatusPanel(loginUser,loginUser.getDepartment());
+            RequestStatusPanel statusPanel = new RequestStatusPanel(loginUser,loginUser.getDepartment(), loginUser.getFilePath(), requestStatusPnl);
             requestStatusPnl.setLayout(new BorderLayout());
-            statusPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
-            
+            statusPanel.setBorder(BorderFactory.createEmptyBorder(100, 50, 0, 0));
+            requestStatusPnl.setLayout(new BorderLayout());
             requestStatusPnl.add(statusPanel, BorderLayout.CENTER);
 
             requestStatusPnl.revalidate();
@@ -303,21 +200,44 @@ public class GUIRequestStatus extends javax.swing.JFrame {
                     GUIStaffDashboard staffDashboard = new GUIStaffDashboard(loginUser);
                     staffDashboard.setVisible(true);
                 }
+                else if(loginUser.getRole().equals("admin"))
+                {
+                    GUIAdminDashboard adminDashboard = new GUIAdminDashboard(loginUser);
+                    adminDashboard.setVisible(true);
+                }
                 dispose();
             }
         });
 
         createRequestLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
         createRequestLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        createRequestLbl.setToolTipText("Create New Request");
-        createRequestLbl.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt)
-            {
-                GUIRequestInventory requestInventory = new GUIRequestInventory(loginUser);
-                requestInventory.setVisible(true);
-                dispose();
-            }
-        });
+
+        if(loginUser.getRole().equals("head") || loginUser.getRole().equals("staff"))
+        {
+            createRequestLbl.setText("Create Request");
+            createRequestLbl.setToolTipText("Create New Request");
+            createRequestLbl.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt)
+                {
+                    GUIRequestInventory requestInventory = new GUIRequestInventory(loginUser);
+                    requestInventory.setVisible(true);
+                    dispose();
+                }
+            });
+        }
+        else if(loginUser.getRole().equals("admin"))
+        {
+            createRequestLbl.setText("Inventory");
+            createRequestLbl.setToolTipText("View Inventory");
+            createRequestLbl.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent evt)
+                {
+                    GUIInventory inventory = new GUIInventory(loginUser);
+                    inventory.setVisible(true);
+                    dispose();
+                }
+            });
+        }
 
         requestStatusLbl.setFont(new Font("Verdana", Font.BOLD, 12));
 
@@ -335,13 +255,6 @@ public class GUIRequestStatus extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel createRequestLbl;
     private javax.swing.JLabel homeLbl;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel requestStatusLbl;
     private javax.swing.JPanel requestStatusPnl;

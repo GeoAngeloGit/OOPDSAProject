@@ -1,0 +1,7 @@
+REQ20251214-001,2025-12-14,AT,Adhesive Tape,6,Piece,Pending
+REQ20251214-001,2025-12-14,bubp,HBW Blue Ballpen,6,Box,Pending
+REQ20251214-001,2025-12-14,stap,Stapler,6,Piece,Pending
+REQ20251214-004,2025-12-14,a4BP,A4 Bond Paper,4,Ream,Completed
+REQ20251214-004,2025-12-14,AT,Adhesive Tape,4,Piece,Completed
+REQ20251214-004,2025-12-14,bubp,HBW Blue Ballpen,5,Box,Rejected
+REQ20251214-004,2025-12-14,stap,Stapler,5,Piece,Completed

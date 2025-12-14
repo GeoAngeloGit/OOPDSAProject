@@ -98,10 +98,6 @@ public class GUIInventory extends javax.swing.JFrame {
             );
         }
         inventoryTable.setFillsViewportHeight(true);
-
-        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
-        center.setHorizontalAlignment(JLabel.CENTER);
-        inventoryTable.getColumnModel().getColumn(3).setCellRenderer(center);
         inventoryTable.setRowHeight(24);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
@@ -111,6 +107,8 @@ public class GUIInventory extends javax.swing.JFrame {
                                                         int row, int column) {
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
+                setHorizontalAlignment(JLabel.CENTER);
+                
                 if (!isSelected) {
                     c.setBackground(row % 2 == 1 ? new Color(245,245, 245) : Color.WHITE);
                 }

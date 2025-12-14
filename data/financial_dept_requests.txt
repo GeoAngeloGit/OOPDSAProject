@@ -1,0 +1,3 @@
+REQ20251214-001,2025-12-14,AT,Adhesive Tape,3,Piece,Pending
+REQ20251214-001,2025-12-14,blbp,HBW Black Ballpen,5,Box,Pending
+REQ20251214-001,2025-12-14,bubp,HBW Blue Ballpen,5,Box,Pending

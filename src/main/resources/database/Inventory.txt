@@ -1,6 +1,0 @@
-a4BP,A4 Bond Paper,2025-10-15 11:51,100,Ream
-AT,Adhesive Tape,2025-05-02 9:30,40,Piece
-blbp,HBW Black Ballpen,2025-07-13 9:31,30,Box
-bubp,HBW Blue Ballpen,2025-09-21 13:51,50,Box
-rbp,HBW Read Ballpen,2025-09-25 14:53,50,Box
-stap,Stapler,2025-08-01 11:51,10,Piece

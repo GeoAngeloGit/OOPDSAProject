@@ -304,10 +304,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) requestInventoryTbl.getModel();
         model.setRowCount(0);
 
-        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
-        center.setHorizontalAlignment(JLabel.CENTER);
-        requestInventoryTbl.getColumnModel().getColumn(2).setCellRenderer(center);
-        requestInventoryTbl.getColumnModel().getColumn(4).setCellRenderer(center);
+        requestInventoryTbl.setFillsViewportHeight(true);
         requestInventoryTbl.setRowHeight(24);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
@@ -317,13 +314,16 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                                                         int row, int column) {
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
+                setHorizontalAlignment(JLabel.CENTER);
+                
                 if (!isSelected) {
-                    c.setBackground(row % 2 == 1 ? new Color(245,245,245) : Color.WHITE);
+                    c.setBackground(row % 2 == 1 ? new Color(245,245, 245) : Color.WHITE);
                 }
 
                 return c;
             }
         };
+
         for (int i = 0; i < requestInventoryTbl.getColumnCount(); i++) {
             requestInventoryTbl.getColumnModel().getColumn(i).setCellRenderer(renderer);
         }
@@ -340,7 +340,6 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                 }
             );
         }
-        requestInventoryTbl.setFillsViewportHeight(true);
 
         JPopupMenu popup = new JPopupMenu();
         popup.setFocusable(false);
@@ -531,13 +530,34 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         Object[][] data = requestedRows.toArray(new Object[0][]);
         JTable requestedTable = new JTable(data, columnNames);
         requestedTable.setEnabled(false);
+        requestedTable.setFillsViewportHeight(true);
+        requestedTable.setRowHeight(24);
+
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                                                        boolean isSelected, boolean hasFocus,
+                                                        int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+                setHorizontalAlignment(JLabel.CENTER);
+                
+                if (!isSelected) {
+                    c.setBackground(row % 2 == 1 ? new Color(245,245, 245) : Color.WHITE);
+                }
+
+                return c;
+            }
+        };
+
+        for (int i = 0; i < requestedTable.getColumnCount(); i++) {
+            requestedTable.getColumnModel().getColumn(i).setCellRenderer(renderer);
+        }
+
         JScrollPane scrollPane = new JScrollPane(requestedTable);
         scrollPane.setPreferredSize(new Dimension(300,200));
 
         JOptionPane.showMessageDialog(this, scrollPane, "Requested Items", JOptionPane.INFORMATION_MESSAGE);
-        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
-        center.setHorizontalAlignment(JLabel.CENTER);
-        requestedTable.getColumnModel().getColumn(1).setCellRenderer(center);
     }
 
     
