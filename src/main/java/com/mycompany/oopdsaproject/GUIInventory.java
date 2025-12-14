@@ -112,7 +112,7 @@ public class GUIInventory extends javax.swing.JFrame {
                 Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
                 if (!isSelected) {
-                    c.setBackground(row % 2 == 1 ? new Color(240, 240, 240) : Color.WHITE);
+                    c.setBackground(row % 2 == 1 ? new Color(245,245, 245) : Color.WHITE);
                 }
 
                 return c;

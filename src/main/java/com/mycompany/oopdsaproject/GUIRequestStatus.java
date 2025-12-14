@@ -4,37 +4,19 @@
  */
 package com.mycompany.oopdsaproject;
 
-import java.awt.Color;
-import java.awt.Component;
+import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
-import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**
  *
@@ -61,54 +43,22 @@ public class GUIRequestStatus extends javax.swing.JFrame {
     private void initComponents() {
 
         requestStatusPnl = new javax.swing.JPanel();
-        departmentNameLbl = new javax.swing.JLabel();
-        requestIDComboBox = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        requestStatusTbl = new javax.swing.JTable();
         homeLbl = new javax.swing.JLabel();
         createRequestLbl = new javax.swing.JLabel();
         requestStatusLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        sortByComboBox = new javax.swing.JComboBox<>();
-        orderComboBox = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        searchTxtField = new javax.swing.JTextField();
+        requestsTabbedPane = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         requestStatusPnl.setBackground(new java.awt.Color(255, 255, 255));
-
-        departmentNameLbl.setText("request Status");
-
-        requestStatusTbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Item Code", "Item Name", "Quantity", "Unit", "Request Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(requestStatusTbl);
 
         homeLbl.setText("Home");
 
@@ -116,15 +66,112 @@ public class GUIRequestStatus extends javax.swing.JFrame {
 
         requestStatusLbl.setText("Request Status");
 
-        sortByComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Status" }));
+        requestsTabbedPane.setBackground(new java.awt.Color(255, 255, 255));
 
-        orderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ascending", "Descending" }));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setText("Order:");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 793, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 393, Short.MAX_VALUE)
+        );
 
-        jLabel2.setText("Search:");
+        requestsTabbedPane.addTab("ENGINEERING", null, jPanel1, "View Engineering Requests");
 
-        jLabel3.setText("Sort By:");
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 793, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 393, Short.MAX_VALUE)
+        );
+
+        requestsTabbedPane.addTab("FINANCIAL", null, jPanel2, "View Financial Requests");
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 793, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 393, Short.MAX_VALUE)
+        );
+
+        requestsTabbedPane.addTab("HR", null, jPanel3, "View HR Requests");
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 793, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 393, Short.MAX_VALUE)
+        );
+
+        requestsTabbedPane.addTab("IT", null, jPanel4, "View IT Requests");
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 793, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 393, Short.MAX_VALUE)
+        );
+
+        requestsTabbedPane.addTab("LOGISTICS", null, jPanel5, "View Logistics Requests");
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 793, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 393, Short.MAX_VALUE)
+        );
+
+        requestsTabbedPane.addTab("LCC AYALA", null, jPanel6, "View LCC Ayala Requests");
+
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 793, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 393, Short.MAX_VALUE)
+        );
+
+        requestsTabbedPane.addTab("LCC DARAGA", null, jPanel8, "View LCC Daraga Requests");
 
         javax.swing.GroupLayout requestStatusPnlLayout = new javax.swing.GroupLayout(requestStatusPnl);
         requestStatusPnl.setLayout(requestStatusPnlLayout);
@@ -136,32 +183,17 @@ public class GUIRequestStatus extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addComponent(createRequestLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(requestStatusLbl)
-                .addGap(141, 141, 141))
+                .addComponent(requestStatusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117))
             .addGroup(requestStatusPnlLayout.createSequentialGroup()
                 .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(requestStatusPnlLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
-                            .addComponent(requestIDComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(departmentNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(requestStatusPnlLayout.createSequentialGroup()
-                                .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(sortByComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(35, 35, 35)
+                        .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(requestStatusPnlLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         requestStatusPnlLayout.setVerticalGroup(
             requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,21 +205,9 @@ public class GUIRequestStatus extends javax.swing.JFrame {
                     .addComponent(requestStatusLbl))
                 .addGap(8, 8, 8)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(departmentNameLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(requestIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addGroup(requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(sortByComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -198,9 +218,7 @@ public class GUIRequestStatus extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(requestStatusPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(requestStatusPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -240,37 +258,27 @@ public class GUIRequestStatus extends javax.swing.JFrame {
 
         setLbl(loginUser);
 
-        RequestManager requestManager = new RequestManager();
-        requestsMap = requestManager.loadAllRequests(loginUser.getFilePath());
-
-        for(String requestId : requestsMap.keySet())
+        if(loginUser.getRole().equalsIgnoreCase("admin"))
         {
-            requestIDComboBox.addItem(requestId);
-        }
+            String[] departments = {"Engineering", "Financial", "HR", "IT", "Logistics", "LCC Ayala", "LCC Daraga"};
 
-        if(!requestsMap.isEmpty())
-        {
-            String latestId = getLatestRequestID();
-            requestIDComboBox.setSelectedItem(latestId);
-            loadRequestOnTable(latestId);
-        }
-
-        requestIDComboBox.addActionListener(e ->
+            for(String dept : departments)
             {
-                String selected = requestIDComboBox.getSelectedItem().toString();
-                loadRequestOnTable(selected);
+                RequestStatusPanel statusPanel = new RequestStatusPanel(loginUser, dept);
+                addDepartmentTab(dept, statusPanel);
             }
-        );
+        }
+        else{
+            requestsTabbedPane.setVisible(false);
+            RequestStatusPanel statusPanel = new RequestStatusPanel(loginUser,loginUser.getDepartment());
+            requestStatusPnl.setLayout(new BorderLayout());
+            statusPanel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
+            
+            requestStatusPnl.add(statusPanel, BorderLayout.CENTER);
 
-        searching(requestsMap);
-
-        TableRowSorter<TableModel> sorter = new TableRowSorter<>(requestStatusTbl.getModel());
-        requestStatusTbl.setRowSorter(sorter);
-
-        sortByComboBox.addActionListener(e -> applySorting());
-        orderComboBox.addActionListener(e -> applySorting());
-        
-        approveOrReject(loginUser);
+            requestStatusPnl.revalidate();
+            requestStatusPnl.repaint();
+        }
 
     }
 
@@ -316,229 +324,27 @@ public class GUIRequestStatus extends javax.swing.JFrame {
         
     }
 
-    private void loadRequestOnTable(String requestId)
+    public void addDepartmentTab(String dept, RequestStatusPanel panel)
     {
-        List<Request> list = requestsMap.get(requestId);
-        if(list == null) return;
-
-        DefaultTableModel model = (DefaultTableModel) requestStatusTbl.getModel();
-        model.setRowCount(0);
-
-        for(Request req : list){
-            model.addRow(new Object[]
-                {
-                    req.getItemCode(), req.getItemName(), req.getQuantity(), req.getUnit(), req.getStatus()
-                }
-            );
-        }
-
-        requestStatusTbl.setFillsViewportHeight(true);
-
-        requestStatusTbl.setRowHeight(24);
-        DefaultTableCellRenderer center = new DefaultTableCellRenderer();
-        center.setHorizontalAlignment(JLabel.CENTER);
-        requestStatusTbl.getColumnModel().getColumn(2).setCellRenderer(center);
-
-        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value,
-                                                        boolean isSelected, boolean hasFocus,
-                                                        int row, int column) {
-                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
-                if (!isSelected) {
-                    c.setBackground(row % 2 == 1 ? new Color(240, 240, 240) : Color.WHITE);
-                }
-
-                return c;
-            }
-        };
+        requestsTabbedPane.addTab(dept, panel);
     }
 
-    private String getLatestRequestID() 
-    {
-        return requestsMap.keySet().stream()
-                .sorted()
-                .reduce((first, second) -> second)  // get last
-                .orElse(null);
-    }
-
-    private void searching(Map<String, List<Request>> requestMap)
-    {
-
-        JPopupMenu popup = new JPopupMenu();
-        popup.setFocusable(false);
-
-        JList<String> suggestionList = new JList<>();
-        JScrollPane scrollPane = new JScrollPane(suggestionList);
-        scrollPane.setPreferredSize(new Dimension(searchTxtField.getWidth(), 100));
-        popup.add(scrollPane);
-
-        searchTxtField.getDocument().addDocumentListener(new DocumentListener() {
-            public void update()
-            {
-                String text = searchTxtField.getText().toLowerCase();
-                DefaultListModel<String> model = new DefaultListModel<>();
-                
-                String selectedReqID = requestIDComboBox.getSelectedItem().toString();
-                List<Request> requestItems = requestMap.get(selectedReqID);
-                if(requestItems == null) return;
-
-                for (Request req : requestItems) {
-                    if (req.getItemName().toLowerCase().contains(text) && !text.isEmpty()) {
-                        model.addElement(req.getItemName() + "(" + req.getRequestId() + ")");
-                    }
-                }
-                suggestionList.setModel(model);
-
-                if (!model.isEmpty()) {
-                    popup.show(searchTxtField, 0, searchTxtField.getHeight());
-                    popup.revalidate();
-                    popup.repaint();
-                } else {
-                    popup.setVisible(false);
-                }
-            }
-            @Override
-            public void insertUpdate(DocumentEvent e) { update(); }
-            @Override
-            public void removeUpdate(DocumentEvent e) { update(); }
-            @Override
-            public void changedUpdate(DocumentEvent e) { update(); }
-        });
-
-        suggestionList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                String selected = suggestionList.getSelectedValue();
-                if (selected != null) {
-                    String selectedName = selected.split("\\(")[0].trim();
-
-                    String selectedReqID = requestIDComboBox.getSelectedItem().toString();
-                    List<Request> requestItems = requestMap.get(selectedReqID);
-                    if(requestItems == null) return;
-
-                    for (Request req : requestItems) {
-                        if (req.getItemName().equalsIgnoreCase(selectedName)) {
-                            JOptionPane.showMessageDialog(requestStatusPnl,
-                                "Item Code: " + req.getItemCode() + 
-                                "\nItem Name: " + req.getItemName() + 
-                                "\nQuantity: " + req.getQuantity() + 
-                                "\nUnit: " + req.getUnit() + 
-                                "\nStatus: " + req.getStatus());
-                            break;
-                        }
-                    }
-                    popup.setVisible(false);
-                }
-            }
-        });
-    }
-
-    private void applySorting()
-    {
-        TableRowSorter<TableModel> sorter = (TableRowSorter<TableModel>) requestStatusTbl.getRowSorter();
-
-        String sortBy = sortByComboBox.getSelectedItem().toString();
-        String order = orderComboBox.getSelectedItem().toString();
-
-        int columnIndex = 0;
-
-        switch(sortBy)
-        {
-            case "Name":
-                columnIndex = 1;
-                break;
-            case "Status":
-                columnIndex = 4;
-                break;
-        }
-
-        SortOrder sortOrder = order.equals("Ascending")
-            ? SortOrder.ASCENDING : SortOrder.DESCENDING;
-        
-        List<RowSorter.SortKey> newKeys = new ArrayList<>();
-        newKeys.add(new RowSorter.SortKey(columnIndex, sortOrder));
-
-        sorter.setSortKeys(newKeys);
-        sorter.sort();
-    }
-
-    //diplays JOptionPane if the head want to Approve or Reject the item to be requested by the staff
-    private void approveOrReject(User loginUser)
-    {
-        requestStatusTbl.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt)
-            {
-                if(!loginUser.getRole().equalsIgnoreCase("head"))
-                {
-                    return;
-                }
-
-                int row = requestStatusTbl.rowAtPoint(evt.getPoint());
-                int col = requestStatusTbl.columnAtPoint(evt.getPoint());
-
-                if(col == 4)
-                {
-                    String status = (String) requestStatusTbl.getValueAt(row, col);
-                    if("Pending".equalsIgnoreCase(status))
-                    {
-                        String selectedRequestId = requestIDComboBox.getSelectedItem().toString();
-                        List<Request> requests = requestsMap.get(selectedRequestId);
-
-                        if(requests == null || row >= requests.size()) return;
-
-                        Request req = requests.get(row);
-
-                        int choice = JOptionPane.showOptionDialog(requestStatusPnl, 
-                            "Item: " + req.getItemName() + 
-                            "\nQuantity: " + req.getQuantity() + 
-                            "\nUnit: " + req.getUnit(), "Request Approval", 
-                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
-                            null, new String [] {"Approve", "Reject"}, "Approve");
-
-                        if(choice == 0)
-                        {
-                            req.setStatus("Approved");
-                        }
-                        else if(choice == 1)
-                        {
-                            req.setStatus("Rejected");
-                        }
-
-                        requestStatusTbl.setValueAt(req.getStatus(), row, col);
-
-                        try
-                        {
-                            RequestManager requestManager = new RequestManager();
-                            requestManager.updateRequestStatus(loginUser.getFilePath(), req);
-                        }
-                        catch(IOException e)
-                        {
-                            e.printStackTrace();
-                            JOptionPane.showMessageDialog(requestStatusPnl, "Failed to update request file.");
-                        }
-                    }
-                }
-            }
-        });
-    }
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel createRequestLbl;
-    private javax.swing.JLabel departmentNameLbl;
     private javax.swing.JLabel homeLbl;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JComboBox<String> orderComboBox;
-    private javax.swing.JComboBox<String> requestIDComboBox;
     private javax.swing.JLabel requestStatusLbl;
     private javax.swing.JPanel requestStatusPnl;
-    private javax.swing.JTable requestStatusTbl;
-    private javax.swing.JTextField searchTxtField;
-    private javax.swing.JComboBox<String> sortByComboBox;
+    private javax.swing.JTabbedPane requestsTabbedPane;
     // End of variables declaration//GEN-END:variables
 }

@@ -49,14 +49,16 @@
                           <EmptySpace min="-2" pref="360" max="-2" attributes="0"/>
                           <Component id="homeLbl" min="-2" pref="92" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="inventoryLbl" min="-2" pref="146" max="-2" attributes="0"/>
+                          <Component id="inventoryLbl" min="-2" pref="110" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="requestsLbl" min="-2" pref="109" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" pref="214" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="194" max="32767" attributes="0"/>
+                  <EmptySpace pref="115" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -67,6 +69,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="homeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="inventoryLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="requestsLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -89,6 +92,11 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Admin Dashboard"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="requestsLbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Requests"/>
           </Properties>
         </Component>
       </SubComponents>

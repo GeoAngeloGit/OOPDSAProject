@@ -8,6 +8,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 /**
  *
@@ -37,6 +38,7 @@ public class GUIAdminDashboard extends javax.swing.JFrame {
         homeLbl = new javax.swing.JLabel();
         inventoryLbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        requestsLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +50,8 @@ public class GUIAdminDashboard extends javax.swing.JFrame {
 
         jLabel3.setText("Admin Dashboard");
 
+        requestsLbl.setText("Requests");
+
         javax.swing.GroupLayout adminDashboardPnlLayout = new javax.swing.GroupLayout(adminDashboardPnl);
         adminDashboardPnl.setLayout(adminDashboardPnlLayout);
         adminDashboardPnlLayout.setHorizontalGroup(
@@ -58,11 +62,13 @@ public class GUIAdminDashboard extends javax.swing.JFrame {
                         .addGap(360, 360, 360)
                         .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inventoryLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(inventoryLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(requestsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(adminDashboardPnlLayout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         adminDashboardPnlLayout.setVerticalGroup(
             adminDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,7 +76,8 @@ public class GUIAdminDashboard extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addGroup(adminDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(homeLbl)
-                    .addComponent(inventoryLbl))
+                    .addComponent(inventoryLbl)
+                    .addComponent(requestsLbl))
                 .addGap(44, 44, 44)
                 .addComponent(jLabel3)
                 .addContainerGap(383, Short.MAX_VALUE))
@@ -132,6 +139,25 @@ public class GUIAdminDashboard extends javax.swing.JFrame {
                 dispose();
             }
         });
+
+        requestsLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
+        requestsLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        requestsLbl.setToolTipText("View Requests of Departments");
+        requestsLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt)
+            {
+                try {
+                    GUIRequestStatus requestStatus = new GUIRequestStatus(loginUser);
+                    requestStatus.setVisible(true);
+                    dispose();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+                dispose();
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -139,5 +165,6 @@ public class GUIAdminDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel homeLbl;
     private javax.swing.JLabel inventoryLbl;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel requestsLbl;
     // End of variables declaration//GEN-END:variables
 }
