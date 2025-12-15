@@ -26,39 +26,6 @@ import javax.swing.table.DefaultTableModel;
  * @author USER
  */
 public class RequestManager {
-    // public static void saveRequest(String dept, Request request)
-    // {
-    //     String fileNameDept = toFileSafeName(dept);
-    //     String path = "database/" + fileNameDept + "_requests.txt";
-
-    //     StringBuilder itemsString = new StringBuilder();
-    //     for(RequestItem item : request.getItems())
-    //     {
-    //         itemsString.append(item.getItemName())
-    //                 .append(":")
-    //                 .append(item.getQuantity())
-    //                 .append(";");
-    //     }
-
-    //     try(FileWriter fw = new FileWriter(path, true))
-    //     {
-    //         fw.write(request.getRequestId() + "," +
-    //                  request.getDepartment() + "," +
-    //                  request.getStatus() + "," +
-    //                  request.getDateCreated() + "," +
-    //                  itemsString.toString() +
-    //                  "\n");
-    //     } 
-    //     catch (Exception e)
-    //     {
-    //         e.printStackTrace();
-    //     }
-    // }
-
-    // private static String toFileSafeName(String dept)
-    // {
-    //     return dept.toLowerCase().replace(" ", "_");
-    // }
 
     public boolean saveRequests(JTable table, String department, String role, String filePath, User loginUser)
     {
@@ -115,7 +82,7 @@ public class RequestManager {
 
     public String generateRequestID(String department, String filePath)
     {
-        String date = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE);
+        String date = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
 
         int counter = 1;
 

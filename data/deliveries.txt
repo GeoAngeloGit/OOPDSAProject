@@ -1,0 +1,4 @@
+DEL2025-12-15-001,stap,Stapler,3,Piece,2025-12-15,Ako Bicol
+DEL2025-12-15-001,a4BP,A4 Bond Paper,5,Ream,2025-12-15,Ako Bicol
+DEL2025-12-15-003,a4BP,A4 Bond Paper,3,Ream,2025-12-15,Geo Labalan
+DEL2025-12-15-003,bubp,HBW Blue Ballpen,3,Box,2025-12-15,Geo Labalan

@@ -161,13 +161,13 @@ public class GUIRequestStatus extends javax.swing.JFrame {
             for(String dept : deptFiles.keySet())
             {
                 String filePath = deptFiles.get(dept);
-                RequestStatusPanel statusPanel = new RequestStatusPanel(loginUser, dept, filePath, requestStatusPnl);
+                RequestStatusPanel statusPanel = new RequestStatusPanel(loginUser, dept, filePath, requestStatusPnl, TransactionType.REQUEST);
                 requestsTabbedPane.addTab(dept, statusPanel);
             }
         }
         else{
             requestsTabbedPane.setVisible(false);
-            RequestStatusPanel statusPanel = new RequestStatusPanel(loginUser,loginUser.getDepartment(), loginUser.getFilePath(), requestStatusPnl);
+            RequestStatusPanel statusPanel = new RequestStatusPanel(loginUser,loginUser.getDepartment(), loginUser.getFilePath(), requestStatusPnl, TransactionType.REQUEST);
             requestStatusPnl.setLayout(new BorderLayout());
             statusPanel.setBorder(BorderFactory.createEmptyBorder(100, 50, 0, 0));
             requestStatusPnl.setLayout(new BorderLayout());

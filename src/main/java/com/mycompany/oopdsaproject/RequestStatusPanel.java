@@ -164,8 +164,9 @@ public class RequestStatusPanel extends javax.swing.JPanel {
     private RequestManager requestManager;
     private Map<String, List<Request>> requestsMap;
     private String requestFilePath;
+    private TransactionType type;
 
-    public RequestStatusPanel(User loginUser, String department, String filePath, JPanel panel) throws IOException
+    public RequestStatusPanel(User loginUser, String department, String filePath, JPanel panel, TransactionType type) throws IOException
     {
         initComponents();
 

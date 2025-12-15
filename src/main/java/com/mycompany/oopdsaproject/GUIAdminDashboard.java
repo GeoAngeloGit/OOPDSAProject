@@ -39,6 +39,8 @@ public class GUIAdminDashboard extends javax.swing.JFrame {
         inventoryLbl = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         requestsLbl = new javax.swing.JLabel();
+        deliveriesLbl = new javax.swing.JLabel();
+        transactionsLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,33 +54,42 @@ public class GUIAdminDashboard extends javax.swing.JFrame {
 
         requestsLbl.setText("Requests");
 
+        deliveriesLbl.setText("Deliveries");
+
+        transactionsLbl.setText("Transactions");
+
         javax.swing.GroupLayout adminDashboardPnlLayout = new javax.swing.GroupLayout(adminDashboardPnl);
         adminDashboardPnl.setLayout(adminDashboardPnlLayout);
         adminDashboardPnlLayout.setHorizontalGroup(
             adminDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminDashboardPnlLayout.createSequentialGroup()
-                .addGroup(adminDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(adminDashboardPnlLayout.createSequentialGroup()
-                        .addGap(360, 360, 360)
-                        .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inventoryLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(requestsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(adminDashboardPnlLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(540, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminDashboardPnlLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(inventoryLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(requestsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(deliveriesLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transactionsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
         adminDashboardPnlLayout.setVerticalGroup(
             adminDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(adminDashboardPnlLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(46, 46, 46)
                 .addGroup(adminDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(homeLbl)
                     .addComponent(inventoryLbl)
-                    .addComponent(requestsLbl))
-                .addGap(44, 44, 44)
+                    .addComponent(requestsLbl)
+                    .addComponent(deliveriesLbl)
+                    .addComponent(transactionsLbl))
+                .addGap(51, 51, 51)
                 .addComponent(jLabel3)
                 .addContainerGap(383, Short.MAX_VALUE))
         );
@@ -158,13 +169,27 @@ public class GUIAdminDashboard extends javax.swing.JFrame {
                 dispose();
             }
         });
+        
+        deliveriesLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
+        deliveriesLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        deliveriesLbl.setToolTipText("View Requests of Departments");
+        deliveriesLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt)
+            {
+                GUIDeliveryInventory deliveryInventory = new GUIDeliveryInventory(loginUser);
+                deliveryInventory.setVisible(true);
+                dispose();
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel adminDashboardPnl;
+    private javax.swing.JLabel deliveriesLbl;
     private javax.swing.JLabel homeLbl;
     private javax.swing.JLabel inventoryLbl;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel requestsLbl;
+    private javax.swing.JLabel transactionsLbl;
     // End of variables declaration//GEN-END:variables
 }

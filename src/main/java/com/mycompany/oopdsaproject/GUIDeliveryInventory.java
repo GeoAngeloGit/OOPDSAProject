@@ -45,14 +45,14 @@ import javax.swing.table.TableRowSorter;
  *
  * @author USER
  */
-public class GUIRequestInventory extends javax.swing.JFrame {
+public class GUIDeliveryInventory extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUIRequestInventory.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GUIDeliveryInventory.class.getName());
 
     /**
      * Creates new form GUIRequestInventory
      */
-    public GUIRequestInventory() {
+    public GUIDeliveryInventory() {
         initComponents();
     }
 
@@ -68,24 +68,27 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         requestInventoryPnl = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        requestInventoryTbl = new javax.swing.JTable();
+        deliverInventoryTbl = new javax.swing.JTable();
         homeLbl = new javax.swing.JLabel();
-        requestLbl = new javax.swing.JLabel();
+        inventoryLbl = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         orderComboBox = new javax.swing.JComboBox<>();
         searchTxtField = new javax.swing.JTextField();
         viewRequestBtn = new javax.swing.JButton();
-        requestBtn = new javax.swing.JButton();
+        deliverBtn = new javax.swing.JButton();
         requestStatusLbl = new javax.swing.JLabel();
+        addNewItemBtn = new javax.swing.JButton();
+        requestStatusLbl1 = new javax.swing.JLabel();
+        transactionLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         requestInventoryPnl.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("Request Inventory");
+        jLabel1.setText("Delivery Inventory");
 
-        requestInventoryTbl.setModel(new javax.swing.table.DefaultTableModel(
+        deliverInventoryTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -93,7 +96,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Item Code", "Item Name", "Quantity", "Unit", "Request Quantity"
+                "Item Code", "Item Name", "Quantity", "Unit", "Deliver Quantity"
             }
         ) {
             Class[] types = new Class [] {
@@ -111,11 +114,11 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(requestInventoryTbl);
+        jScrollPane1.setViewportView(deliverInventoryTbl);
 
         homeLbl.setText("Home");
 
-        requestLbl.setText("Request");
+        inventoryLbl.setText("Inventory");
 
         jLabel5.setText("Order:");
 
@@ -125,11 +128,17 @@ public class GUIRequestInventory extends javax.swing.JFrame {
 
         searchTxtField.addActionListener(this::searchTxtFieldActionPerformed);
 
-        viewRequestBtn.setText("View Request");
+        viewRequestBtn.setText("View Delivery");
 
-        requestBtn.setText("Request");
+        deliverBtn.setText("Deliver");
 
-        requestStatusLbl.setText("Request Status");
+        requestStatusLbl.setText("Requests");
+
+        addNewItemBtn.setText("Add New Item");
+
+        requestStatusLbl1.setText("Deliveries");
+
+        transactionLbl.setText("Transactions");
 
         javax.swing.GroupLayout requestInventoryPnlLayout = new javax.swing.GroupLayout(requestInventoryPnl);
         requestInventoryPnl.setLayout(requestInventoryPnlLayout);
@@ -144,14 +153,20 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                 .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
                         .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(requestLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(requestStatusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(inventoryLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(requestStatusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(requestStatusLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(transactionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
+                        .addComponent(addNewItemBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
                         .addComponent(viewRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(requestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(deliverBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
                         .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,18 +181,20 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         requestInventoryPnlLayout.setVerticalGroup(
             requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(requestInventoryPnlLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(homeLbl)
-                    .addComponent(requestLbl)
-                    .addComponent(requestStatusLbl))
+                    .addComponent(inventoryLbl)
+                    .addComponent(requestStatusLbl)
+                    .addComponent(requestStatusLbl1)
+                    .addComponent(transactionLbl))
                 .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(requestInventoryPnlLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(46, 46, 46)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(requestInventoryPnlLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
                         .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5))
@@ -190,7 +207,8 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(requestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deliverBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addNewItemBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -234,11 +252,11 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new GUIRequestInventory().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new GUIDeliveryInventory().setVisible(true));
     }
 
 
-    public GUIRequestInventory(User loginUser)
+    public GUIDeliveryInventory(User loginUser)
     {
         initComponents();
 
@@ -262,7 +280,17 @@ public class GUIRequestInventory extends javax.swing.JFrame {
             }
         });
 
-        requestLbl.setFont(new Font("Verdana", Font.BOLD, 12));
+        inventoryLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
+        inventoryLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        inventoryLbl.setToolTipText("Go to Inventory");
+        inventoryLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt)
+            {
+                GUIInventory inventoryForm = new GUIInventory(loginUser);
+                inventoryForm.setVisible(true);
+                dispose();
+            }
+        });
 
         requestStatusLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
         requestStatusLbl.setToolTipText("View Request Status");
@@ -301,11 +329,11 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         itemsManager.loadInventory();
         List<Items> itemList = itemsManager.getItems();
 
-        DefaultTableModel model = (DefaultTableModel) requestInventoryTbl.getModel();
+        DefaultTableModel model = (DefaultTableModel) deliverInventoryTbl.getModel();
         model.setRowCount(0);
 
-        requestInventoryTbl.setFillsViewportHeight(true);
-        requestInventoryTbl.setRowHeight(24);
+        deliverInventoryTbl.setFillsViewportHeight(true);
+        deliverInventoryTbl.setRowHeight(24);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
             @Override
@@ -324,8 +352,8 @@ public class GUIRequestInventory extends javax.swing.JFrame {
             }
         };
 
-        for (int i = 0; i < requestInventoryTbl.getColumnCount(); i++) {
-            requestInventoryTbl.getColumnModel().getColumn(i).setCellRenderer(renderer);
+        for (int i = 0; i < deliverInventoryTbl.getColumnCount(); i++) {
+            deliverInventoryTbl.getColumnModel().getColumn(i).setCellRenderer(renderer);
         }
 
         for(Items item : itemsManager.getItems())
@@ -390,31 +418,50 @@ public class GUIRequestInventory extends javax.swing.JFrame {
             }
         }));
 
-        TableRowSorter<TableModel> sorter = new TableRowSorter<>(requestInventoryTbl.getModel());
-        requestInventoryTbl.setRowSorter(sorter);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(deliverInventoryTbl.getModel());
+        deliverInventoryTbl.setRowSorter(sorter);
 
         orderComboBox.addActionListener(e -> applySorting());
 
-        requestInventoryTbl.getColumnModel().getColumn(4).setCellEditor(new SpinnerEditor(false));
+        deliverInventoryTbl.getColumnModel().getColumn(4).setCellEditor(new SpinnerEditor(true));
 
-        viewRequestBtn.addActionListener(e -> showRequestedItems(requestInventoryTbl));
+        viewRequestBtn.addActionListener(e -> showRequestedItems(deliverInventoryTbl));
 
-        RequestManager requestManager = new RequestManager();
-        requestBtn.addActionListener(e -> 
+        DeliveryManager deliveryManager = new DeliveryManager();
+        // populate deliveryManager items from inventory file so deliveries can update inventory
+        deliveryManager.loadDeliveryInventory();
+        deliverBtn.addActionListener(e -> 
             {
-                boolean savedRequest = requestManager.saveRequests(requestInventoryTbl, loginUser.getDepartment(), 
-                    loginUser.getRole(), loginUser.getFilePath(), loginUser);
+                String supplierName = JOptionPane.showInputDialog(
+                        this, 
+                        "Enter Supplier Name:", 
+                        "Supplier Info", 
+                        JOptionPane.PLAIN_MESSAGE
+                );
+
+                if (supplierName == null || supplierName.trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Supplier name is required to process delivery.",
+                            "Missing Supplier",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+                    return; // stop processing
+                }
+
+                boolean savedDelivery = deliveryManager.saveDeliveries(deliverInventoryTbl, supplierName, 
+                    "data/deliveries.txt");
                 
-                if(!savedRequest)
+                if(!savedDelivery)
                 {
-                    JOptionPane.showMessageDialog(this, "No items were requested or an error has occurred", 
+                    JOptionPane.showMessageDialog(this, "No items were delivered or an error has occurred", 
                         "Save Failed", JOptionPane.ERROR_MESSAGE);
                     
                         return;
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(this, "Requested items successfully saved!",
+                    JOptionPane.showMessageDialog(this, "Delivered items successfully saved!",
                         "Save Successful", JOptionPane.INFORMATION_MESSAGE);
                 }
 
@@ -427,36 +474,33 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
                     null,
-                    new String[]{"Create New Request", "View Request Status"},
+                    new String[]{"Create New Delivery", "View Inventory"},
                     "Create New Request"
                 );
                 
                 if(choice == 0)
                 {   
                     dispose();
-                    new GUIRequestInventory(loginUser).setVisible(true);
+                    new GUIDeliveryInventory(loginUser).setVisible(true);
                 }
                 else if(choice == 1)
                 {
                     dispose();
-                    try {
-                        new GUIRequestStatus(loginUser).setVisible(true);
-                    } catch (IOException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
-                    }
+                    new GUIInventory(loginUser).setVisible(true);
                 }
             }
         );
+
+        addNewItemBtn.addActionListener(e -> addNewItemAction());
     }
 
 
 
     private void moveRowToTop(String name) {
-        DefaultTableModel model = (DefaultTableModel) requestInventoryTbl.getModel();
+        DefaultTableModel model = (DefaultTableModel) deliverInventoryTbl.getModel();
 
-        RowSorter oldSorter = requestInventoryTbl.getRowSorter();
-        requestInventoryTbl.setRowSorter(null);
+        RowSorter oldSorter = deliverInventoryTbl.getRowSorter();
+        deliverInventoryTbl.setRowSorter(null);
 
         Vector targetRow = null;
         int targetIndex = -1;
@@ -476,13 +520,13 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         model.removeRow(targetIndex);
         model.insertRow(0, targetRow);
 
-        requestInventoryTbl.setRowSorter(oldSorter);
+        deliverInventoryTbl.setRowSorter(oldSorter);
 
     }
 
     private void applySorting()
     {
-        TableRowSorter<TableModel> sorter = (TableRowSorter<TableModel>) requestInventoryTbl.getRowSorter();
+        TableRowSorter<TableModel> sorter = (TableRowSorter<TableModel>) deliverInventoryTbl.getRowSorter();
 
         String order = orderComboBox.getSelectedItem().toString();
 
@@ -560,22 +604,72 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, scrollPane, "Requested Items", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    private void addNewItemAction()
+    {
+        String itemCode = JOptionPane.showInputDialog(this, "Enter Item Code:");
+        if(itemCode == null || itemCode.trim().isEmpty()) return;
+
+        String itemName = JOptionPane.showInputDialog(this, "Enter Item Name:");
+        if(itemName == null || itemName.trim().isEmpty()) return;
+
+        String qtyStr = JOptionPane.showInputDialog(this, "Enter Initial Quantity:");
+        if(qtyStr == null || qtyStr.trim().isEmpty()) return;
+
+        int quantity;
+        try {
+            quantity = Integer.parseInt(qtyStr);
+            if(quantity < 0) {
+                JOptionPane.showMessageDialog(this, "Quantity cannot be negative!", 
+                                            "Invalid Input", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        } catch(NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid number for quantity!", 
+                                        "Invalid Input", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String unit = JOptionPane.showInputDialog(this, "Enter Unit:");
+        if(unit == null || unit.trim().isEmpty()) return;
+
+        // 2️⃣ Call the DeliveryManager method to add the new item
+        DeliveryManager manager = new DeliveryManager(); // or use existing instance
+        manager.addNewItem(itemCode, itemName, quantity, unit, "data/Inventory.txt");
+
+        // 3️⃣ Optional: Refresh table
+        manager.loadDeliveryInventory(); // reload items from Inventory.txt
+        DefaultTableModel model = (DefaultTableModel) deliverInventoryTbl.getModel();
+        model.setRowCount(0); // clear existing rows
+        for(Delivery item : manager.getDeliveryItems()) {
+            model.addRow(new Object[]{
+                item.getItemCode(),
+                item.getItemName(),
+                item.getQuantity(),
+                item.getUnit(),
+                0 // initial deliver quantity
+            });
+        }
+    }
+
     
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addNewItemBtn;
+    private javax.swing.JButton deliverBtn;
+    private javax.swing.JTable deliverInventoryTbl;
     private javax.swing.JLabel homeLbl;
+    private javax.swing.JLabel inventoryLbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> orderComboBox;
-    private javax.swing.JButton requestBtn;
     private javax.swing.JPanel requestInventoryPnl;
-    private javax.swing.JTable requestInventoryTbl;
-    private javax.swing.JLabel requestLbl;
     private javax.swing.JLabel requestStatusLbl;
+    private javax.swing.JLabel requestStatusLbl1;
     private javax.swing.JTextField searchTxtField;
+    private javax.swing.JLabel transactionLbl;
     private javax.swing.JButton viewRequestBtn;
     // End of variables declaration//GEN-END:variables
 }
