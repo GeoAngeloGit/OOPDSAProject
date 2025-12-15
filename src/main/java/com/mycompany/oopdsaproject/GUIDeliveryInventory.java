@@ -469,8 +469,8 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
 
                 int choice = JOptionPane.showOptionDialog(
                     this,
-                    "Request successfully created!\nWhat do you want to do next?",
-                    "Request Created",
+                    "Delivery successfully processed!\nWhat do you want to do next?",
+                    "Delivery Processed",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
                     null,

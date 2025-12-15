@@ -5,6 +5,7 @@
 package com.mycompany.oopdsaproject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.io.BufferedReader;
@@ -82,7 +83,7 @@ public class RequestManager {
 
     public String generateRequestID(String department, String filePath)
     {
-        String date = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
+        String date = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE);
 
         int counter = 1;
 
@@ -122,18 +123,27 @@ public class RequestManager {
             while((line = br.readLine()) != null)
             {
                 String[] parts = line.split(",");
-
-                if(parts.length != 7) continue;
+                // Accept both 7-field (no completion date) and 8-field (with completion date)
+                if(parts.length < 7) continue;
 
                 String requestId = parts[0];
-                String date = parts[1];
+                LocalDate date = LocalDate.parse(parts[1]);
                 String itemCode = parts[2];
                 String itemName = parts[3];
                 int quantity = Integer.parseInt(parts[4]);
                 String unit = parts[5];
                 String status = parts[6];
+                LocalDate dateCompleted = null;
 
-                Request request = new Request(requestId, itemCode, itemName, date, quantity, unit, status);
+                if(parts.length >= 8 && parts[7] != null && !parts[7].trim().isEmpty()) {
+                    try {
+                        dateCompleted = LocalDate.parse(parts[7]);
+                    } catch (Exception ex) {
+                        // ignore parse errors and keep dateCompleted null
+                    }
+                }
+
+                Request request = new Request(requestId, itemCode, itemName, date, dateCompleted, quantity, unit, status);
 
                 requestsMap.putIfAbsent(requestId, new ArrayList<>());
                 requestsMap.get(requestId).add(request);
@@ -155,7 +165,7 @@ public class RequestManager {
             while((line = br.readLine()) != null)
             {
                 String[] parts = line.split(",");
-                if(parts.length != 7) continue;
+                if(parts.length == 0) continue;
 
                 String requestId = parts[0];
                 String itemCode = parts[2];
@@ -163,9 +173,14 @@ public class RequestManager {
                 //if matches change status
                 if(requestId.equals(updatedRequest.getRequestId()) && itemCode.equals(updatedRequest.getItemCode()))
                 {
-                    parts[1] = updatedRequest.getDateCreated();
+                    if(parts.length <= 8) parts = Arrays.copyOf(parts,8);
+                    
                     parts[4] = String.valueOf(updatedRequest.getQuantity());
                     parts[6] = updatedRequest.getStatus();
+
+                    //date completed
+                    parts[7] = updatedRequest.getDateCompleted() != null 
+                        ? updatedRequest.getDateCompleted().toString() : "";
                 }
 
                 lines.add(String.join(",", parts));

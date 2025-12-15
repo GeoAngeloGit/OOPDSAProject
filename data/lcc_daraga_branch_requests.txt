@@ -1,3 +1,2 @@
-REQ20251212-001,2025-12-12,a4BP,A4 Bond Paper,5,Ream,Approved
-REQ20251212-001,2025-12-12,rbp,HBW Read Ballpen,5,Box,Approved
-REQ20251212-001,2025-12-15,stap,Stapler,0,Piece,Completed
+REQ20251212-001,2025-12-12,a4BP,A4 Bond Paper,0,Ream,Released Nothing,2025-12-15
+REQ20251212-001,2025-12-12,rbp,HBW Read Ballpen,5,Box,Completed,2025-12-15

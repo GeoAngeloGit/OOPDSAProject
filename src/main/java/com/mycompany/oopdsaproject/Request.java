@@ -4,6 +4,7 @@
  */
 package com.mycompany.oopdsaproject;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,29 +16,34 @@ public class Request {
     private String requestId;
     private String itemCode;
     private String itemName;
-    private String dateCreated;
+    private LocalDate dateCreated;
+    private LocalDate dateCompleted;
     private int quantity;
     private int originalQuantity;
     private String unit;
     private String status;
 
     public Request(String requestId, String itemCode, String itemName, 
-        String dateCreated, int quantity, String unit, String status)
+        LocalDate dateCreated, LocalDate dateCompleted, int quantity, String unit, String status)
         {
             this.requestId = requestId;
             this.itemCode = itemCode;
             this.itemName = itemName;
             this.dateCreated = dateCreated;
+            this.dateCompleted = dateCompleted;
             this.quantity = quantity;
             this.originalQuantity = quantity;
             this.unit = unit;
             this.status = status;
-            this.dateCreated = dateCreated;
         }
     
-    public String getDateCreated() 
+    public LocalDate getDateCreated() 
     { 
         return dateCreated; 
+    }
+    public LocalDate getDateCompleted() 
+    { 
+        return dateCompleted; 
     }
     public String getRequestId() 
     { 
@@ -81,8 +87,11 @@ public class Request {
         this.itemName = itemName;
     }
 
-    public void setDateCreated(String dateCreated) {
+    public void setDateCreated(LocalDate dateCreated) {
         this.dateCreated = dateCreated;
+    }
+    public void setDateCompleted(LocalDate dateCompleted) {
+        this.dateCompleted = dateCompleted;
     }
 
     public void setQuantity(int quantity) {

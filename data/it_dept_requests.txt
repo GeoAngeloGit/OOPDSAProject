@@ -1,13 +1,3 @@
-REQ20251213-001,2025-12-13,a4BP,A4 Bond Paper,5,Ream,Approved
-REQ20251213-001,2025-12-13,blbp,HBW Black Ballpen,5,Box,Rejected
-REQ20251213-001,2025-12-13,bubp,HBW Blue Ballpen,2,Box,Approved
-REQ20251213-001,2025-12-13,rbp,HBW Read Ballpen,7,Box,Approved
-REQ20251213-005,2025-12-13,a4BP,A4 Bond Paper,3,Ream,Approved
-REQ20251213-005,2025-12-13,blbp,HBW Black Ballpen,3,Box,Rejected
-REQ20251213-005,2025-12-15,rbp,HBW Read Ballpen,2,Box,Completed
-REQ20251213-005,2025-12-13,stap,Stapler,3,Piece,Rejected
-REQ20251214-001,2025-12-14,a4BP,A4 Bond Paper,6,Ream,Completed
-REQ20251214-001,2025-12-14,blbp,HBW Black Ballpen,6,Box,Completed
-REQ20251214-001,2025-12-14,bubp,HBW Blue Ballpen,9,Box,Rejected
-REQ20251214-001,2025-12-14,rbp,HBW Read Ballpen,7,Box,Rejected
-REQ20251214-001,2025-12-14,stap,Stapler,4,Piece,Rejected
+REQ20251215-001,2025-12-15,bubp,HBW Blue Ballpen,3,Box,Completed,2025-12-15
+REQ20251216-001,2025-12-16,AT,Adhesive Tape,3,Piece,Approved
+REQ20251216-001,2025-12-16,blbp,HBW Black Ballpen,3,Box,Approved

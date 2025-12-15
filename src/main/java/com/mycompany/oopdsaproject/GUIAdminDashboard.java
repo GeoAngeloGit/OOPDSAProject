@@ -181,6 +181,24 @@ public class GUIAdminDashboard extends javax.swing.JFrame {
                 dispose();
             }
         });
+
+        transactionsLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
+        transactionsLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        transactionsLbl.setToolTipText("View All Transactions");
+        transactionsLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt)
+            {
+                GUITransactions transactions;
+                try {
+                    transactions = new GUITransactions(loginUser);
+                    transactions.setVisible(true);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                dispose();
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

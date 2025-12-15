@@ -4,8 +4,15 @@
  */
 package com.mycompany.oopdsaproject;
 
+import java.awt.BorderLayout;
+import java.util.List;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -33,7 +40,7 @@ public class GUITransactions extends javax.swing.JFrame {
 
         transactionsPnl = new javax.swing.JPanel();
         transactionsTabbedPane = new javax.swing.JTabbedPane();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        requestsTabbedPane = new javax.swing.JTabbedPane();
         jLabel1 = new javax.swing.JLabel();
         homeLbl = new javax.swing.JLabel();
         inventoryLbl = new javax.swing.JLabel();
@@ -45,7 +52,7 @@ public class GUITransactions extends javax.swing.JFrame {
 
         transactionsPnl.setBackground(new java.awt.Color(255, 255, 255));
 
-        transactionsTabbedPane.addTab("tab1", jTabbedPane1);
+        transactionsTabbedPane.addTab("tab1", requestsTabbedPane);
 
         jLabel1.setText("Transactions");
 
@@ -64,24 +71,26 @@ public class GUITransactions extends javax.swing.JFrame {
         transactionsPnlLayout.setHorizontalGroup(
             transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionsPnlLayout.createSequentialGroup()
-                .addGroup(transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(transactionsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(transactionsPnlLayout.createSequentialGroup()
-                            .addGap(282, 282, 282)
-                            .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(inventoryLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(requestsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(deliveriesLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(transactionsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(transactionsPnlLayout.createSequentialGroup()
-                            .addGap(41, 41, 41)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGroup(transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(transactionsPnlLayout.createSequentialGroup()
+                        .addGap(282, 282, 282)
+                        .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inventoryLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(requestsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deliveriesLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(transactionsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(transactionsPnlLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(90, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transactionsPnlLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(transactionsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         transactionsPnlLayout.setVerticalGroup(
             transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,15 +105,15 @@ public class GUITransactions extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(transactionsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addComponent(transactionsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(transactionsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(transactionsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,11 +148,44 @@ public class GUITransactions extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new GUITransactions().setVisible(true));
     }
 
-    public GUITransactions(User loginUser)
+    private User loginUser;
+    private TransactionManager transactionManager;
+
+    public GUITransactions(User loginUser) throws IOException
     {
+        this.loginUser = loginUser;
         initComponents();
 
+        transactionManager = new TransactionManager();
+        List<Transaction> transactions = transactionManager.loadAllTransactions();
 
+        setupRequestTabs(transactions);
+        setupDeliveryTab(transactions);
+    }
+
+    private void setupRequestTabs(List<Transaction> allTransactions) throws IOException {
+        requestsTabbedPane = new JTabbedPane();
+
+        for (String dept : transactionManager.getDeptFiles().keySet()) {
+            List<Transaction> deptTransactions = allTransactions.stream()
+                .filter(t -> t.getType() == TransactionType.REQUEST)
+                .filter(t -> t.getSource().equals(dept))
+                .toList();
+
+            TransactionPanel panel = new TransactionPanel(deptTransactions, TransactionType.REQUEST, "Department");
+            requestsTabbedPane.addTab(dept, panel);
+        }
+        if(transactionsTabbedPane.getTabCount() > 0) { transactionsTabbedPane.remove(0);}
+        transactionsTabbedPane.addTab("Requests", requestsTabbedPane);
+    }
+
+    private void setupDeliveryTab(List<Transaction> allTransactions) throws IOException {
+        List<Transaction> deliveryTransactions = allTransactions.stream()
+            .filter(t -> t.getType() == TransactionType.DELIVERY)
+            .toList();
+
+        TransactionPanel deliveryPanel = new TransactionPanel(deliveryTransactions, TransactionType.DELIVERY, "Supplier");
+        transactionsTabbedPane.addTab("Deliveries", deliveryPanel);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -151,8 +193,8 @@ public class GUITransactions extends javax.swing.JFrame {
     private javax.swing.JLabel homeLbl;
     private javax.swing.JLabel inventoryLbl;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel requestsLbl;
+    private javax.swing.JTabbedPane requestsTabbedPane;
     private javax.swing.JLabel transactionsLbl;
     private javax.swing.JPanel transactionsPnl;
     private javax.swing.JTabbedPane transactionsTabbedPane;

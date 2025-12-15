@@ -4,6 +4,7 @@
  */
 package com.mycompany.oopdsaproject;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -33,7 +34,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
@@ -164,6 +164,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
     private RequestManager requestManager;
     private Map<String, List<Request>> requestsMap;
     private String requestFilePath;
+    private List<Request> displayedRequests = new ArrayList<>();
     private TransactionType type;
 
     public RequestStatusPanel(User loginUser, String department, String filePath, JPanel panel, TransactionType type) throws IOException
@@ -173,9 +174,24 @@ public class RequestStatusPanel extends javax.swing.JPanel {
         this.loginUser = loginUser;
         this.department = department;
         this.requestFilePath = filePath;
+        this.type = type;
 
+        panel.setLayout(new BorderLayout());
+        panel.add(this, BorderLayout.CENTER);
+
+        initRequestMode(panel);
+        requestStatusTbl.repaint();
+    }
+
+    public String getFilePath()
+    {
+        return this.requestFilePath;
+    }
+
+    private void initRequestMode(JPanel panel) throws IOException {
+        // TODO Auto-generated method stub
         requestManager = new RequestManager();
-        requestsMap = requestManager.loadAllRequests(filePath);
+        requestsMap = requestManager.loadAllRequests(requestFilePath);
 
         for(String requestId : requestsMap.keySet())
         {
@@ -205,8 +221,6 @@ public class RequestStatusPanel extends javax.swing.JPanel {
         orderComboBox.addActionListener(e -> applySorting());
         
         approveOrReject(loginUser, panel);
-
-        requestStatusTbl.repaint();
     }
 
     private void loadRequestOnTable(String requestId)
@@ -217,12 +231,13 @@ public class RequestStatusPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) requestStatusTbl.getModel();
         model.setRowCount(0);
 
-        for(Request req : list){
-            model.addRow(new Object[]
-                {
-                    req.getItemCode(), req.getItemName(), req.getQuantity(), req.getUnit(), req.getStatus()
-                }
-            );
+        // Only display requests that are Completed or Released Nothing
+        displayedRequests.clear();
+        for (Request req : list) {
+            displayedRequests.add(req);
+            model.addRow(new Object[] {
+                req.getItemCode(), req.getItemName(), req.getQuantity(), req.getUnit(), req.getStatus()
+            });
         }
 
         requestStatusTbl.setFillsViewportHeight(true);
@@ -354,79 +369,6 @@ public class RequestStatusPanel extends javax.swing.JPanel {
         });
     }
 
-    // private void searching(Map<String, List<Request>> requestMap)
-    // {
-
-    //     JPopupMenu popup = new JPopupMenu();
-    //     popup.setFocusable(false);
-
-    //     JList<String> suggestionList = new JList<>();
-    //     JScrollPane scrollPane = new JScrollPane(suggestionList);
-    //     scrollPane.setPreferredSize(new Dimension(searchTxtField.getWidth(), 100));
-    //     popup.add(scrollPane);
-
-    //     popup.setInvoker(searchTxtField);
-
-    //     searchTxtField.getDocument().addDocumentListener(new DocumentListener() {
-    //         public void update()
-    //         {
-    //             String text = searchTxtField.getText().toLowerCase();
-    //             DefaultListModel<String> model = new DefaultListModel<>();
-                
-    //             String selectedReqID = requestIDComboBox.getSelectedItem().toString();
-    //             List<Request> requestItems = requestMap.get(selectedReqID);
-    //             if(requestItems == null) return;
-
-    //             for (Request req : requestItems) {
-    //                 if (req.getItemName().toLowerCase().contains(text) && !text.isEmpty()) {
-    //                     model.addElement(req.getItemName() + "(" + req.getRequestId() + ")");
-    //                 }
-    //             }
-    //             suggestionList.setModel(model);
-
-    //             if (!model.isEmpty()) {
-    //                 popup.show(searchTxtField, 0, searchTxtField.getHeight());
-    //                 popup.revalidate();
-    //                 popup.repaint();
-    //             } else {
-    //                 popup.setVisible(false);
-    //             }
-    //         }
-    //         @Override
-    //         public void insertUpdate(DocumentEvent e) { update(); }
-    //         @Override
-    //         public void removeUpdate(DocumentEvent e) { update(); }
-    //         @Override
-    //         public void changedUpdate(DocumentEvent e) { update(); }
-    //     });
-
-    //     suggestionList.addMouseListener(new java.awt.event.MouseAdapter() {
-    //         public void mouseClicked(java.awt.event.MouseEvent evt) {
-    //             String selected = suggestionList.getSelectedValue();
-    //             if (selected != null) {
-    //                 String selectedName = selected.split("\\(")[0].trim();
-
-    //                 String selectedReqID = requestIDComboBox.getSelectedItem().toString();
-    //                 List<Request> requestItems = requestMap.get(selectedReqID);
-    //                 if(requestItems == null) return;
-
-    //                 for (Request req : requestItems) {
-    //                     if (req.getItemName().equalsIgnoreCase(selectedName)) {
-    //                         JOptionPane.showMessageDialog(null,
-    //                             "Item Code: " + req.getItemCode() + 
-    //                             "\nItem Name: " + req.getItemName() + 
-    //                             "\nQuantity: " + req.getQuantity() + 
-    //                             "\nUnit: " + req.getUnit() + 
-    //                             "\nStatus: " + req.getStatus());
-    //                         break;
-    //                     }
-    //                 }
-    //                 popup.setVisible(false);
-    //             }
-    //         }
-    //     });
-    // }
-
     private void applySorting()
     {
         TableRowSorter<TableModel> sorter = (TableRowSorter<TableModel>) requestStatusTbl.getRowSorter();
@@ -463,21 +405,18 @@ public class RequestStatusPanel extends javax.swing.JPanel {
         {
             public void mouseClicked(MouseEvent evt)
             {
-                int row = requestStatusTbl.rowAtPoint(evt.getPoint());
-                if(row < 0) return;
+                int viewRow = requestStatusTbl.rowAtPoint(evt.getPoint());
+                if (viewRow < 0) return;
 
-                int modelRow = requestStatusTbl.convertRowIndexToModel(row);
+                int modelRow = requestStatusTbl.convertRowIndexToModel(viewRow);
                 int col = requestStatusTbl.columnAtPoint(evt.getPoint());
 
-                if(col != 4) return;
+                if (col != 4) return;
 
-                String status = (String) requestStatusTbl.getValueAt(row, col);
-                String selectedRequestId = requestIDComboBox.getSelectedItem().toString();
-                List<Request> requests = requestsMap.get(selectedRequestId);
+                if (modelRow < 0 || modelRow >= displayedRequests.size()) return;
 
-                if(requests == null || row >= requests.size()) return;
-
-                Request req = requests.get(modelRow);
+                Request req = displayedRequests.get(modelRow);
+                String status = req.getStatus();
 
                 if(loginUser.getRole().equalsIgnoreCase("head"))
                 {
@@ -523,7 +462,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                         }
                     }
 
-                    requestStatusTbl.setValueAt(req.getStatus(), row, col);
+                    requestStatusTbl.getModel().setValueAt(req.getStatus(), modelRow, col);
                 }
                 else if(loginUser.getRole().equalsIgnoreCase("admin"))
                 {
@@ -563,6 +502,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                             {
                                 req.setStatus("Released Nothing");
                                 req.setQuantity(releasedQty);
+                                req.setDateCompleted(LocalDate.now()); // completion date
                                 JOptionPane.showMessageDialog(
                                     panel,
                                     "No inventory available.\nNothing was released.",
@@ -613,7 +553,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
 
                             if (choice == JOptionPane.YES_OPTION) {
                                 req.setStatus("Completed");
-                                req.setDateCreated(LocalDate.now().toString()); // completion date
+                                req.setDateCompleted(LocalDate.now()); // completion date
 
                                 RequestManager rm = new RequestManager();
                                 try {
@@ -628,7 +568,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                 }
                 else return;
 
-                requestStatusTbl.setValueAt(req.getStatus(), row, col);
+                requestStatusTbl.getModel().setValueAt(req.getStatus(), modelRow, col);
             }
         });
     }

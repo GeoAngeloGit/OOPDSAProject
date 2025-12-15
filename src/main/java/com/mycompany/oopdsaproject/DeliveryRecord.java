@@ -16,15 +16,17 @@ public class DeliveryRecord {
     private String itemName;
     private int deliveredQuantity;
     private String unit;
-    private LocalDate date;
+    private LocalDate dateDelivered;
+    private LocalDate dateCompleted;
 
-    public DeliveryRecord(String deliveryId, String itemCode, String itemName, int deliveredQuantity, String unit, LocalDate date) {
+    public DeliveryRecord(String deliveryId, String itemCode, String itemName, int deliveredQuantity, String unit, LocalDate dateDelivered, LocalDate dateCompleted) {
         this.deliveryId = deliveryId;
         this.itemCode = itemCode;
         this.itemName = itemName;
         this.deliveredQuantity = deliveredQuantity;
         this.unit = unit;
-        this.date = date;
+        this.dateDelivered = dateDelivered;
+        this.dateCompleted = dateCompleted;
     }
 
     // Getters
@@ -33,11 +35,15 @@ public class DeliveryRecord {
     public String getItemName() { return itemName; }
     public int getDeliveredQuantity() { return deliveredQuantity; }
     public String getUnit() { return unit; }
-    public LocalDate getDate() { return date; }
+    public LocalDate getDateDelivered() { return dateDelivered; }
+    public LocalDate getDateCompleted() { return dateCompleted; }
+
+
+    public void setDateCompleted(LocalDate dateCompleted) { this.dateCompleted = dateCompleted; }
 
     // Optional: convert to CSV line for saving
     public String toCSV() {
-        return deliveryId + "," + itemCode + "," + itemName + "," + deliveredQuantity + "," + unit + "," + date;
+        return deliveryId + "," + itemCode + "," + itemName + "," + deliveredQuantity + "," + unit + "," + dateDelivered + "," + dateCompleted;
     }
 }
 

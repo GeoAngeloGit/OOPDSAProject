@@ -82,6 +82,7 @@ public class DeliveryManager {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
         String date = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
+        String dateCompleted = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
         String deliveryId = generateDeliveryID(filePath);
 
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true)))
@@ -99,7 +100,7 @@ public class DeliveryManager {
                     processDelivery(itemCode, deliveredQty);
 
                     String line = String.join(",", deliveryId, itemCode, itemName,
-                                            String.valueOf(deliveredQty), unit, date, supplierName);
+                                            String.valueOf(deliveredQty), unit, date, dateCompleted, supplierName);
 
                     bw.write(line);
                     bw.newLine();
@@ -159,7 +160,7 @@ public class DeliveryManager {
 
     public String generateDeliveryID(String filePath)
     {
-        String date = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
+        String date = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE);
 
         int counter = 1;
 

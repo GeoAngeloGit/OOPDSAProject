@@ -18,6 +18,7 @@ public class Delivery {
     private int deliverQuantity; // Quantity to deliver
     private LocalDate lastRestockDate;
 
+
     public Delivery(String itemCode, String itemName, int quantity, String unit, LocalDate lastRestockDate) {
         this.itemCode = itemCode;
         this.itemName = itemName;
