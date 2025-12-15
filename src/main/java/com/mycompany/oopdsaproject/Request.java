@@ -17,6 +17,7 @@ public class Request {
     private String itemName;
     private String dateCreated;
     private int quantity;
+    private int originalQuantity;
     private String unit;
     private String status;
 
@@ -28,6 +29,7 @@ public class Request {
             this.itemName = itemName;
             this.dateCreated = dateCreated;
             this.quantity = quantity;
+            this.originalQuantity = quantity;
             this.unit = unit;
             this.status = status;
             this.dateCreated = dateCreated;
@@ -56,6 +58,10 @@ public class Request {
     public int getQuantity()
     {
         return quantity;
+    }
+    public int getOriginalQuantity()
+    {
+        return originalQuantity;
     }
     public String getUnit()
     {
@@ -89,6 +95,10 @@ public class Request {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+    public void setOriginalQuantity(int originalQuantity)
+    {
+        this.originalQuantity = originalQuantity;
     }
     
 }

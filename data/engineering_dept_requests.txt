@@ -1,13 +1,13 @@
-REQ20251212-001,2025-12-12,a4BP,A4 Bond Paper,5,Ream,Approved
+REQ20251212-001,2025-12-15,a4BP,A4 Bond Paper,4,Ream,Completed
 REQ20251212-001,2025-12-12,AT,Adhesive Tape,4,Piece,Approved
 REQ20251212-001,2025-12-12,bubp,HBW Blue Ballpen,4,Box,Approved
 REQ20251212-004,2025-12-12,a4BP,A4 Bond Paper,4,Ream,Approved
-REQ20251212-004,2025-12-12,blbp,HBW Black Ballpen,4,Box,Approved
+REQ20251212-004,2025-12-15,blbp,HBW Black Ballpen,4,Box,Completed
 REQ20251212-004,2025-12-12,bubp,HBW Blue Ballpen,6,Box,Approved
-REQ20251212-004,2025-12-12,stap,Stapler,5,Piece,Approved
+REQ20251212-004,2025-12-15,stap,Stapler,5,Piece,Completed
 REQ20251212-008,2025-12-12,a4BP,A4 Bond Paper,5,Ream,Approved
 REQ20251212-008,2025-12-12,blbp,HBW Black Ballpen,30,Box,Approved
-REQ20251212-008,2025-12-12,stap,Stapler,4,Piece,Approved
+REQ20251212-008,2025-12-15,stap,Stapler,0,Piece,Completed
 REQ20251213-001,2025-12-13,AT,Adhesive Tape,3,Piece,Completed
 REQ20251213-001,2025-12-13,stap,Stapler,3,Piece,Completed
-REQ20251213-001,2025-12-13,bubp,HBW Blue Ballpen,4,Box,Approved
+REQ20251213-001,2025-12-15,bubp,HBW Blue Ballpen,4,Box,Completed

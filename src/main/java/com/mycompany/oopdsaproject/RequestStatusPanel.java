@@ -9,6 +9,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -461,6 +463,9 @@ public class RequestStatusPanel extends javax.swing.JPanel {
             public void mouseClicked(MouseEvent evt)
             {
                 int row = requestStatusTbl.rowAtPoint(evt.getPoint());
+                if(row < 0) return;
+
+                int modelRow = requestStatusTbl.convertRowIndexToModel(row);
                 int col = requestStatusTbl.columnAtPoint(evt.getPoint());
 
                 if(col != 4) return;
@@ -471,15 +476,25 @@ public class RequestStatusPanel extends javax.swing.JPanel {
 
                 if(requests == null || row >= requests.size()) return;
 
-                Request req = requests.get(row);
+                Request req = requests.get(modelRow);
 
                 if(loginUser.getRole().equalsIgnoreCase("head"))
                 {
+                    if ("Completed".equalsIgnoreCase(status)) {
+                        JOptionPane.showMessageDialog(
+                            panel,
+                            "This request is already completed.",
+                            "Info",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                        return;
+                    }
+
                     if(!"Pending".equalsIgnoreCase(status)) return;
 
                     int choice = JOptionPane.showOptionDialog(panel, 
                         "Item: " + req.getItemName() + 
-                        "\nQuantity: " + req.getQuantity() + 
+                        "\nQuantity: " + req.getOriginalQuantity() + 
                         "\nUnit: " + req.getUnit(), "Request Approval", 
                         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
                         null, new String [] {"Approve", "Reject"}, "Approve");
@@ -511,55 +526,103 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                 }
                 else if(loginUser.getRole().equalsIgnoreCase("admin"))
                 {
+                    if ("Completed".equalsIgnoreCase(status) || "Completed (Released Nothing)".equalsIgnoreCase(status)) {
+                        JOptionPane.showMessageDialog(
+                            panel,
+                            "This request is already completed.",
+                            "Info",
+                            JOptionPane.INFORMATION_MESSAGE
+                        );
+                        return;
+                    }
+
+
                     if("Pending".equalsIgnoreCase(status))
                     {
                         JOptionPane.showMessageDialog(panel,"Cannot be processed yet. Wait for head approval.");
                         return;
                     }
 
-                    else if("Approved".equalsIgnoreCase(status))
+                    else if ("Approved".equalsIgnoreCase(status))
                     {
-                        int choice = JOptionPane.showConfirmDialog(panel, "Request: Ready for Pick Up?", 
-                            "Process Request", JOptionPane.YES_NO_OPTION);
-
-                        if(choice == JOptionPane.YES_OPTION)
-                        {
-                            req.setStatus("For Pick Up");
-                            RequestManager requestManager = new RequestManager();
-                            try {
-                                requestManager.updateRequestStatus(requestFilePath, req);
-                            } catch (IOException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
-                            }
-                        } else return;
-                    }
-                    else if("For Pick Up".equalsIgnoreCase(status))
-                    {
-                        int choice = JOptionPane.showConfirmDialog(panel, "Request: Completed?\nInventory will be updated", 
-                            "Complete Request", JOptionPane.YES_NO_OPTION
+                        int choice = JOptionPane.showConfirmDialog(
+                            panel,
+                            "Prepare this request for Pick Up?\nInventory will be checked.",
+                            "Process Request",
+                            JOptionPane.YES_NO_OPTION
                         );
 
-                        if(choice == JOptionPane.YES_OPTION)
-                        {
-                            req.setStatus("Completed");
+                        if (choice != JOptionPane.YES_OPTION) return;
 
-                            try
+                        try {
+                            ItemsManager itemsManager = new ItemsManager();
+                            int releasedQty = itemsManager.deductInventory(req);
+
+                            if (releasedQty == 0)
                             {
-                                ItemsManager itemsManager = new ItemsManager();
-                                itemsManager.deductInventory(req);
-
-                                RequestManager requestManager = new RequestManager();
-                                requestManager.updateRequestStatus(requestFilePath, req);
+                                req.setStatus("Released Nothing");
+                                req.setQuantity(releasedQty);
+                                JOptionPane.showMessageDialog(
+                                    panel,
+                                    "No inventory available.\nNothing was released.",
+                                    "Inventory Warning",
+                                    JOptionPane.WARNING_MESSAGE
+                                );
                             }
-                            catch(IOException e)
+
+                            else if (releasedQty < req.getOriginalQuantity())
                             {
-                                e.printStackTrace();
-                                JOptionPane.showMessageDialog(panel, "Inventory update Failed");
-                                return;
+                                req.setStatus("Partially For Pick Up");
+                                req.setQuantity(releasedQty);
+                                JOptionPane.showMessageDialog(
+                                    panel,
+                                    "Only " + releasedQty + " was released.\nRemaining items unavailable.",
+                                    "Partial Release",
+                                    JOptionPane.WARNING_MESSAGE
+                                );
+                            }
+                            else
+                            {
+                                req.setStatus("For Pick Up");
+                            }
+                            RequestManager rm = new RequestManager();
+                            rm.updateRequestStatus(requestFilePath, req);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            JOptionPane.showMessageDialog(
+                                panel,
+                                "Inventory check failed.",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE
+                            );
+                            return;
+                        }
+                    }
+
+                    else if("For Pick Up".equalsIgnoreCase(status) || "Partially For Pick Up".equalsIgnoreCase(status))
+                    {
+                        {
+                            int choice = JOptionPane.showConfirmDialog(
+                                panel,
+                                "Mark this request as Completed?",
+                                "Complete Request",
+                                JOptionPane.YES_NO_OPTION
+                            );
+
+                            if (choice == JOptionPane.YES_OPTION) {
+                                req.setStatus("Completed");
+                                req.setDateCreated(LocalDate.now().toString()); // completion date
+
+                                RequestManager rm = new RequestManager();
+                                try {
+                                    rm.updateRequestStatus(requestFilePath, req);
+                                } catch (IOException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                }
                             }
                         }
-                        else return;
                     }
                 }
                 else return;

@@ -248,7 +248,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         homeLbl.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt)
             {
-                if(loginUser.equals("head"))
+                if(loginUser.getRole().equals("head"))
                 {
                     GUIHeadDashboard headDashboard = new GUIHeadDashboard(loginUser);
                     headDashboard.setVisible(true);

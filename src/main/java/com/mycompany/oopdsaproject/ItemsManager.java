@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class ItemsManager {
     private List<Items> itemList = new ArrayList<>();
     private String status;
@@ -25,7 +27,11 @@ public class ItemsManager {
                 int quantity = Integer.parseInt(parts[3]);
                 String unit = parts[4];
 
-                if(quantity < 5)
+                if(quantity == 0)
+                {
+                    status = "No Stock";
+                }
+                else if(quantity < 5)
                 {
                     status = "Low Stock";
                 }
@@ -45,9 +51,10 @@ public class ItemsManager {
         return itemList;
     }
 
-    public void deductInventory(Request completedRequest) throws IOException
+    public int deductInventory(Request completedRequest) throws IOException
     {
         List<String> items = new ArrayList<>();
+        int releasedQty = 0;
 
         try(BufferedReader br = new BufferedReader(new FileReader(INVENTORY_PATH)))
         {
@@ -58,13 +65,30 @@ public class ItemsManager {
                 String[] parts = line.split(",");
 
                 String itemCode = parts[0];
-                int quantity = Integer.parseInt(parts[3]);
+                int availableQty = Integer.parseInt(parts[3]);
 
                 if(itemCode.equals(completedRequest.getItemCode()))
                 {
-                    quantity -= completedRequest.getQuantity();
-                    if(quantity < 0) quantity = 0;
-                    parts[3] = String.valueOf(quantity);
+                    int requestedQty = completedRequest.getQuantity();
+
+                    if(availableQty <= 0)
+                    {
+                        releasedQty = 0;
+                    }
+                    else if(requestedQty > availableQty)
+                    {
+                        releasedQty = availableQty;
+                        availableQty = 0;
+                    }
+                    else
+                    {
+                        releasedQty = requestedQty;
+                        availableQty -= requestedQty;
+                    }
+
+                    parts[3] = String.valueOf(availableQty);
+
+                    completedRequest.setQuantity(releasedQty);
                 }
 
                 items.add(String.join(",", parts));
@@ -79,5 +103,7 @@ public class ItemsManager {
                 bw.newLine();
             }
         }
+
+        return releasedQty;
     }
 }

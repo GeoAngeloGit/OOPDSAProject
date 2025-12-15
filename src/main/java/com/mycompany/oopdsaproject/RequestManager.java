@@ -196,6 +196,8 @@ public class RequestManager {
                 //if matches change status
                 if(requestId.equals(updatedRequest.getRequestId()) && itemCode.equals(updatedRequest.getItemCode()))
                 {
+                    parts[1] = updatedRequest.getDateCreated();
+                    parts[4] = String.valueOf(updatedRequest.getQuantity());
                     parts[6] = updatedRequest.getStatus();
                 }
 

@@ -4,4 +4,5 @@ REQ20251214-001,2025-12-14,bubp,HBW Blue Ballpen,5,Box,Pending
 REQ20251214-004,2025-12-14,a4BP,A4 Bond Paper,5,Ream,Pending
 REQ20251214-004,2025-12-14,blbp,HBW Black Ballpen,3,Box,Pending
 REQ20251214-004,2025-12-14,rbp,HBW Read Ballpen,3,Box,Pending
-REQ20251214-004,2025-12-14,stap,Stapler,5,Piece,Pending
+REQ20251214-004,2025-12-15,stap,Stapler,5,Piece,Completed
+REQ20251215-001,2025-12-15,stap,Stapler,0,Piece,Completed
