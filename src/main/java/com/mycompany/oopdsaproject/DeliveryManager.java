@@ -11,6 +11,7 @@ package com.mycompany.oopdsaproject;
 import java.util.*;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -189,12 +190,11 @@ public class DeliveryManager {
         return "DEL" + date + "-" + counterPart;
     }
 
-    public void addNewItem(String itemCode, String itemName, int quantity, String unit, String filePath) {
+    public void addNewItem(String itemCode, String itemName, int quantity, String unit, String filePath, JPanel panel) {
         List<Delivery> allItems = new ArrayList<>();
 
         boolean itemExists = false;
 
-        // 1️⃣ Load current inventory
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -205,6 +205,7 @@ public class DeliveryManager {
                     LocalDate lastRestockDate = LocalDate.parse(parts[2]);
                     int qty = Integer.parseInt(parts[3]);
                     String u = parts[4];
+
 
                     if(code.equalsIgnoreCase(itemCode)) {
                         itemExists = true;
@@ -247,7 +248,7 @@ public class DeliveryManager {
             e.printStackTrace();
         }
 
-        JOptionPane.showMessageDialog(null, "New item added successfully!", 
+        JOptionPane.showMessageDialog(panel, "New item added successfully!", 
                                     "Item Added", JOptionPane.INFORMATION_MESSAGE);
     }
 

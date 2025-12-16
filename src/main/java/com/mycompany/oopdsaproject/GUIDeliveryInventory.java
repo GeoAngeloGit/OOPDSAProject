@@ -634,7 +634,7 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
 
         // 2️⃣ Call the DeliveryManager method to add the new item
         DeliveryManager manager = new DeliveryManager(); // or use existing instance
-        manager.addNewItem(itemCode, itemName, quantity, unit, "data/Inventory.txt");
+        manager.addNewItem(itemCode, itemName, quantity, unit, "data/Inventory.txt", requestInventoryPnl);
 
         // 3️⃣ Optional: Refresh table
         manager.loadDeliveryInventory(); // reload items from Inventory.txt

@@ -11,3 +11,8 @@ REQ20251216-001,2025-12-16,stap,Stapler,5,Piece,Completed,2025-12-16
 REQ20251216-006,2025-12-16,blbp,HBW Black Ballpen,5,Box,Completed,2025-12-16
 REQ20251216-006,2025-12-16,rbp,HBW Read Ballpen,5,Box,Completed,2025-12-16
 REQ20251216-006,2025-12-16,stapWire,Staple Wire,5,Box,Completed,2025-12-16
+REQ20251216-009,2025-12-16,bubp,HBW Blue Ballpen,7,Box,Completed,2025-12-16
+REQ20251216-009,2025-12-16,rbp,HBW Read Ballpen,4,Box,Rejected
+REQ20251216-011,2025-12-16,a4BP,A4 Bond Paper,6,Ream,Pending
+REQ20251216-011,2025-12-16,bubp,HBW Blue Ballpen,6,Box,Pending
+REQ20251216-011,2025-12-16,stap,Stapler,5,Piece,Pending

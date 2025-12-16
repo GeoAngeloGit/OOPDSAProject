@@ -4,7 +4,11 @@
  */
 package com.mycompany.oopdsaproject;
 
+import java.awt.Cursor;
+import java.awt.Font;
+
 import javax.swing.JOptionPane;
+import javax.swing.plaf.FontUIResource;
 
 /**
  *
@@ -32,69 +36,112 @@ public class GUILogin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        userNameLbl = new javax.swing.JLabel();
         usernameTxtField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        passwordLbl = new javax.swing.JLabel();
         loginBtn = new javax.swing.JButton();
         passwordTxtField = new javax.swing.JPasswordField();
+        loginLbl = new javax.swing.JLabel();
+        kosaDescriptionLbl = new javax.swing.JLabel();
+        kosaLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(5, 10, 36));
 
-        jLabel1.setText("Username:");
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setText("Password:");
+        userNameLbl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        userNameLbl.setText("Username:");
 
+        passwordLbl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        passwordLbl.setText("Password:");
+
+        loginBtn.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         loginBtn.setText("Log In");
+
+        loginLbl.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        loginLbl.setText("Log in to your account");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85))
+                .addGap(89, 89, 89))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(passwordTxtField)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(usernameTxtField, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(passwordTxtField)
+                            .addComponent(passwordLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usernameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(loginLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1)
+                .addGap(20, 20, 20)
+                .addComponent(loginLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userNameLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usernameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jLabel2)
+                .addComponent(passwordLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(27, 27, 27)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
+
+        kosaDescriptionLbl.setBackground(new java.awt.Color(255, 255, 255));
+        kosaDescriptionLbl.setFont(new java.awt.Font("Verdana", 2, 24)); // NOI18N
+        kosaDescriptionLbl.setForeground(new java.awt.Color(255, 255, 255));
+        kosaDescriptionLbl.setText("jLabel4");
+
+        kosaLbl.setBackground(new java.awt.Color(255, 255, 255));
+        kosaLbl.setFont(new java.awt.Font("Verdana", 0, 30)); // NOI18N
+        kosaLbl.setForeground(new java.awt.Color(255, 255, 255));
+        kosaLbl.setText("KOSA");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(495, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(116, 116, 116)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(kosaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(kosaDescriptionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(54, 54, 54)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(kosaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(kosaDescriptionLbl)))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
 
@@ -144,6 +191,26 @@ public class GUILogin extends javax.swing.JFrame {
         this.userManager = userManager;
         initComponents();
 
+        kosaLbl.setFont(new FontUIResource("Alexandria", Font.BOLD, 30));
+        String text = "<html>" + "Welcome" + "<br>" + "You don't chase" + "<br>" + "supplies. You call<br>" + "<b>KOSA<b>" + "</html>"; 
+        kosaDescriptionLbl.setText(text);
+        kosaDescriptionLbl.setFont(new Font("Alexandria", Font.ITALIC, 24));
+        loginLbl.setFont(new Font("Alexandria", Font.BOLD, 14));
+
+        userNameLbl.setFont(new Font("Alexandria", Font.PLAIN,  12));
+        usernameTxtField.setFont(new Font("Alexandria", Font.PLAIN, 12));
+        usernameTxtField.setToolTipText("Input username");
+        usernameTxtField.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        passwordLbl.setFont(new Font("Alexandria", Font.PLAIN, 12));
+        passwordTxtField.setToolTipText("Input Password");
+        passwordTxtField.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        loginBtn.setFont(new Font("Alexandria", Font.PLAIN, 12));
+        loginBtn.setToolTipText("Log In");
+        loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+
         loginBtn.addActionListener(e -> handleLogin());
         
     }
@@ -172,12 +239,15 @@ public class GUILogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel kosaDescriptionLbl;
+    private javax.swing.JLabel kosaLbl;
     private javax.swing.JButton loginBtn;
+    private javax.swing.JLabel loginLbl;
+    private javax.swing.JLabel passwordLbl;
     private javax.swing.JPasswordField passwordTxtField;
+    private javax.swing.JLabel userNameLbl;
     private javax.swing.JTextField usernameTxtField;
     // End of variables declaration//GEN-END:variables
 }

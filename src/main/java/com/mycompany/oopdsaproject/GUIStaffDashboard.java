@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import javax.swing.plaf.FontUIResource;
 
@@ -42,40 +43,109 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
         homeLbl = new javax.swing.JLabel();
         requestLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        welcomeLbl = new javax.swing.JLabel();
+        toKosaLbl = new javax.swing.JLabel();
+        descriptionLbl = new javax.swing.JLabel();
+        requestStatusLbl = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        blabla = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        staffDashboardPnl.setBackground(new java.awt.Color(255, 255, 255));
+        staffDashboardPnl.setBackground(new java.awt.Color(5, 10, 36));
         staffDashboardPnl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 staffDashboardPnlMouseClicked(evt);
             }
         });
 
-        jLabel1.setText("Staff Dashbaord");
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("KOSA");
 
+        homeLbl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        homeLbl.setForeground(new java.awt.Color(255, 255, 255));
+        homeLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         homeLbl.setText("Home");
 
+        requestLbl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        requestLbl.setForeground(new java.awt.Color(255, 255, 255));
+        requestLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         requestLbl.setText("Request");
+
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+
+        welcomeLbl.setForeground(new java.awt.Color(255, 255, 255));
+        welcomeLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomeLbl.setText("jLabel2");
+
+        toKosaLbl.setForeground(new java.awt.Color(255, 255, 255));
+        toKosaLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        toKosaLbl.setText("jLabel3");
+
+        descriptionLbl.setForeground(new java.awt.Color(255, 255, 255));
+        descriptionLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        descriptionLbl.setText("jLabel4");
+
+        requestStatusLbl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        requestStatusLbl.setForeground(new java.awt.Color(255, 255, 255));
+        requestStatusLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        requestStatusLbl.setText("Request Status");
+        requestStatusLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                requestStatusLblMouseClicked(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("About Us");
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Contact ");
+
+        blabla.setForeground(new java.awt.Color(255, 255, 255));
+        blabla.setText("jLabel4");
 
         javax.swing.GroupLayout staffDashboardPnlLayout = new javax.swing.GroupLayout(staffDashboardPnl);
         staffDashboardPnl.setLayout(staffDashboardPnlLayout);
         staffDashboardPnlLayout.setHorizontalGroup(
             staffDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(staffDashboardPnlLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(staffDashboardPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, staffDashboardPnlLayout.createSequentialGroup()
-                .addContainerGap(463, Short.MAX_VALUE)
-                .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(requestLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(256, 256, 256))
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(requestLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(requestStatusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
+            .addGroup(staffDashboardPnlLayout.createSequentialGroup()
+                .addGap(228, 228, 228)
+                .addGroup(staffDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(staffDashboardPnlLayout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(toKosaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(staffDashboardPnlLayout.createSequentialGroup()
+                        .addGroup(staffDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, staffDashboardPnlLayout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(descriptionLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(welcomeLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46)
+                        .addComponent(blabla, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         staffDashboardPnlLayout.setVerticalGroup(
             staffDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,12 +153,24 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addGroup(staffDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(homeLbl)
-                    .addComponent(requestLbl))
+                    .addComponent(requestLbl)
+                    .addComponent(jLabel1)
+                    .addComponent(requestStatusLbl))
                 .addGap(8, 8, 8)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(jLabel1)
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addGap(59, 59, 59)
+                .addGroup(staffDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(welcomeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(blabla))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(toKosaLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(descriptionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(staffDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(52, 52, 52))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -99,7 +181,7 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(staffDashboardPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(staffDashboardPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -108,6 +190,10 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
     private void staffDashboardPnlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_staffDashboardPnlMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_staffDashboardPnlMouseClicked
+
+    private void requestStatusLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_requestStatusLblMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_requestStatusLblMouseClicked
 
     
 
@@ -141,9 +227,9 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
     {
         initComponents();
 
-        homeLbl.setFont(new Font("Verdana", Font.BOLD, 12));
+        homeLbl.setFont(new Font("Alexandria", Font.BOLD, 14));
 
-        requestLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
+        requestLbl.setFont(new Font("Alexandria", Font.PLAIN, 14));
         requestLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         requestLbl.setToolTipText("Create a Request");
         requestLbl.addMouseListener(new MouseAdapter() {
@@ -155,14 +241,61 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
                 dispose();
             }
         });
+        requestStatusLbl.setFont(new Font("Alexandria", Font.PLAIN, 14));
+        requestStatusLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        requestStatusLbl.setToolTipText("View Request Status");
+        requestStatusLbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt)
+            {
+                GUIRequestStatus requestStatus;
+                try {
+                    requestStatus = new GUIRequestStatus(loginUser);
+                    requestStatus.setVisible(true);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                
+                dispose();
+            }
+        });
+
+        setWelcomeLbls();
+    }
+    private void setWelcomeLbls()
+    {
+        welcomeLbl.setText("Welcome");
+        welcomeLbl.setFont(new Font("Verdana", Font.BOLD, 40));
+
+        toKosaLbl.setText("to KOSA");
+        toKosaLbl.setFont(new Font("Verdana", Font.BOLD, 20));
+
+        String text = "<html>" + 
+            "<center>Our centralized platform for efficiently managing and tracking<br>" + 
+            "all office supplies. With KOSA, we can easily monitor inventory<br>" + 
+            "levels, process staff requests, and ensure that every item is <br>" + 
+            "issued accurately and on time. This system helps us stay<br>" + 
+            "organized, maintain accountability, and support smooth<br>" +
+            "operations across all departments.</center>" + "</html>";
+
+        descriptionLbl.setText(text);
+        descriptionLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
     }
         
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel blabla;
+    private javax.swing.JLabel descriptionLbl;
     private javax.swing.JLabel homeLbl;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel requestLbl;
+    private javax.swing.JLabel requestStatusLbl;
     private javax.swing.JPanel staffDashboardPnl;
+    private javax.swing.JLabel toKosaLbl;
+    private javax.swing.JLabel welcomeLbl;
     // End of variables declaration//GEN-END:variables
 }

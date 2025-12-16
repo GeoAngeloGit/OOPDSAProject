@@ -1,8 +1,9 @@
 a4BP,A4 Bond Paper,2025-12-15,15,Ream
 AT,Adhesive Tape,2025-12-16,20,Piece
+bbko123,Chocolate,2025-12-16,69,Piece
 blbp,HBW Black Ballpen,2025-12-16,11,Box
-bubp,HBW Blue Ballpen,2025-12-15,31,Box
+bubp,HBW Blue Ballpen,2025-12-16,28,Box
 rbp,HBW Read Ballpen,2025-12-16,33,Box
-pc,Mongol Pencil,2025-12-15,18,Box
+pc,Mongol Pencil,2025-12-16,22,Box
 stapWire,Staple Wire,2025-12-16,17,Box
-stap,Stapler,2025-12-15,9,Piece
+stap,Stapler,2025-12-16,13,Piece

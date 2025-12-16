@@ -5,3 +5,6 @@ DEL20251216-001,AT,Adhesive Tape,6,Piece,2025-12-16,2025-12-16,Watsons
 DEL20251216-001,blbp,HBW Black Ballpen,6,Box,2025-12-16,2025-12-16,Watsons
 DEL20251216-001,rbp,HBW Read Ballpen,6,Box,2025-12-16,2025-12-16,Watsons
 DEL20251216-001,stapWire,Staple Wire,4,Box,2025-12-16,2025-12-16,Watsons
+DEL20251216-005,bubp,HBW Blue Ballpen,4,Box,2025-12-16,2025-12-16,Joella
+DEL20251216-005,pc,Mongol Pencil,4,Box,2025-12-16,2025-12-16,Joella
+DEL20251216-005,stap,Stapler,4,Piece,2025-12-16,2025-12-16,Joella
