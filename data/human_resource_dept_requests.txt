@@ -1,3 +1,0 @@
-REQ20251216-001,2025-12-16,a4BP,A4 Bond Paper,3,Ream,Completed,2025-12-16
-REQ20251216-001,2025-12-16,AT,Adhesive Tape,4,Piece,Completed,2025-12-16
-REQ20251216-001,2025-12-16,blbp,HBW Black Ballpen,2,Box,Completed,2025-12-16

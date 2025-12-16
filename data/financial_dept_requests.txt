@@ -1,5 +1,5 @@
 REQ20251215-001,2025-12-15,blbp,HBW Black Ballpen,3,Box,Completed,2025-12-15
 REQ20251215-001,2025-12-15,rbp,HBW Read Ballpen,4,Box,Completed,2025-12-15
-REQ20251216-001,2025-12-16,a4BP,A4 Bond Paper,6,Ream,Pending
-REQ20251216-001,2025-12-16,AT,Adhesive Tape,5,Piece,Pending
+REQ20251216-001,2025-12-16,a4BP,A4 Bond Paper,6,Ream,Approved
+REQ20251216-001,2025-12-16,AT,Adhesive Tape,5,Piece,Approved,
 REQ20251216-001,2025-12-16,pc,Mongol Pencil,5,Box,Pending

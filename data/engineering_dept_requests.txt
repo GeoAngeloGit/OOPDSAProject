@@ -1,18 +1,9 @@
-REQ20251212-001,2025-12-12,AT,Adhesive Tape,4,Piece,Completed,2025-12-15
-REQ20251212-001,2025-12-12,bubp,HBW Blue Ballpen,4,Box,Completed,2025-12-15
-REQ20251212-004,2025-12-12,a4BP,A4 Bond Paper,1,Ream,Completed,2025-12-15
-REQ20251212-004,2025-12-12,bubp,HBW Blue Ballpen,6,Box,Completed,2025-12-15
-REQ20251212-008,2025-12-12,blbp,HBW Black Ballpen,10,Box,Completed,2025-12-15
-REQ20251216-001,2025-12-16,a4BP,A4 Bond Paper,4,Ream,Completed,2025-12-16
-REQ20251216-001,2025-12-16,AT,Adhesive Tape,6,Piece,Completed,2025-12-16
-REQ20251216-001,2025-12-16,blbp,HBW Black Ballpen,7,Box,Rejected
-REQ20251216-001,2025-12-16,rbp,HBW Read Ballpen,11,Box,Rejected
-REQ20251216-001,2025-12-16,stap,Stapler,5,Piece,Completed,2025-12-16
-REQ20251216-006,2025-12-16,blbp,HBW Black Ballpen,5,Box,Completed,2025-12-16
-REQ20251216-006,2025-12-16,rbp,HBW Read Ballpen,5,Box,Completed,2025-12-16
-REQ20251216-006,2025-12-16,stapWire,Staple Wire,5,Box,Completed,2025-12-16
-REQ20251216-009,2025-12-16,bubp,HBW Blue Ballpen,7,Box,Completed,2025-12-16
-REQ20251216-009,2025-12-16,rbp,HBW Read Ballpen,4,Box,Rejected
-REQ20251216-011,2025-12-16,a4BP,A4 Bond Paper,6,Ream,Pending
-REQ20251216-011,2025-12-16,bubp,HBW Blue Ballpen,6,Box,Pending
-REQ20251216-011,2025-12-16,stap,Stapler,5,Piece,Pending
+REQ20251216-001,2025-12-16,a4BP,A4 Bond Paper,5,Ream,Pending
+REQ20251216-001,2025-12-16,bb,baby powder,5,Bottle,Pending
+REQ20251216-001,2025-12-16,bbko123,Chocolate,5,Piece,Pending
+REQ20251216-001,2025-12-16,bubp,HBW Blue Ballpen,4,Box,Pending
+REQ20251216-002,2025-12-16,pc,Mongol Pencil,3,Box,Approved
+REQ20251216-002,2025-12-16,stapWire,Staple Wire,3,Box,Approved,
+REQ20251216-003,2025-12-16,a4BP,A4 Bond Paper,3,Ream,Approved
+REQ20251216-003,2025-12-16,AT,Adhesive Tape,2,Piece,Approved
+REQ20251216-003,2025-12-16,bubp,HBW Blue Ballpen,2,Box,Approved

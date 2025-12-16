@@ -1,6 +1,0 @@
-REQ20251214-001,2025-12-14,a4BP,A4 Bond Paper,4,Ream,Rejected
-REQ20251214-001,2025-12-14,AT,Adhesive Tape,3,Piece,Completed,2025-12-15
-REQ20251214-001,2025-12-14,bubp,HBW Blue Ballpen,5,Box,Completed,2025-12-15
-REQ20251214-004,2025-12-14,a4BP,A4 Bond Paper,0,Ream,Released Nothing,2025-12-15
-REQ20251214-004,2025-12-14,blbp,HBW Black Ballpen,0,Box,Released Nothing,2025-12-15
-REQ20251214-004,2025-12-14,rbp,HBW Read Ballpen,3,Box,Completed,2025-12-15
