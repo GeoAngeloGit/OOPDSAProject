@@ -83,10 +83,10 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
         deliverBtn = new javax.swing.JButton();
         requestStatusLbl = new javax.swing.JLabel();
         addNewItemBtn = new javax.swing.JButton();
-        requestStatusLbl1 = new javax.swing.JLabel();
+        deliveriesLbl = new javax.swing.JLabel();
         transactionLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        homeLbl1 = new javax.swing.JLabel();
+        logoutLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,10 +159,10 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
         addNewItemBtn.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         addNewItemBtn.setText("Add New Item");
 
-        requestStatusLbl1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        requestStatusLbl1.setForeground(new java.awt.Color(255, 255, 255));
-        requestStatusLbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        requestStatusLbl1.setText("Deliveries");
+        deliveriesLbl.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        deliveriesLbl.setForeground(new java.awt.Color(255, 255, 255));
+        deliveriesLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        deliveriesLbl.setText("Deliveries");
 
         transactionLbl.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         transactionLbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,10 +171,10 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
-        homeLbl1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        homeLbl1.setForeground(new java.awt.Color(255, 255, 255));
-        homeLbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        homeLbl1.setText("KOSA");
+        logoutLbl.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        logoutLbl.setForeground(new java.awt.Color(255, 255, 255));
+        logoutLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoutLbl.setText("KOSA");
 
         javax.swing.GroupLayout requestInventoryPnlLayout = new javax.swing.GroupLayout(requestInventoryPnl);
         requestInventoryPnl.setLayout(requestInventoryPnlLayout);
@@ -203,7 +203,7 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
             .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(homeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -211,7 +211,7 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(requestStatusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(requestStatusLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(deliveriesLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transactionLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
@@ -224,13 +224,13 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
                         .addGroup(requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(transactionLbl)
-                            .addComponent(requestStatusLbl1)
+                            .addComponent(deliveriesLbl)
                             .addComponent(requestStatusLbl)
                             .addComponent(inventoryLbl)
                             .addComponent(homeLbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
-                        .addComponent(homeLbl1)
+                        .addComponent(logoutLbl)
                         .addGap(20, 20, 20)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
@@ -296,28 +296,31 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
     public GUIDeliveryInventory(User loginUser)
     {
         initComponents();
+        // make logout behave like a logout button
+        logoutLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        logoutLbl.setToolTipText("Logout");
+        logoutLbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                GUILogin login = new GUILogin();
+                login.setVisible(true);
+                dispose();
+            }
+        });
 
-        homeLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
+        homeLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         homeLbl.setToolTipText("Go back to Home");
         homeLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         homeLbl.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt)
             {
-                if(loginUser.getRole().equals("head"))
-                {
-                    GUIHeadDashboard headDashboard = new GUIHeadDashboard(loginUser);
-                    headDashboard.setVisible(true);
-                }
-                else
-                {
-                    GUIStaffDashboard staffDashboard = new GUIStaffDashboard(loginUser);
-                    staffDashboard.setVisible(true);
-                }
+                GUIAdminDashboard adminDashboard = new GUIAdminDashboard(loginUser);
+                adminDashboard.setVisible(true);
                 dispose();
             }
         });
 
-        inventoryLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
+        inventoryLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         inventoryLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         inventoryLbl.setToolTipText("Go to Inventory");
         inventoryLbl.addMouseListener(new MouseAdapter() {
@@ -329,33 +332,39 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
             }
         });
 
-        requestStatusLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
+        requestStatusLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         requestStatusLbl.setToolTipText("View Request Status");
         requestStatusLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         requestStatusLbl.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt)
             {
-                if(loginUser.equals("head"))
-                {
-                    GUIRequestStatus requestStatus = null;
-                    try {
-                        requestStatus = new GUIRequestStatus(loginUser);
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                    requestStatus.setVisible(true);
+                GUITransactions transactions = null;
+                try {
+                    transactions = new GUITransactions(loginUser);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
                 }
-                else
-                {
-                    GUIRequestStatus requestStatus = null;
-                    try {
-                        requestStatus = new GUIRequestStatus(loginUser);
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                    requestStatus.setVisible(true);
+                transactions.setVisible(true);
+                dispose();
+            }
+        });
+        
+        deliveriesLbl.setToolTipText("View Deliveries");
+
+        transactionLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
+        transactionLbl.setToolTipText("View All Transactions");
+        transactionLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        transactionLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt)
+            {
+                GUITransactions transactions;
+                try {
+                    transactions = new GUITransactions(loginUser);
+                    transactions.setVisible(true);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
                 }
                 dispose();
             }
@@ -669,11 +678,22 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
         String unit = JOptionPane.showInputDialog(this, "Enter Unit:");
         if(unit == null || unit.trim().isEmpty()) return;
 
-        // 2️⃣ Call the DeliveryManager method to add the new item
-        DeliveryManager manager = new DeliveryManager(); // or use existing instance
-        manager.addNewItem(itemCode, itemName, quantity, unit, "data/Inventory.txt", requestInventoryPnl);
+        // Ask for supplier name so the addition is also recorded as a delivery
+        String supplierName = JOptionPane.showInputDialog(this, "Enter Supplier Name:");
+        if (supplierName == null || supplierName.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Supplier name is required to record initial delivery.", "Missing Supplier", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-        // 3️⃣ Optional: Refresh table
+        // 2️⃣ Call the DeliveryManager method to add the new item and record delivery
+        DeliveryManager manager = new DeliveryManager(); // or use existing instance
+        boolean recorded = manager.addNewItemWithDelivery(itemCode, itemName, quantity, unit, "data/Inventory.txt", requestInventoryPnl, supplierName, "data/deliveries.txt");
+
+        if (!recorded) {
+            JOptionPane.showMessageDialog(this, "Failed to record initial delivery. Item may have been added to inventory but delivery was not saved.", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+
+        // 3️⃣ Refresh table
         manager.loadDeliveryInventory(); // reload items from Inventory.txt
         DefaultTableModel model = (DefaultTableModel) deliverInventoryTbl.getModel();
         model.setRowCount(0); // clear existing rows
@@ -695,17 +715,17 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
     private javax.swing.JButton addNewItemBtn;
     private javax.swing.JButton deliverBtn;
     private javax.swing.JTable deliverInventoryTbl;
+    private javax.swing.JLabel deliveriesLbl;
     private javax.swing.JLabel homeLbl;
-    private javax.swing.JLabel homeLbl1;
     private javax.swing.JLabel inventoryLbl;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel logoutLbl;
     private javax.swing.JComboBox<String> orderComboBox;
     private javax.swing.JPanel requestInventoryPnl;
     private javax.swing.JLabel requestStatusLbl;
-    private javax.swing.JLabel requestStatusLbl1;
     private javax.swing.JTextField searchTxtField;
     private javax.swing.JLabel transactionLbl;
     private javax.swing.JButton viewRequestBtn;

@@ -66,6 +66,16 @@ public class GUIInventory extends javax.swing.JFrame {
         
         // Setup UI components
         setupUI();
+        // make logout label behave like a logout button
+        logoutLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        logoutLbl.setToolTipText("Logout");
+        logoutLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                GUILogin login = new GUILogin();
+                login.setVisible(true);
+                dispose();
+            }
+        });
     }
     
     private void setupUI() {
@@ -310,7 +320,7 @@ public class GUIInventory extends javax.swing.JFrame {
         requestsStatusLbl = new javax.swing.JLabel();
         deliveriesLbl = new javax.swing.JLabel();
         transactionsLbl = new javax.swing.JLabel();
-        homeLbl1 = new javax.swing.JLabel();
+        logoutLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -398,10 +408,10 @@ public class GUIInventory extends javax.swing.JFrame {
         transactionsLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         transactionsLbl.setText("Transactions");
 
-        homeLbl1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        homeLbl1.setForeground(new java.awt.Color(255, 255, 255));
-        homeLbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        homeLbl1.setText("KOSA");
+        logoutLbl.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        logoutLbl.setForeground(new java.awt.Color(255, 255, 255));
+        logoutLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoutLbl.setText("KOSA");
 
         javax.swing.GroupLayout inventoryPnlLayout = new javax.swing.GroupLayout(inventoryPnl);
         inventoryPnl.setLayout(inventoryPnlLayout);
@@ -428,7 +438,7 @@ public class GUIInventory extends javax.swing.JFrame {
                         .addGap(80, 80, 80))))
             .addGroup(inventoryPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(homeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -464,7 +474,7 @@ public class GUIInventory extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, inventoryPnlLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(homeLbl1)
+                        .addComponent(logoutLbl)
                         .addGap(21, 21, 21)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
@@ -536,7 +546,6 @@ public class GUIInventory extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel deliveriesLbl;
     private javax.swing.JLabel homeLbl;
-    private javax.swing.JLabel homeLbl1;
     private javax.swing.JLabel inventoryLbl;
     private javax.swing.JPanel inventoryPnl;
     private javax.swing.JTable inventoryTable;
@@ -545,6 +554,7 @@ public class GUIInventory extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel logoutLbl;
     private javax.swing.JComboBox<String> orderComboBox;
     private javax.swing.JLabel requestsLbl;
     private javax.swing.JLabel requestsStatusLbl;

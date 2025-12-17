@@ -10,6 +10,9 @@ import com.mycompany.models.*;
 import com.mycompany.gui.*;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
 import java.util.List;
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,6 +21,8 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+
+import org.w3c.dom.events.MouseEvent;
 
 /**
  *
@@ -46,7 +51,7 @@ public class GUITransactions extends javax.swing.JFrame {
         transactionsPnl = new javax.swing.JPanel();
         transactionsTabbedPane = new javax.swing.JTabbedPane();
         requestsTabbedPane = new javax.swing.JTabbedPane();
-        jLabel1 = new javax.swing.JLabel();
+        logoutLbl = new javax.swing.JLabel();
         homeLbl = new javax.swing.JLabel();
         inventoryLbl = new javax.swing.JLabel();
         requestsLbl = new javax.swing.JLabel();
@@ -61,10 +66,10 @@ public class GUITransactions extends javax.swing.JFrame {
 
         transactionsTabbedPane.addTab("tab1", requestsTabbedPane);
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("KOSA");
+        logoutLbl.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        logoutLbl.setForeground(new java.awt.Color(255, 255, 255));
+        logoutLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logoutLbl.setText("KOSA");
 
         homeLbl.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         homeLbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -107,8 +112,8 @@ public class GUITransactions extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deliveriesLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(transactionsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addComponent(transactionsLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
             .addComponent(jSeparator1)
             .addGroup(transactionsPnlLayout.createSequentialGroup()
                 .addGroup(transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,14 +122,14 @@ public class GUITransactions extends javax.swing.JFrame {
                         .addComponent(transactionsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(transactionsPnlLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(logoutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
         transactionsPnlLayout.setVerticalGroup(
             transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionsPnlLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel1)
+                .addComponent(logoutLbl)
                 .addGap(3, 3, 3)
                 .addGroup(transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(transactionsLbl)
@@ -186,6 +191,85 @@ public class GUITransactions extends javax.swing.JFrame {
         this.loginUser = loginUser;
         initComponents();
 
+        // logout returns to login screen
+        logoutLbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logoutLbl.setToolTipText("Logout");
+        logoutLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GUILogin login = new GUILogin();
+                login.setVisible(true);
+                dispose();
+            }
+        });
+        homeLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
+        homeLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        homeLbl.setToolTipText("Go back Home");
+        homeLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                if(loginUser.getRole().equals("head"))
+                {
+                    GUIHeadDashboard headDashboard = new GUIHeadDashboard(loginUser);
+                    headDashboard.setVisible(true);
+                }
+                else if(loginUser.getRole().equals("staff"))
+                {
+                    GUIStaffDashboard staffDashboard = new GUIStaffDashboard(loginUser);
+                    staffDashboard.setVisible(true);
+                }
+                else if(loginUser.getRole().equals("admin"))
+                {
+                    GUIAdminDashboard adminDashboard = new GUIAdminDashboard(loginUser);
+                    adminDashboard.setVisible(true);
+                }
+                dispose();
+            }
+        });
+        inventoryLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
+        inventoryLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        inventoryLbl.setToolTipText("Go to Inventory");
+        inventoryLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                GUIInventory inventoryForm = new GUIInventory(loginUser);
+                inventoryForm.setVisible(true);
+                dispose();
+            }
+        });
+
+        requestsLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
+        requestsLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        requestsLbl.setToolTipText("View Requests of Departments");
+        requestsLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                try {
+                    GUIRequestStatusForAdmin requestStatus = new GUIRequestStatusForAdmin(loginUser);
+                    requestStatus.setVisible(true);
+                    dispose();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+                dispose();
+            }
+        });
+        
+        deliveriesLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
+        deliveriesLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        deliveriesLbl.setToolTipText("View Requests of Departments");
+        deliveriesLbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                GUIDeliveryInventory deliveryInventory = new GUIDeliveryInventory(loginUser);
+                deliveryInventory.setVisible(true);
+                dispose();
+            }
+        });
+        transactionsLbl.setFont(new Font("Verdana", Font.BOLD, 14));
+
         transactionManager = new TransactionManager();
         List<Transaction> transactions = transactionManager.loadAllTransactions();
 
@@ -222,8 +306,8 @@ public class GUITransactions extends javax.swing.JFrame {
     private javax.swing.JLabel deliveriesLbl;
     private javax.swing.JLabel homeLbl;
     private javax.swing.JLabel inventoryLbl;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel logoutLbl;
     private javax.swing.JLabel requestsLbl;
     private javax.swing.JTabbedPane requestsTabbedPane;
     private javax.swing.JLabel transactionsLbl;

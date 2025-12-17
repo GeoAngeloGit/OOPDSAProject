@@ -257,5 +257,40 @@ public class DeliveryManager {
                                     "Item Added", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Adds a new item to inventory and records an initial delivery transaction
+     * with the provided supplier name. Appends a delivery record to the deliveries file.
+     */
+    public boolean addNewItemWithDelivery(String itemCode, String itemName, int quantity, String unit, String filePath, JPanel panel, String supplierName, String deliveriesFilePath) {
+        // reuse addNewItem logic but also write a delivery record
+        addNewItem(itemCode, itemName, quantity, unit, filePath, panel);
+
+        // create delivery record
+        String deliveryId = generateDeliveryID(deliveriesFilePath);
+        String date = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
+        String dateCompleted = date;
+
+        String line = String.join(",",
+                deliveryId,
+                itemCode,
+                itemName,
+                String.valueOf(quantity),
+                unit,
+                date,
+                dateCompleted,
+                supplierName == null ? "" : supplierName
+        );
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(deliveriesFilePath, true))) {
+            bw.write(line);
+            bw.newLine();
+            bw.flush();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
 

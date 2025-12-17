@@ -42,7 +42,7 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         staffDashboardPnl = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        logoutLbl = new javax.swing.JLabel();
         homeLbl = new javax.swing.JLabel();
         requestLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -62,9 +62,9 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("KOSA");
+        logoutLbl.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        logoutLbl.setForeground(new java.awt.Color(255, 255, 255));
+        logoutLbl.setText("KOSA");
 
         homeLbl.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         homeLbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,14 +137,14 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
                             .addComponent(toKosaLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(staffDashboardPnlLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(logoutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         staffDashboardPnlLayout.setVerticalGroup(
             staffDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(staffDashboardPnlLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel1)
+                .addComponent(logoutLbl)
                 .addGap(1, 1, 1)
                 .addGroup(staffDashboardPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(homeLbl)
@@ -219,6 +219,18 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
     {
         initComponents();
 
+        // Make logout behave like a logout button: return to login screen
+        logoutLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        logoutLbl.setToolTipText("Logout");
+        logoutLbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                GUILogin login = new GUILogin();
+                login.setVisible(true);
+                dispose();
+            }
+        });
+
         homeLbl.setFont(new Font("Alexandria", Font.BOLD, 14));
 
         requestLbl.setFont(new Font("Alexandria", Font.PLAIN, 14));
@@ -279,10 +291,10 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel descriptionLbl;
     private javax.swing.JLabel homeLbl;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel logoutLbl;
     private javax.swing.JLabel requestLbl;
     private javax.swing.JLabel requestStatusLbl;
     private javax.swing.JPanel staffDashboardPnl;

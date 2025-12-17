@@ -56,7 +56,7 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
         requestsTabbedPane = new javax.swing.JTabbedPane();
         deliveriesLbl = new javax.swing.JLabel();
         transactionsLbl = new javax.swing.JLabel();
-        homeLbl1 = new javax.swing.JLabel();
+        logoutLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,9 +91,9 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
         transactionsLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         transactionsLbl.setText("Transactions");
 
-        homeLbl1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        homeLbl1.setForeground(new java.awt.Color(255, 255, 255));
-        homeLbl1.setText("KOSA");
+        logoutLbl.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        logoutLbl.setForeground(new java.awt.Color(255, 255, 255));
+        logoutLbl.setText("KOSA");
 
         javax.swing.GroupLayout requestStatusPnlLayout = new javax.swing.GroupLayout(requestStatusPnl);
         requestStatusPnl.setLayout(requestStatusPnlLayout);
@@ -106,7 +106,7 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
                 .addGap(84, 84, 84))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestStatusPnlLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(homeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
@@ -135,7 +135,7 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestStatusPnlLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(homeLbl1)
+                        .addComponent(logoutLbl)
                         .addGap(23, 23, 23)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -229,6 +229,17 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
 
     private void setLbl(User loginUser)
     {
+        // logout acts like a logout button
+        logoutLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        logoutLbl.setToolTipText("Logout");
+        logoutLbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                GUILogin login = new GUILogin();
+                login.setVisible(true);
+                dispose();
+            }
+        });
         homeLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         homeLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         homeLbl.setToolTipText("Go back Home");
@@ -259,7 +270,7 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
 
         if(loginUser.getRole().equals("head") || loginUser.getRole().equals("staff"))
         {
-            createRequestLbl.setText("Create Request");
+            createRequestLbl.setText("Request");
             createRequestLbl.setToolTipText("Create New Request");
             createRequestLbl.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent evt)
@@ -329,8 +340,8 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel createRequestLbl;
     private javax.swing.JLabel deliveriesLbl;
     private javax.swing.JLabel homeLbl;
-    private javax.swing.JLabel homeLbl1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel logoutLbl;
     private javax.swing.JLabel requestStatusLbl;
     private javax.swing.JPanel requestStatusPnl;
     private javax.swing.JTabbedPane requestsTabbedPane;

@@ -66,6 +66,7 @@ public class GUIRequestStatus extends javax.swing.JFrame {
 
         createRequestLbl.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         createRequestLbl.setForeground(new java.awt.Color(255, 255, 255));
+        createRequestLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         requestStatusLbl.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         requestStatusLbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,10 +86,6 @@ public class GUIRequestStatus extends javax.swing.JFrame {
             requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestStatusPnlLayout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
-                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestStatusPnlLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(homeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -98,6 +95,10 @@ public class GUIRequestStatus extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(requestStatusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
+            .addGroup(requestStatusPnlLayout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         requestStatusPnlLayout.setVerticalGroup(
             requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +119,7 @@ public class GUIRequestStatus extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

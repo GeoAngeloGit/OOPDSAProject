@@ -27,7 +27,18 @@ public class GUILogin extends javax.swing.JFrame {
      * Creates new form GUILogin
      */
     public GUILogin() {
-        initComponents();
+        this(loadDefaultUserManager());
+    }
+
+    private static UserManager loadDefaultUserManager() {
+        UserManager um = new UserManager();
+        try {
+            um.loadUsers();
+        } catch (Exception e) {
+            // swallow - loadUsers already handles IOExceptions internally, but be defensive
+            e.printStackTrace();
+        }
+        return um;
     }
 
     /**

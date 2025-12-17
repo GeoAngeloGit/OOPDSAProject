@@ -93,21 +93,21 @@ public class TransactionPanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Search:");
+        jLabel2.setText("Search");
 
         sortByComboBox.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         sortByComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Status" }));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Sort By:");
+        jLabel3.setText("Sort By");
 
         orderComboBox.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         orderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ascending", "Descending" }));
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Order:");
+        jLabel4.setText("Order");
 
         transactionTbl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         transactionTbl.setModel(new javax.swing.table.DefaultTableModel(

@@ -82,7 +82,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         homeLbl = new javax.swing.JLabel();
         requestLbl = new javax.swing.JLabel();
         requestStatusLbl = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        logoutLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -154,9 +154,9 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         requestStatusLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         requestStatusLbl.setText("Request Status");
 
-        jLabel6.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("KOSA");
+        logoutLbl.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        logoutLbl.setForeground(new java.awt.Color(255, 255, 255));
+        logoutLbl.setText("KOSA");
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -166,7 +166,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
             requestInventoryPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logoutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
@@ -208,7 +208,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestInventoryPnlLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel6)
+                        .addComponent(logoutLbl)
                         .addGap(21, 21, 21)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
@@ -277,6 +277,18 @@ public class GUIRequestInventory extends javax.swing.JFrame {
     public GUIRequestInventory(User loginUser)
     {
         initComponents();
+
+        // logout acts as logout button -> open login screen and dispose
+        logoutLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        logoutLbl.setToolTipText("Logout");
+        logoutLbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                GUILogin login = new GUILogin();
+                login.setVisible(true);
+                dispose();
+            }
+        });
 
         homeLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         homeLbl.setToolTipText("Go back to Home");
@@ -603,9 +615,9 @@ public class GUIRequestInventory extends javax.swing.JFrame {
     private javax.swing.JLabel homeLbl;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel logoutLbl;
     private javax.swing.JComboBox<String> orderComboBox;
     private javax.swing.JButton requestBtn;
     private javax.swing.JPanel requestInventoryPnl;
