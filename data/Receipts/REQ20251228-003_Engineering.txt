@@ -1,0 +1,17 @@
+Request Receipt
+Request ID: REQ20251228-003
+Department: Engineering
+Date Created: 2025-12-28
+------------------------------------------------------------
+Item Code    Item Name                      Quantity To Release   Unit     Status               Date Approved/Rejected    Date Completed
+blbp         HBW Black Ballpen              3        0            Box      Completed            2025-12-28                2025-12-28  
+LongBP       Long Bond Paper                4        0            Ream     Completed            2025-12-28                2025-12-28  
+fstnr        Paper Fastener                 5        0            Box      Completed            2025-12-28                2025-12-28  
+enk          Printer Ink                    3        0            Piece    Completed            2025-12-28                2025-12-28  
+stap         Stapler                        5        0            Piece    Completed            2025-12-28                2025-12-28  
+
+
+Requested By: Sir Martin
+
+
+Released By: Admin1

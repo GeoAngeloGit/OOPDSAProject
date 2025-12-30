@@ -14,6 +14,7 @@ import java.awt.Font;
 
 import javax.swing.JOptionPane;
 import javax.swing.plaf.FontUIResource;
+import com.mycompany.managers.NotificationsManager;
 
 /**
  *
@@ -201,25 +202,27 @@ public class GUILogin extends javax.swing.JFrame {
 
     private UserManager userManager;
 
+    //constructor with UserManager parameter to load all the user and accomodate login
     public GUILogin(UserManager userManager)
     {
         this.userManager = userManager;
         initComponents();
 
-        kosaLbl.setFont(new FontUIResource("Alexandria", Font.BOLD, 30));
+        //set labels
+        kosaLbl.setFont(new FontUIResource("Verdana", Font.BOLD, 30));
         String text = "<html>" + "Welcome" + "<br>" + "You don't chase" + "<br>" + "supplies. You call<br>" + "<b>KOSA<b>" + "</html>"; 
         kosaDescriptionLbl.setText(text);
-        kosaDescriptionLbl.setFont(new Font("Alexandria", Font.ITALIC, 24));
+        kosaDescriptionLbl.setFont(new Font("Verdana", Font.ITALIC, 24));
         loginLbl.setFont(new Font("Alexandria", Font.BOLD, 14));
 
-        userNameLbl.setFont(new Font("Alexandria", Font.PLAIN,  12));
-        usernameTxtField.setFont(new Font("Alexandria", Font.PLAIN, 12));
+        userNameLbl.setFont(new Font("Verdana", Font.PLAIN,  12));
+        usernameTxtField.setFont(new Font("Verdana", Font.PLAIN, 12));
         usernameTxtField.setToolTipText("Input username");
 
-        passwordLbl.setFont(new Font("Alexandria", Font.PLAIN, 12));
+        passwordLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
         passwordTxtField.setToolTipText("Input Password");
 
-        loginBtn.setFont(new Font("Alexandria", Font.PLAIN, 12));
+        loginBtn.setFont(new Font("Verdana", Font.PLAIN, 12));
         loginBtn.setToolTipText("Log In");
         loginBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
@@ -228,25 +231,49 @@ public class GUILogin extends javax.swing.JFrame {
         
     }
 
+    //handles login
     private void handleLogin()
     {
+        //variables for user and password
         String username = usernameTxtField.getText();
         String password = passwordTxtField.getText();
 
+        //authenticate with authenticate method from UserManager manager class
         User loginUser = userManager.authenticate(username, password);
 
         if (loginUser == null) {
-            JOptionPane.showMessageDialog(null, "Invalid username or password!");
+            JOptionPane.showMessageDialog(this, "Invalid username or password!");
         } else {
+            // fetch any pending notifications for this user and show them
+            NotificationsManager nm = new NotificationsManager();
+            try {
+                java.util.List<String> notes = nm.fetchAndClearNotifications(loginUser.getUsername());
+                if (notes != null && !notes.isEmpty()) {
+                    StringBuilder sb = new StringBuilder();
+                    for (String n : notes) {
+                        sb.append(n).append("\n\n");
+                    }
+                    JOptionPane.showMessageDialog(this, sb.toString(), "Notifications", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (Exception ex) {
+                // ignore notification failures
+                ex.printStackTrace();
+            }
+            //if admin goes to GUIAdminDashboard
             if (loginUser.getRole().equals("admin")) {
                 GUIAdminDashboard adminDashboard = new GUIAdminDashboard(loginUser);
                 adminDashboard.setVisible(true);
-            } else if (loginUser.getRole().equals("head")) {
+            } 
+            //if head goes to GUIHeadDashboard
+            else if (loginUser.getRole().equals("head")) {
                 new GUIHeadDashboard(loginUser).setVisible(true);
-            } else {
+            } 
+            //else, staff goes to GUIStaffDashboard
+            else {
                 new GUIStaffDashboard(loginUser).setVisible(true);
             }
 
+            //dispose current class
             this.dispose();
         }
     }

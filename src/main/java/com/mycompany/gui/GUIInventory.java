@@ -248,6 +248,104 @@ public class GUIInventory extends javax.swing.JFrame {
         sortByComboBox.addActionListener(e -> applySorting());
         orderComboBox.addActionListener(e -> applySorting());
 
+        // allow admin to edit Item Code or Item Name by clicking the cell
+        inventoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int viewRow = inventoryTable.rowAtPoint(evt.getPoint());
+                int viewCol = inventoryTable.columnAtPoint(evt.getPoint());
+                if (viewRow < 0 || viewCol < 0) return;
+
+                int modelRow = inventoryTable.convertRowIndexToModel(viewRow);
+                int modelCol = inventoryTable.convertColumnIndexToModel(viewCol);
+
+                // only admin can edit
+                if (loginUser == null || !"admin".equalsIgnoreCase(loginUser.getRole())) return;
+
+                DefaultTableModel model = (DefaultTableModel) inventoryTable.getModel();
+
+                // allow deletion when clicking Quantity and quantity is zero
+                if (modelCol == 3) {
+                    Object qtyObj = model.getValueAt(modelRow, 3);
+                    int qty = 0;
+                    try {
+                        if (qtyObj != null) qty = Integer.parseInt(qtyObj.toString());
+                    } catch (NumberFormatException ex) {
+                        qty = -1;
+                    }
+
+                    if (qty != 0) {
+                        JOptionPane.showMessageDialog(GUIInventory.this, "Only items with quantity 0 can be deleted.", "Cannot Delete", JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+
+                    int confirmDel = JOptionPane.showConfirmDialog(GUIInventory.this,
+                            "Quantity is 0. Do you want to delete this item entirely?",
+                            "Confirm Delete", JOptionPane.YES_NO_OPTION);
+                    if (confirmDel != JOptionPane.YES_OPTION) return;
+
+                    String originalCode = model.getValueAt(modelRow, 0).toString();
+                    ItemsManager mgr = new ItemsManager();
+                    boolean removed = mgr.deleteItemByCode(originalCode);
+                    if (!removed) {
+                        JOptionPane.showMessageDialog(GUIInventory.this, "Failed to delete item from file.", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    model.removeRow(modelRow);
+                    JOptionPane.showMessageDialog(GUIInventory.this, "Item deleted.", "Deleted", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+
+                // only allow editing for Item Code (col 0) and Item Name (col 1)
+                if (modelCol != 0 && modelCol != 1) return;
+
+                Object currentObj = model.getValueAt(modelRow, modelCol);
+                String current = currentObj == null ? "" : currentObj.toString();
+
+                int confirm = JOptionPane.showConfirmDialog(GUIInventory.this,
+                        "Do you want to change this value?\nCurrent: " + current,
+                        "Confirm Edit", JOptionPane.YES_NO_OPTION);
+                if (confirm != JOptionPane.YES_OPTION) return;
+
+                String input = JOptionPane.showInputDialog(GUIInventory.this, "Enter new value:", current);
+                if (input == null) return; // cancelled
+
+                // sanitize input: trim and remove commas to avoid CSV corruption
+                input = input.trim().replace(",", "");
+                if (input.isEmpty()) {
+                    JOptionPane.showMessageDialog(GUIInventory.this, "Value cannot be empty.", "Invalid", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                String originalCode = model.getValueAt(modelRow, 0).toString();
+                String newCode = originalCode;
+                String newName = model.getValueAt(modelRow, 1).toString();
+
+                if (modelCol == 0) newCode = input; else newName = input;
+
+                // update file immediately (check duplicates first)
+                ItemsManager mgr = new ItemsManager();
+                boolean isDup = mgr.isDuplicateCodeOrName(newCode, newName, originalCode);
+                if (isDup) {
+                    JOptionPane.showMessageDialog(GUIInventory.this, "Duplicate item code or name exists.", "Duplicate", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                boolean ok = mgr.updateItemCodeAndName(originalCode, newCode, newName);
+                if (!ok) {
+                    JOptionPane.showMessageDialog(GUIInventory.this, "Failed to save changes to file.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // update table model
+                model.setValueAt(newCode, modelRow, 0);
+                model.setValueAt(newName, modelRow, 1);
+
+                JOptionPane.showMessageDialog(GUIInventory.this, "Change saved.", "Saved", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
     }
 
     private void applySorting()

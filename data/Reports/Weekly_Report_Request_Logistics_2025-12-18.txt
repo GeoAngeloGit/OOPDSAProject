@@ -1,0 +1,11 @@
+Request Weekly Report
+Source: Logistics
+Date Range: 2025-12-13 to 2025-12-18
+------------------------------------------------------------
+RequestID         Item Code    Item Name                      Quantity Unit     Status           Date Created Date Released
+REQ20251218-001   bbko123      Chocolate                      4        Piece    Completed        2025-12-18     2025-12-18
+REQ20251218-001   bubp         HBW Blue Ballpen               0        Box      Released Nothing 2025-12-18     2025-12-18
+REQ20251218-001   pc           Mongol Pencil                  1        Box      Completed        2025-12-18     2025-12-18
+REQ20251218-001   enk          Printer Ink                    4        Piece    Completed        2025-12-18     2025-12-18
+REQ20251218-001   stapWire     Staple Wire                    3        Box      Completed        2025-12-18     2025-12-18
+REQ20251218-001   stap         Stapler                        4        Piece    Completed        2025-12-18     2025-12-18

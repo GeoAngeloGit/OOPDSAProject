@@ -1,0 +1,15 @@
+Delivery Weekly Report
+Source: Avengers
+Date Range: 2025-12-13 to 2025-12-18
+------------------------------------------------------------
+DeliveryID        Item Code    Item Name                      Quantity Unit     Date Created Date Received
+DEL20251218-001   AT           Adhesive Tape                  4        Piece    2025-12-18     2025-12-18
+DEL20251218-001   bb           baby powder                    4        Bottle   2025-12-18     2025-12-18
+DEL20251218-001   blbp         HBW Black Ballpen              5        Box      2025-12-18     2025-12-18
+DEL20251218-001   bubp         HBW Blue Ballpen               8        Box      2025-12-18     2025-12-18
+DEL20251218-001   LongBP       Long Bond Paper                4        Ream     2025-12-18     2025-12-18
+DEL20251218-001   pc           Mongol Pencil                  3        Box      2025-12-18     2025-12-18
+DEL20251218-002   bb           baby powder                    4        Bottle   2025-12-18     2025-12-18
+DEL20251218-002   blbp         HBW Black Ballpen              4        Box      2025-12-18     2025-12-18
+DEL20251218-002   rbp          HBW Read Ballpen               4        Box      2025-12-18     2025-12-18
+DEL20251218-002   LongBP       Long Bond Paper                5        Ream     2025-12-18     2025-12-18

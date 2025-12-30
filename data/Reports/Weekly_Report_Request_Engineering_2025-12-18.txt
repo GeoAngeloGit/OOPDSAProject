@@ -1,0 +1,28 @@
+Request Weekly Report
+Source: Engineering
+Date Range: 2025-12-13 to 2025-12-18
+------------------------------------------------------------
+RequestID         Item Code    Item Name                      Quantity Unit     Status           Date Created Date Released
+REQ20251216-001   a4BP         A4 Bond Paper                  5        Ream     Pending          2025-12-16    
+REQ20251216-001   bb           baby powder                    5        Bottle   Pending          2025-12-16    
+REQ20251216-001   bbko123      Chocolate                      5        Piece    Pending          2025-12-16    
+REQ20251216-001   bubp         HBW Blue Ballpen               4        Box      Pending          2025-12-16    
+REQ20251216-002   pc           Mongol Pencil                  3        Box      Completed        2025-12-16   2025-12-16
+REQ20251216-002   stapWire     Staple Wire                    3        Box      Completed        2025-12-16   2025-12-16
+REQ20251216-003   a4BP         A4 Bond Paper                  3        Ream     For Pick Up      2025-12-16    
+REQ20251216-003   AT           Adhesive Tape                  2        Piece    Approved         2025-12-16    
+REQ20251216-003   bubp         HBW Blue Ballpen               2        Box      Approved         2025-12-16    
+REQ20251218-001   a4BP         A4 Bond Paper                  0        Ream     Released Nothing 2025-12-18   2025-12-18
+REQ20251218-001   AT           Adhesive Tape                  5        Piece    Completed        2025-12-18   2025-12-18
+REQ20251218-001   blbp         HBW Black Ballpen              2        Box      Completed        2025-12-18   2025-12-18
+REQ20251218-001   enk          Printer Ink                    1        Piece    Completed        2025-12-18   2025-12-18
+REQ20251218-001   stapWire     Staple Wire                    3        Box      Completed        2025-12-18   2025-12-18
+REQ20251218-002   a4BP         A4 Bond Paper                  1        Ream     Completed        2025-12-18   2025-12-18
+REQ20251218-002   AT           Adhesive Tape                  5        Piece    Completed        2025-12-18   2025-12-18
+REQ20251218-002   bb           baby powder                    1        Bottle   Completed        2025-12-18   2025-12-18
+REQ20251218-002   bbko123      Chocolate                      2        Piece    Rejected         2025-12-18    
+REQ20251218-002   blbp         HBW Black Ballpen              2        Box      Completed        2025-12-18   2025-12-18
+REQ20251218-002   enk          Printer Ink                    1        Piece    Completed        2025-12-18   2025-12-18
+REQ20251218-002   stapWire     Staple Wire                    3        Box      Completed        2025-12-18   2025-12-18
+REQ20251218-003   blbp         HBW Black Ballpen              0        Box      Released Nothing 2025-12-18   2025-12-18
+REQ20251218-004   blbp         HBW Black Ballpen              5        Box      Completed        2025-12-18   2025-12-18

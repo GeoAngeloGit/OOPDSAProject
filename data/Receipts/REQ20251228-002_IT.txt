@@ -1,0 +1,13 @@
+Request Receipt
+Request ID: REQ20251228-002
+Department: IT
+Date Created: 2025-12-28
+------------------------------------------------------------
+Item Code    Item Name                      Quantity Unit     Status           Date Approved/Rejected    Date Completed
+stap         Stapler                        0        Piece    Released Nothing 2025-12-28                2025-12-28  
+
+
+Requested By: Ben
+
+
+Released By: Admin2

@@ -1,12 +1,14 @@
-DEL20251215-001,AT,Adhesive Tape,4,Piece,2025-12-15,2025-12-15,BIGGS
-DEL20251215-001,bubp,HBW Blue Ballpen,6,Box,2025-12-15,2025-12-15,BIGGS
-DEL20251215-001,stapWire,Staple Wire,3,Box,2025-12-15,2025-12-15,BIGGS
-DEL20251216-001,AT,Adhesive Tape,6,Piece,2025-12-16,2025-12-16,Watsons
-DEL20251216-001,blbp,HBW Black Ballpen,6,Box,2025-12-16,2025-12-16,Watsons
-DEL20251216-001,rbp,HBW Read Ballpen,6,Box,2025-12-16,2025-12-16,Watsons
-DEL20251216-001,stapWire,Staple Wire,4,Box,2025-12-16,2025-12-16,Watsons
-DEL20251216-005,bubp,HBW Blue Ballpen,4,Box,2025-12-16,2025-12-16,Joella
-DEL20251216-005,pc,Mongol Pencil,4,Box,2025-12-16,2025-12-16,Joella
-DEL20251216-005,stap,Stapler,4,Piece,2025-12-16,2025-12-16,Joella
-DEL20251216-008,a4BP,A4 Bond Paper,5,Ream,2025-12-16,2025-12-16,blabla
-DEL20251217-001,fstnr,Paper Fastener,20,Box,2025-12-17,2025-12-17,ABC Supplies
+DEL20251228-001,Admin1,AT,Adhesive Tape,3,Piece,2025-12-28,2025-12-28,ABC Supplies,Julius
+DEL20251228-001,Admin1,bbko123,Chocolate,3,Piece,2025-12-28,2025-12-28,ABC Supplies,Julius
+DEL20251228-001,Admin1,bubp,HBW Blue Ballpen,2,Box,2025-12-28,2025-12-28,ABC Supplies,Julius
+DEL20251228-002,Admin2,stap,Stapler,6,Piece,2025-12-28,2025-12-28,Avengers,Iron Man
+DEL20251228-003,Admin2,stap,Stapler,2,Piece,2025-12-28,2025-12-28,Avengers,Thor
+DEL20251228-004,Admin1,stap,Stapler,3,Piece,2025-12-28,2025-12-28,Avengers,Hulk
+DEL20251228-005,Admin2,stap,Stapler,2,Piece,2025-12-28,2025-12-28,Avengers,Thor
+DEL20251228-006,Admin1,stap,Stapler,2,Piece,2025-12-28,2025-12-28,Avengers,Iron Man
+DEL20251228-007,Admin1,stap,Stapler,18,Piece,2025-12-28,2025-12-28,Avengers,Thor
+DEL20251228-008,Admin2,stap,Stapler,14,Piece,2025-12-28,2025-12-28,Avengers,Iron Man
+DEL20251228-009,Admin1,bbko123,Chocolate,4,Piece,2025-12-28,2025-12-28,Avengers,Thor
+DEL20251228-009,Admin1,rbp,HBW Read Ballpen,3,Box,2025-12-28,2025-12-28,Avengers,Thor
+DEL20251228-009,Admin1,pc,Mongol Pencil,4,Box,2025-12-28,2025-12-28,Avengers,Thor
+DEL20251228-009,Admin1,stap,Stapler,6,Piece,2025-12-28,2025-12-28,Avengers,Thor

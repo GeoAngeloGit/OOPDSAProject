@@ -18,8 +18,10 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import com.mycompany.managers.NotificationsManager;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
@@ -63,6 +65,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         requestIDComboBox = new javax.swing.JComboBox<>();
         searchTxtField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -73,9 +76,14 @@ public class RequestStatusPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         requestStatusTbl = new javax.swing.JTable();
         deptNameLbl = new javax.swing.JLabel();
+        staffNameComboBox = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
 
         setBackground(new java.awt.Color(5, 10, 36));
-        setPreferredSize(new java.awt.Dimension(793, 428));
+        setPreferredSize(new java.awt.Dimension(838, 462));
 
         requestIDComboBox.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
@@ -102,20 +110,20 @@ public class RequestStatusPanel extends javax.swing.JPanel {
         requestStatusTbl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         requestStatusTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Item Code", "Item Name", "Quantity", "Unit", "Request Status"
+                "Item Code", "Item Name", "Quantity", "To Release", "Unit", "Request Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -132,6 +140,16 @@ public class RequestStatusPanel extends javax.swing.JPanel {
         deptNameLbl.setForeground(new java.awt.Color(255, 255, 255));
         deptNameLbl.setText("Department's Request Status");
 
+        staffNameComboBox.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Username");
+
+        jLabel6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Request ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,31 +157,44 @@ public class RequestStatusPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(requestIDComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(sortByComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(staffNameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(sortByComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(requestIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(deptNameLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 727, Short.MAX_VALUE))
-                    .addComponent(deptNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(deptNameLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(requestIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(requestIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staffNameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,9 +203,9 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(sortByComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(34, 34, 34))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,6 +217,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
     private String requestFilePath;
     private List<Request> displayedRequests = new ArrayList<>();
     private TransactionType type;
+    private Map<String, Map<String, List<Request>>> staffRequestMap = new LinkedHashMap<>();
 
     public RequestStatusPanel(User loginUser, String department, String filePath, JPanel panel, TransactionType type) throws IOException
     {
@@ -210,44 +242,132 @@ public class RequestStatusPanel extends javax.swing.JPanel {
         return this.requestFilePath;
     }
 
+    //to initialize request model
     private void initRequestMode(JPanel panel) throws IOException {
-        // TODO Auto-generated method stub
         requestManager = new RequestManager();
         requestsMap = requestManager.loadAllRequests(requestFilePath);
 
-        for(String requestId : requestsMap.keySet())
-        {
-            requestIDComboBox.addItem(requestId);
+        //build map of requestId -> latest dateCreated and sort by date desc
+        // Map<String, LocalDate> latestDateById = new LinkedHashMap<>();
+        // for (Map.Entry<String, List<Request>> entry : requestsMap.entrySet()) {
+        //     String id = entry.getKey();
+        //     LocalDate latest = LocalDate.MIN;
+        //     for (Request r : entry.getValue()) {
+        //         if (r != null && r.getDateCreated() != null && r.getDateCreated().isAfter(latest)) {
+        //             latest = r.getDateCreated();
+        //         }
+        //     }
+        //     latestDateById.put(id, latest.equals(LocalDate.MIN) ? LocalDate.MIN : latest);
+        // }
+        //to display the latest transaction first
+        // List<String> sortedIds = new ArrayList<>(latestDateById.keySet());
+        // sortedIds.sort((a, b) -> latestDateById.get(b).compareTo(latestDateById.get(a))); // newest first
+
+        // for (String requestId : sortedIds) {
+        //     requestIDComboBox.addItem(requestId);
+        // }
+
+        // //to display the request on the table depending on the requestId
+        // if (requestIDComboBox.getItemCount() > 0) {
+        //     requestIDComboBox.setSelectedIndex(0);
+        //     Object sel = requestIDComboBox.getSelectedItem();
+        //     if (sel != null) loadRequestOnTable(sel.toString());
+        // }
+
+        for (Map.Entry<String, List<Request>> entry : requestsMap.entrySet()) {
+            String requestId = entry.getKey();
+            List<Request> requests = entry.getValue();
+
+            if (requests.isEmpty()) continue;
+
+            String staffName = requests.get(0).getStaffName(); // same for all items
+
+            staffRequestMap
+                .computeIfAbsent(staffName, k -> new LinkedHashMap<>())
+                .put(requestId, requests);
         }
 
-        if(!requestsMap.isEmpty())
-        {
-            String latestId = getLatestRequestID();
-            requestIDComboBox.setSelectedItem(latestId);
-            loadRequestOnTable(latestId);
+        staffNameComboBox.removeAllItems();
+
+        for (String staff : staffRequestMap.keySet()) {
+            staffNameComboBox.addItem(staff);
         }
 
+        staffNameComboBox.addActionListener(e -> {
+            Object sel = staffNameComboBox.getSelectedItem();
+            if (sel != null) {
+                loadRequestIdsForStaff(sel.toString());
+            }
+        });
+
+
+        //to get the requestId from the comboBox
         requestIDComboBox.addActionListener(e ->
             {
-                String selected = requestIDComboBox.getSelectedItem().toString();
-                loadRequestOnTable(selected);
+                Object sel = requestIDComboBox.getSelectedItem();
+                if (sel == null) return;   // ← PREVENTS NPE
+
+                loadRequestOnTable(sel.toString());
             }
         );
 
+        if (staffNameComboBox.getItemCount() > 0) {
+            staffNameComboBox.setSelectedIndex(0);
+        }
+
+        //search items in the request
         searching(requestsMap, panel);
 
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(requestStatusTbl.getModel());
         requestStatusTbl.setRowSorter(sorter);
 
+        //sorting depending on the sortBy and order
         sortByComboBox.addActionListener(e -> applySorting());
         orderComboBox.addActionListener(e -> applySorting());
         
+        //to reject or approve the head
         approveOrReject(loginUser, panel);
     }
 
+    private void loadRequestIdsForStaff(String staffName) {
+        requestIDComboBox.removeAllItems();
+
+        Map<String, List<Request>> reqsById = staffRequestMap.get(staffName);
+        if (reqsById == null) return;
+
+        // Sort by latest date (newest first)
+        List<String> sortedIds = new ArrayList<>(reqsById.keySet());
+        sortedIds.sort((a, b) -> {
+            LocalDate da = getLatestDate(reqsById.get(a));
+            LocalDate db = getLatestDate(reqsById.get(b));
+            return db.compareTo(da);
+        });
+
+        for (String id : sortedIds) {
+            requestIDComboBox.addItem(id);
+        }
+
+        requestIDComboBox.setSelectedIndex(0);
+    }
+
+
+    private LocalDate getLatestDate(List<Request> list) {
+        LocalDate latest = LocalDate.MIN;
+        for (Request r : list) {
+            if (r.getDateCreated() != null && r.getDateCreated().isAfter(latest)) {
+                latest = r.getDateCreated();
+            }
+        }
+        return latest;
+    }
+
+
+
+    //load the requests on the table
     private void loadRequestOnTable(String requestId)
     {
-        List<Request> list = requestsMap.get(requestId);
+        String staff = staffNameComboBox.getSelectedItem().toString();
+        List<Request> list = staffRequestMap.get(staff).get(requestId);
         if(list == null) return;
 
         DefaultTableModel model = (DefaultTableModel) requestStatusTbl.getModel();
@@ -257,7 +377,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
         for (Request req : list) {
             displayedRequests.add(req);
             model.addRow(new Object[] {
-                req.getItemCode(), req.getItemName(), req.getQuantity(), req.getUnit(), req.getStatus()
+                req.getItemCode(), req.getItemName(), req.getQuantity(), req.getQuantityToBeReleased(), req.getUnit(), req.getStatus()
             });
         }
 
@@ -294,6 +414,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                 .orElse(null);
     }
 
+    //searching
     private void searching(Map<String, List<Request>> requestMap, JPanel panel)
     {
         JPopupMenu popup = new JPopupMenu();
@@ -334,7 +455,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                 suggestionList.setModel(model);
 
                 if (!model.isEmpty()) {
-                    // update popup width to match the text field before showing
+                    //update popup width to match the text field before showing
                     int width = Math.max(searchTxtField.getWidth(), searchTxtField.getPreferredSize().width);
                     if (width <= 0) width = Math.max(searchTxtField.getPreferredSize().width, 200);
                     scrollPane.setPreferredSize(new Dimension(width, 100));
@@ -425,19 +546,21 @@ public class RequestStatusPanel extends javax.swing.JPanel {
         {
             public void mouseClicked(MouseEvent evt)
             {
+                //the column of the request or reject is fixed and that is only where the head can approve or reject
                 int viewRow = requestStatusTbl.rowAtPoint(evt.getPoint());
                 if (viewRow < 0) return;
 
                 int modelRow = requestStatusTbl.convertRowIndexToModel(viewRow);
-                int col = requestStatusTbl.columnAtPoint(evt.getPoint());
+                int col = 5;
 
-                if (col != 4) return;
+                if (col != 5) return;
 
                 if (modelRow < 0 || modelRow >= displayedRequests.size()) return;
 
                 Request req = displayedRequests.get(modelRow);
                 String status = req.getStatus();
 
+                //if head, the head can only approve or reject the pending request, cannot modify after, and completed
                 if(loginUser.getRole().equalsIgnoreCase("head"))
                 {
                     if ("Completed".equalsIgnoreCase(status)) {
@@ -464,7 +587,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                         req.setStatus("Approved");
                         RequestManager requestManager = new RequestManager();
                         try {
-                            requestManager.updateRequestStatus(requestFilePath, req);
+                            requestManager.updateRequestStatus(requestFilePath, req, loginUser);
                         } catch (IOException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -475,7 +598,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                         req.setStatus("Rejected");
                         RequestManager requestManager = new RequestManager();
                         try {
-                           requestManager.updateRequestStatus(requestFilePath, req);
+                           requestManager.updateRequestStatus(requestFilePath, req, loginUser);
                         } catch (IOException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -484,6 +607,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
 
                     requestStatusTbl.getModel().setValueAt(req.getStatus(), modelRow, col);
                 }
+                //if admin,  the admin can update approved (only) to for pick up, and after to completed 
                 else if(loginUser.getRole().equalsIgnoreCase("admin"))
                 {
                     if ("Completed".equalsIgnoreCase(status) || "Completed (Released Nothing)".equalsIgnoreCase(status)) {
@@ -503,6 +627,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                         return;
                     }
 
+                    //approved to for pick, will check if their are still stock in the inventory
                     else if ("Approved".equalsIgnoreCase(status))
                     {
                         int choice = JOptionPane.showConfirmDialog(
@@ -521,19 +646,26 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                             if (releasedQty == 0)
                             {
                                 req.setStatus("Released Nothing");
+                                req.setQuantityToBeReleased(req.getOriginalQuantity() - req.getQuantity());
                                 req.setQuantity(releasedQty);
                                 req.setDateCompleted(LocalDate.now()); // completion date
+                                
                                 JOptionPane.showMessageDialog(
                                     panel,
                                     "No inventory available.\nNothing was released.",
                                     "Inventory Warning",
                                     JOptionPane.WARNING_MESSAGE
                                 );
+                                    // notify staff that nothing was released (optional)
+                                    NotificationsManager nm = new NotificationsManager();
+                                    nm.addNotification(req.getStaffName(), req.getRequestId(), req.getItemCode(),
+                                        "Your request " + req.getRequestId() + " for " + req.getItemName() + " currently has no stock available.");
                             }
 
                             else if (releasedQty < req.getOriginalQuantity())
                             {
                                 req.setStatus("Partially For Pick Up");
+                                req.setQuantityToBeReleased(req.getOriginalQuantity() - req.getQuantity());
                                 req.setQuantity(releasedQty);
                                 JOptionPane.showMessageDialog(
                                     panel,
@@ -541,13 +673,24 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                                     "Partial Release",
                                     JOptionPane.WARNING_MESSAGE
                                 );
+                                    // notify staff of partial release
+                                    NotificationsManager nm2 = new NotificationsManager();
+                                    nm2.addNotification(req.getStaffName(), req.getRequestId(), req.getItemCode(),
+                                        "Partial release: " + releasedQty + " of " + req.getItemName() + " is ready for pickup.");
                             }
                             else
                             {
                                 req.setStatus("For Pick Up");
                             }
                             RequestManager rm = new RequestManager();
-                            rm.updateRequestStatus(requestFilePath, req);
+                            rm.updateRequestStatus(requestFilePath, req, loginUser);
+
+                            // if status is For Pick Up, notify staff
+                            if ("For Pick Up".equalsIgnoreCase(req.getStatus())) {
+                                NotificationsManager nm3 = new NotificationsManager();
+                                nm3.addNotification(req.getStaffName(), req.getRequestId(), req.getItemCode(),
+                                        "Your request " + req.getRequestId() + " for " + req.getItemName() + " is ready for pickup.");
+                            }
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -561,7 +704,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                         }
                     }
 
-                    else if("For Pick Up".equalsIgnoreCase(status) || "Partially For Pick Up".equalsIgnoreCase(status))
+                    else if("For Pick Up".equalsIgnoreCase(status))
                     {
                         {
                             int choice = JOptionPane.showConfirmDialog(
@@ -577,7 +720,7 @@ public class RequestStatusPanel extends javax.swing.JPanel {
 
                                 RequestManager rm = new RequestManager();
                                 try {
-                                    rm.updateRequestStatus(requestFilePath, req);
+                                    rm.updateRequestStatus(requestFilePath, req, loginUser);
                                 } catch (IOException e) {
                                     // TODO Auto-generated catch block
                                     e.printStackTrace();
@@ -585,6 +728,68 @@ public class RequestStatusPanel extends javax.swing.JPanel {
                             }
                         }
                     }
+                    else if("Partially For Pick Up".equalsIgnoreCase(status))
+                    {
+                        {
+                            int choice = JOptionPane.showConfirmDialog(
+                                panel,
+                                "Mark this request as Released Partially?",
+                                "Complete Request",
+                                JOptionPane.YES_NO_OPTION
+                            );
+
+                            if (choice == JOptionPane.YES_OPTION) {
+                                req.setStatus("Released Partially");
+                                req.setDateCompleted(LocalDate.now()); // completion date
+
+                                RequestManager rm = new RequestManager();
+                                try {
+                                    rm.updateRequestStatus(requestFilePath, req, loginUser);
+                                } catch (IOException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                }
+                                    // notify staff of released partially
+                                    NotificationsManager nm4 = new NotificationsManager();
+                                    nm4.addNotification(req.getStaffName(), req.getRequestId(), req.getItemCode(),
+                                            "Your request " + req.getRequestId() + " for " + req.getItemName() + " was released partially and is ready for pickup.");
+                            }
+                        }
+                    }
+                        // allow admin to convert previously Released Nothing / Released Partially to For Pick Up
+                        else if ("Released Nothing".equalsIgnoreCase(status) || "Released Partially".equalsIgnoreCase(status))
+                        {
+                            int choice = JOptionPane.showConfirmDialog(
+                                    panel,
+                                    "Mark this request as For Pick Up now?",
+                                    "Process Restock",
+                                    JOptionPane.YES_NO_OPTION
+                            );
+
+                            if (choice == JOptionPane.YES_OPTION) {
+                                // compute new released quantity: prefer original requested quantity,
+                                // but ensure we also account for any previously released amount + remaining to be released
+                                int original = req.getOriginalQuantity();
+                                int current = req.getQuantity();
+                                int remaining = req.getQuantityToBeReleased();
+                                int computed = Math.max(original, current + remaining);
+
+                                req.setStatus("For Pick Up");
+                                req.setQuantity(computed);
+                                req.setQuantityToBeReleased(0);
+
+                                RequestManager rm = new RequestManager();
+                                try {
+                                    rm.updateRequestStatus(requestFilePath, req, loginUser);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                                NotificationsManager nm5 = new NotificationsManager();
+                                nm5.addNotification(req.getStaffName(), req.getRequestId(), req.getItemCode(),
+                                        "Your request " + req.getRequestId() + " for " + req.getItemName() + " is now ready for pickup.");
+                            }
+                        }
                 }
                 else return;
 
@@ -595,14 +800,18 @@ public class RequestStatusPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel deptNameLbl;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> orderComboBox;
     private javax.swing.JComboBox<String> requestIDComboBox;
     private javax.swing.JTable requestStatusTbl;
     private javax.swing.JTextField searchTxtField;
     private javax.swing.JComboBox<String> sortByComboBox;
+    private javax.swing.JComboBox<String> staffNameComboBox;
     // End of variables declaration//GEN-END:variables
 }

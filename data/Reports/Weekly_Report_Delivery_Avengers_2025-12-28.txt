@@ -1,0 +1,19 @@
+Delivery Weekly Report
+Source: Avengers
+Date Range: 2025-12-23 to 2025-12-28
+------------------------------------------------------------
+DeliveryID        Delivered By      Received By       Item Code    Item Name                      Quantity Unit     Date Created Date Received
+DEL20251228-002   Iron Man          Admin2            stap         Stapler                        6        Piece    2025-12-28     2025-12-28
+DEL20251228-003   Thor              Admin2            stap         Stapler                        2        Piece    2025-12-28     2025-12-28
+DEL20251228-004   Hulk              Admin1            stap         Stapler                        3        Piece    2025-12-28     2025-12-28
+DEL20251228-005   Thor              Admin2            stap         Stapler                        2        Piece    2025-12-28     2025-12-28
+DEL20251228-006   Iron Man          Admin1            stap         Stapler                        2        Piece    2025-12-28     2025-12-28
+DEL20251228-007   Thor              Admin1            stap         Stapler                        18       Piece    2025-12-28     2025-12-28
+DEL20251228-008   Iron Man          Admin2            stap         Stapler                        14       Piece    2025-12-28     2025-12-28
+DEL20251228-009   Thor              Admin1            bbko123      Chocolate                      4        Piece    2025-12-28     2025-12-28
+DEL20251228-009   Thor              Admin1            rbp          HBW Read Ballpen               3        Box      2025-12-28     2025-12-28
+DEL20251228-009   Thor              Admin1            pc           Mongol Pencil                  4        Box      2025-12-28     2025-12-28
+DEL20251228-009   Thor              Admin1            stap         Stapler                        6        Piece    2025-12-28     2025-12-28
+
+
+Prepared By: Admin2

@@ -12,6 +12,7 @@ import java.time.LocalDate;
 
 public class DeliveryRecord {
     private String deliveryId;
+    private String adminName;
     private String itemCode;
     private String itemName;
     private int deliveredQuantity;
@@ -19,8 +20,9 @@ public class DeliveryRecord {
     private LocalDate dateDelivered;
     private LocalDate dateCompleted;
 
-    public DeliveryRecord(String deliveryId, String itemCode, String itemName, int deliveredQuantity, String unit, LocalDate dateDelivered, LocalDate dateCompleted) {
+    public DeliveryRecord(String deliveryId, String adminName, String itemCode, String itemName, int deliveredQuantity, String unit, LocalDate dateDelivered, LocalDate dateCompleted) {
         this.deliveryId = deliveryId;
+        this.adminName = adminName;
         this.itemCode = itemCode;
         this.itemName = itemName;
         this.deliveredQuantity = deliveredQuantity;
@@ -31,6 +33,7 @@ public class DeliveryRecord {
 
     // Getters
     public String getDeliveryId() { return deliveryId; }
+    public String getAdminName() { return adminName; }
     public String getItemCode() { return itemCode; }
     public String getItemName() { return itemName; }
     public int getDeliveredQuantity() { return deliveredQuantity; }

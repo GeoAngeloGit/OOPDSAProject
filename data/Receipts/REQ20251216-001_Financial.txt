@@ -1,0 +1,9 @@
+Request Receipt
+Request ID: REQ20251216-001
+Department: Financial
+Date: 2025-12-16
+------------------------------------------------------------
+ItemCode     ItemName                       Quantity Unit     Status           DateCompleted
+a4BP         A4 Bond Paper                  6        Ream     Completed        2025-12-18  
+AT           Adhesive Tape                  5        Piece    Completed        2025-12-18  
+pc           Mongol Pencil                  5        Box      Pending                      

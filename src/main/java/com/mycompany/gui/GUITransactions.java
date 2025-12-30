@@ -10,15 +10,23 @@ import com.mycompany.models.*;
 import com.mycompany.gui.*;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.util.List;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -58,6 +66,8 @@ public class GUITransactions extends javax.swing.JFrame {
         deliveriesLbl = new javax.swing.JLabel();
         transactionsLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        saveReceiptBtn = new javax.swing.JButton();
+        saveReportBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +108,13 @@ public class GUITransactions extends javax.swing.JFrame {
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
+        saveReceiptBtn.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        saveReceiptBtn.setText("Receipt");
+
+        saveReportBtn.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        saveReportBtn.setText("Report");
+        saveReportBtn.addActionListener(this::saveReportBtnActionPerformed);
+
         javax.swing.GroupLayout transactionsPnlLayout = new javax.swing.GroupLayout(transactionsPnl);
         transactionsPnl.setLayout(transactionsPnlLayout);
         transactionsPnlLayout.setHorizontalGroup(
@@ -118,30 +135,41 @@ public class GUITransactions extends javax.swing.JFrame {
             .addGroup(transactionsPnlLayout.createSequentialGroup()
                 .addGroup(transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(transactionsPnlLayout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(transactionsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(transactionsPnlLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(logoutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                        .addComponent(logoutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(transactionsPnlLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(transactionsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addGroup(transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(saveReceiptBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(saveReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         transactionsPnlLayout.setVerticalGroup(
             transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionsPnlLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(logoutLbl)
-                .addGap(3, 3, 3)
-                .addGroup(transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(transactionsLbl)
-                    .addComponent(deliveriesLbl)
-                    .addComponent(requestsLbl)
-                    .addComponent(inventoryLbl)
-                    .addComponent(homeLbl))
-                .addGap(5, 5, 5)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(transactionsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(transactionsPnlLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(transactionsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(transactionsLbl)
+                            .addComponent(deliveriesLbl)
+                            .addComponent(requestsLbl)
+                            .addComponent(inventoryLbl)
+                            .addComponent(homeLbl))
+                        .addGap(5, 5, 5)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(transactionsTabbedPane))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transactionsPnlLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 490, Short.MAX_VALUE)
+                        .addComponent(saveReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(saveReceiptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,11 +180,15 @@ public class GUITransactions extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(transactionsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(transactionsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveReportBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_saveReportBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,6 +223,7 @@ public class GUITransactions extends javax.swing.JFrame {
         this.loginUser = loginUser;
         initComponents();
 
+        //set labels
         // logout returns to login screen
         logoutLbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logoutLbl.setToolTipText("Logout");
@@ -270,36 +303,354 @@ public class GUITransactions extends javax.swing.JFrame {
         });
         transactionsLbl.setFont(new Font("Verdana", Font.BOLD, 14));
 
+        //load al transactions
         transactionManager = new TransactionManager();
         List<Transaction> transactions = transactionManager.loadAllTransactions();
 
+        //setup the tabs in the tabbed pane, requests and deliveries
         setupRequestTabs(transactions);
         setupDeliveryTab(transactions);
+
+        //to save the receipts
+        saveReceiptBtn.addActionListener(e -> {
+            try {
+                saveReceipt();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(GUITransactions.this, "Failed to save receipt: " + ex.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        //to save the report
+        saveReportBtn.addActionListener(e -> {
+            try {
+                saveReport();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                javax.swing.JOptionPane.showMessageDialog(GUITransactions.this, "Failed to save report: " + ex.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        });
     }
 
+    //save report
+    private void saveReport() throws IOException {
+        Component sel = transactionsTabbedPane.getSelectedComponent();
+
+        TransactionPanel panel = null;
+        if (sel instanceof JTabbedPane) {
+            JTabbedPane tabs = (JTabbedPane) sel;
+            Component comp = tabs.getSelectedComponent();
+            if (comp instanceof TransactionPanel) panel = (TransactionPanel) comp;
+        } else if (sel instanceof TransactionPanel) {
+            panel = (TransactionPanel) sel;
+        }
+
+        if (panel == null) {
+            JOptionPane.showMessageDialog(this, "No transaction panel selected.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        //get all transactions to declare in a List<Transactions>
+        List<Transaction> all = panel.getAllTransactions();
+        if (all.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No transactions available for report.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        //determine latest date among the panel's transactions (use dateCreated)
+        LocalDate latest = null;
+        for (Transaction t : all) {
+            if (t.getDateCreated() == null) continue;
+            if (latest == null || t.getDateCreated().isAfter(latest)) latest = t.getDateCreated();
+        }
+
+        if (latest == null) {
+            JOptionPane.showMessageDialog(this, "Transactions have no dates to base the report on.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        LocalDate start = latest.minusDays(5);
+
+        //to set the report to be in a 5 days span
+        List<Transaction> inRange = new java.util.ArrayList<>();
+        for (Transaction t : all) {
+            LocalDate d = t.getDateCreated();
+            if (d == null) continue;
+            if ((d.isAfter(start) || d.isEqual(start)) && (d.isBefore(latest) || d.isEqual(latest))) {
+                inRange.add(t);
+            }
+        }
+
+        if (inRange.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No transactions found in the 5-day window.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        File reportsDir = new File("data/Reports");
+        if (!reportsDir.exists()) reportsDir.mkdirs();
+
+        //to set the file name of the txt file
+        String typeLabel = panel.getTransactionType() == TransactionType.DELIVERY ? "Delivery" : "Request";
+        String source = panel.getSourceName() == null ? "Unknown" : panel.getSourceName().replaceAll("\\s+", "_");
+        String fileName = "Weekly_Report_" + typeLabel + "_" + source + "_" + latest.toString() + ".txt";
+        File out = new File(reportsDir, fileName);
+
+        //write the report txt file
+        //format the txt file
+        try (BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(out))) {
+            bw.write(typeLabel + " Weekly Report\n");
+            bw.write("Source: " + panel.getSourceName() + "\n");
+            bw.write("Date Range: " + start.toString() + " to " + latest.toString() + "\n");
+            bw.write("------------------------------------------------------------\n");
+
+            if (panel.getTransactionType() == TransactionType.REQUEST) {
+                bw.write(String.format("%-17s %-17s %-17s %-12s %-30s %-8s %-12s %-8s %-20s %-12s %-12s %12s\n",
+                    "RequestID","Requested By","Released By","Item Code","Item Name","Quantity","To Release","Unit","Status","Date Created", "Date Approved", "Date Released"));
+                for (Transaction t : inRange) {
+                    bw.write(String.format("%-17s %-17s %-17s %-12s %-30s %-8d %-12d %-8s %-20s %-12s %-12s %12s\n",
+                        t.getTransactionId(), 
+                        t.getUserName(),
+                        (t.getReleasedOrDeliveredBy()==null?"" : t.getReleasedOrDeliveredBy()), 
+                        t.getItemCode(), 
+                        t.getItemName(), 
+                        t.getQuantity(),
+                        t.getQuantityToBeReleased(), 
+                        t.getUnit(), 
+                        (t.getStatus()==null ? "" : t.getStatus()), 
+                        (t.getDateCreated()==null?"" : t.getDateCreated().toString()), 
+                        (t.getDateApproved()==null ? "" : t.getDateApproved().toString()), 
+                        (t.getDateCompleted()==null ? "" : t.getDateCreated().toString().trim())));
+                }
+                bw.newLine();
+                bw.newLine();   
+                bw.write("Prepared By: " + loginUser.getUsername());
+            } else {
+                bw.write(String.format("%-17s %-17s %-17s %-12s %-30s %-8s %-8s %-12s %12s\n",
+                    "DeliveryID","Delivered By","Received By","Item Code","Item Name","Quantity","Unit","Date Created", "Date Received"));
+                for (Transaction t : inRange) {
+                    bw.write(String.format("%-17s %-17s %-17s %-12s %-30s %-8d %-8s %-12s %12s\n",
+                        t.getTransactionId(), 
+                        t.getReleasedOrDeliveredBy(),
+                        t.getUserName(),
+                        t.getItemCode(), 
+                        t.getItemName(), 
+                        t.getQuantity(), 
+                        t.getUnit(), 
+                        (t.getDateCreated()==null ? "" : t.getDateCreated().toString()), 
+                        (t.getDateCompleted()==null ? "" : t.getDateCreated().toString().trim())));
+                }
+                bw.newLine();
+                bw.newLine();   
+                bw.write("Prepared By: " + loginUser.getUsername());
+            }
+
+            bw.flush();
+        }
+
+        JOptionPane.showMessageDialog(this, "Report saved to: " + out.getAbsolutePath(), "Saved", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    //save the receipt of transaction, delivery/request
+    private void saveReceipt() throws IOException {
+        Component sel = transactionsTabbedPane.getSelectedComponent();
+
+        // determine whether requests tab or deliveries
+        TransactionPanel panel = null;
+        if (sel instanceof JTabbedPane) {
+            JTabbedPane tabs = (JTabbedPane) sel;
+            Component comp = tabs.getSelectedComponent();
+            if (comp instanceof TransactionPanel) panel = (TransactionPanel) comp;
+        } else if (sel instanceof TransactionPanel) {
+            panel = (TransactionPanel) sel;
+        }
+
+        if (panel == null) {
+            JOptionPane.showMessageDialog(this, "No transaction panel selected.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        //transactionId
+        String txId = panel.getSelectedTransactionId();
+        if (txId == null) {
+            JOptionPane.showMessageDialog(this, "No transaction selected.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        //get the items
+        List<Transaction> items = panel.getTransactionsForSelectedId();
+        if (items.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No items found for selected transaction.", "Info", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        //ensure receipts directory
+        File receiptsDir = new File("data/Receipts");
+        if (!receiptsDir.exists()) receiptsDir.mkdirs();
+
+        //set the file name
+        String source = panel.getSourceName();
+        //build filename: <TXID>_<source>.txt (sanitize spaces)
+        String fileName = txId + "_" + source.replaceAll("\\s+", "_") + ".txt";
+        File out = new File(receiptsDir, fileName);
+
+        //write the details in the receipt txt file
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(out))) {
+            if (panel.getTransactionType() == TransactionType.DELIVERY) {
+                // delivery receipt header
+                bw.write("Delivery Receipt\n");
+                bw.write("Delivery ID: " + txId + "\n");
+                bw.write("Supplier: " + source + "\n");
+                bw.write("Date Created: " + (items.get(0).getDateCreated()==null?"":items.get(0).getDateCreated().toString()) + "\n");
+                bw.write("------------------------------------------------------------\n");
+                
+                //write the items
+                bw.write(String.format("%-12s %-30s %-8s %-8s %-12s\n","Item Code","Item Name","Quantity","Unit","Date Completed"));
+                for (Transaction t : items) {
+                    bw.write(String.format("%-12s %-30s %-8d %-8s %-12s\n",
+                        t.getItemCode(), 
+                        t.getItemName(), 
+                        t.getQuantity(), 
+                        t.getUnit(), 
+                        (t.getDateCompleted()==null?"":t.getDateCompleted().toString())));
+                }
+                bw.newLine();
+                bw.newLine();   
+                bw.write("Delivered By: " + (items.get(0).getReleasedOrDeliveredBy()));
+                bw.newLine();
+                bw.newLine();
+                bw.newLine();
+                bw.write("Received By: " + (items.get(0).getUserName()));
+            } else {
+                // request receipt header
+                bw.write("Request Receipt\n");
+                bw.write("Request ID: " + txId + "\n");
+                bw.write("Department: " + source + "\n");
+                bw.write("Date Created: " + (items.get(0).getDateCreated()==null?"":items.get(0).getDateCreated().toString()) + "\n");
+                bw.write("------------------------------------------------------------\n");
+                
+                //write the items
+                bw.write(String.format("%-12s %-30s %-8s %-12s %-8s %-20s %-25s %-12s\n",
+                    "Item Code","Item Name","Quantity","To Release","Unit","Status", "Date Approved/Rejected","Date Completed"));
+                for (Transaction t : items) {
+                    bw.write(String.format("%-12s %-30s %-8d %-12d %-8s %-20s %-25s %-12s\n",
+                        t.getItemCode(), 
+                        t.getItemName(), 
+                        t.getQuantity(),
+                        t.getQuantityToBeReleased(), 
+                        t.getUnit(), 
+                        (t.getStatus()==null?"":t.getStatus()), 
+                        (t.getDateApproved()==null?"":t.getDateApproved().toString()),
+                        (t.getDateCompleted()==null?"":t.getDateCompleted().toString())));
+                }
+                bw.newLine();
+                bw.newLine();   
+                bw.write("Requested By: " + (items.get(0).getUserName()));
+                bw.newLine();
+                bw.newLine();
+                bw.newLine();
+                bw.write("Released By: " + (items.get(0).getReleasedOrDeliveredBy()));
+            }
+            bw.flush();
+        }
+
+        JOptionPane.showMessageDialog(this, "Receipt saved to: " + out.getAbsolutePath(), "Saved", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    //setup the request tabs
     private void setupRequestTabs(List<Transaction> allTransactions) throws IOException {
         requestsTabbedPane = new JTabbedPane();
 
+        //get the dept transactions
         for (String dept : transactionManager.getDeptFiles().keySet()) {
             List<Transaction> deptTransactions = allTransactions.stream()
                 .filter(t -> t.getType() == TransactionType.REQUEST)
                 .filter(t -> t.getSource().equals(dept))
                 .toList();
 
-            TransactionPanel panel = new TransactionPanel(deptTransactions, TransactionType.REQUEST, "Department");
+            TransactionPanel panel = new TransactionPanel(deptTransactions, TransactionType.REQUEST, dept);
             requestsTabbedPane.addTab(dept, panel);
         }
         if(transactionsTabbedPane.getTabCount() > 0) { transactionsTabbedPane.remove(0);}
         transactionsTabbedPane.addTab("Requests", requestsTabbedPane);
     }
 
+    //setup the delivery tab
     private void setupDeliveryTab(List<Transaction> allTransactions) throws IOException {
+        // List<Transaction> deliveryTransactions = allTransactions.stream()
+        //     .filter(t -> t.getType() == TransactionType.DELIVERY)
+        //     .toList();
+
+        // //group deliveries by supplier so each supplier has its own tab and TransactionPanel
+        // JTabbedPane deliveryTabbedPane = new JTabbedPane();
+        // Map<String, List<Transaction>> bySupplier = new LinkedHashMap<>();
+        // for (Transaction t : deliveryTransactions) {
+        //     String supplier = t.getSource() == null ? "Unknown" : t.getSource();
+        //     bySupplier.computeIfAbsent(supplier, k -> new ArrayList<>()).add(t);
+        // }
+
+        // for (Map.Entry<String, java.util.List<Transaction>> e : bySupplier.entrySet()) {
+        //     String supplier = e.getKey();
+        //     List<Transaction> list = e.getValue();
+        //     TransactionPanel panel = new TransactionPanel(list, TransactionType.DELIVERY, supplier);
+        //     deliveryTabbedPane.addTab(supplier, panel);
+        // }
+
+        // if (transactionsTabbedPane.getTabCount() > 1) {
+        //     // replace any placeholder tab after requests
+        //     // find index of "Deliveries" tab if exists
+        // }
+
+        // transactionsTabbedPane.addTab("Deliveries", deliveryTabbedPane);
+
         List<Transaction> deliveryTransactions = allTransactions.stream()
             .filter(t -> t.getType() == TransactionType.DELIVERY)
             .toList();
+        
+        // Remove existing Deliveries tab if present
+        for (int i = 0; i < transactionsTabbedPane.getTabCount(); i++) {
+            if ("Deliveries".equals(transactionsTabbedPane.getTitleAt(i))) {
+                transactionsTabbedPane.remove(i);
+                break;
+            }
+        }
 
-        TransactionPanel deliveryPanel = new TransactionPanel(deliveryTransactions, TransactionType.DELIVERY, "Supplier");
-        transactionsTabbedPane.addTab("Deliveries", deliveryPanel);
+        // If no deliveries, show a message panel instead
+        if (deliveryTransactions.isEmpty()) {
+            JPanel emptyPanel = new JPanel(new BorderLayout());
+            emptyPanel.add(new JLabel("No delivery records found.", JLabel.CENTER),
+                        BorderLayout.CENTER);
+            transactionsTabbedPane.addTab("Deliveries", emptyPanel);
+            return;
+        }
+
+        // Group deliveries by supplier
+        Map<String, List<Transaction>> bySupplier = new LinkedHashMap<>();
+        for (Transaction t : deliveryTransactions) {
+            String supplier = (t.getSource() == null || t.getSource().isBlank())
+                    ? "Unknown"
+                    : t.getSource();
+
+            bySupplier.computeIfAbsent(supplier, k -> new ArrayList<>()).add(t);
+        }
+
+        // Create nested tabbed pane
+        JTabbedPane deliveryTabbedPane = new JTabbedPane();
+
+        for (Map.Entry<String, List<Transaction>> entry : bySupplier.entrySet()) {
+            String supplier = entry.getKey();
+            List<Transaction> list = entry.getValue();
+
+            TransactionPanel panel =
+                new TransactionPanel(list, TransactionType.DELIVERY, supplier);
+
+            deliveryTabbedPane.addTab(supplier, panel);
+        }
+
+        transactionsTabbedPane.addTab("Deliveries", deliveryTabbedPane);
+
+        // VERY IMPORTANT
+        transactionsTabbedPane.revalidate();
+        transactionsTabbedPane.repaint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -310,6 +661,8 @@ public class GUITransactions extends javax.swing.JFrame {
     private javax.swing.JLabel logoutLbl;
     private javax.swing.JLabel requestsLbl;
     private javax.swing.JTabbedPane requestsTabbedPane;
+    private javax.swing.JButton saveReceiptBtn;
+    private javax.swing.JButton saveReportBtn;
     private javax.swing.JLabel transactionsLbl;
     private javax.swing.JPanel transactionsPnl;
     private javax.swing.JTabbedPane transactionsTabbedPane;

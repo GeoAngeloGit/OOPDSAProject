@@ -1,0 +1,11 @@
+Request Receipt
+Request ID: REQ20251219-001
+Department: HR
+Date: 2025-12-19
+------------------------------------------------------------
+ItemCode     ItemName                       Quantity Unit     Status           DateCompleted
+bb           baby powder                    4        Bottle   Completed        2025-12-19  
+blbp         HBW Black Ballpen              4        Box      Completed        2025-12-19  
+rbp          HBW Read Ballpen               5        Box      Rejected                     
+pc           Mongol Pencil                  4        Box      Completed        2025-12-19  
+enk          Printer Ink                    3        Piece    Rejected                     

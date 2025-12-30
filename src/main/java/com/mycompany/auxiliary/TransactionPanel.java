@@ -15,6 +15,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Set;
 import java.util.regex.Pattern;
 import javax.swing.RowFilter;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -73,15 +75,19 @@ public class TransactionPanel extends javax.swing.JPanel {
         requestIDComboBox = new javax.swing.JComboBox<>();
         searchTxtField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        sortByComboBox = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
+        releasedOrDeliveredBy = new javax.swing.JLabel();
         orderComboBox = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         transactionTbl = new javax.swing.JTable();
+        userNameComboBox = new javax.swing.JComboBox<>();
+        requesterOrReceiverLbl = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        releasedOrDeliveredByLbl = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(5, 10, 36));
-        setPreferredSize(new java.awt.Dimension(793, 428));
+        setPreferredSize(new java.awt.Dimension(845, 480));
 
         departmentNameLbl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         departmentNameLbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,12 +101,9 @@ public class TransactionPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Search");
 
-        sortByComboBox.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        sortByComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Name", "Status" }));
-
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Sort By");
+        releasedOrDeliveredBy.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        releasedOrDeliveredBy.setForeground(new java.awt.Color(255, 255, 255));
+        releasedOrDeliveredBy.setText("Sort By");
 
         orderComboBox.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         orderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ascending", "Descending" }));
@@ -138,6 +141,38 @@ public class TransactionPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(transactionTbl);
 
+        userNameComboBox.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+
+        requesterOrReceiverLbl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        requesterOrReceiverLbl.setForeground(new java.awt.Color(255, 255, 255));
+        requesterOrReceiverLbl.setText("User Name");
+
+        jLabel6.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Request/Delivery ID");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        releasedOrDeliveredByLbl.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        releasedOrDeliveredByLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(releasedOrDeliveredByLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(releasedOrDeliveredByLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,65 +180,95 @@ public class TransactionPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(departmentNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(requestIDComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(sortByComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 727, Short.MAX_VALUE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(userNameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(8, 8, 8)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(requestIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(12, 12, 12)
+                                    .addComponent(releasedOrDeliveredBy, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(requesterOrReceiverLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(departmentNameLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(requestIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(sortByComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(requesterOrReceiverLbl)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(requestIDComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userNameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(searchTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel4)
+                        .addComponent(releasedOrDeliveredBy)
+                        .addComponent(orderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     private final TransactionType type;
+    private String sourceName;
+    // store the transactions provided to this panel (already pre-filtered by caller)
+    private List<Transaction> panelTransactions = new ArrayList<>();
+    private Map<String, Map<String, List<Transaction>>> userTransactionMap = new LinkedHashMap<>();
+
 
     public TransactionPanel(List<Transaction> transactions, TransactionType type, String source) throws IOException
     {
         initComponents();
         this.type = type;
+        this.panelTransactions = transactions == null ? new ArrayList<>() : new ArrayList<>(transactions);
+        this.sourceName = source;
 
-        // populate combo box with distinct transaction IDs for the given type (preserve order)
-        Set<String> ids = new java.util.LinkedHashSet<>();
-        for (Transaction t : transactions) {
-            if (t.getType() == type) {
-                ids.add(t.getTransactionId());
-            }
+        // populate combo box with distinct transaction IDs for the given type,
+        // ordered so the latest transaction IDs (by dateCreated) appear first
+        /*java.util.Map<String, LocalDate> latestDateById = new java.util.LinkedHashMap<>();
+        for (Transaction t : panelTransactions) {
+            if (t.getType() != type) continue;
+            String id = t.getTransactionId();
+            LocalDate d = t.getDateCreated();
+            if (d == null) d = LocalDate.MIN;
+            LocalDate prev = latestDateById.get(id);
+            if (prev == null || d.isAfter(prev)) latestDateById.put(id, d);
         }
 
-        requestIDComboBox.removeAllItems();
-        for (String id : ids) requestIDComboBox.addItem(id);
+        //sort IDs by date descending (latest first)
+        List<String> sortedIds = new ArrayList<>(latestDateById.keySet());
+        sortedIds.sort((a, b) -> latestDateById.get(b).compareTo(latestDateById.get(a)));
 
-        // when an id is selected, filter transactions and load them to table
+        requestIDComboBox.removeAllItems();
+        for (String id : sortedIds) requestIDComboBox.addItem(id);
+
+        //when an id is selected, filter transactions and load them to table
         requestIDComboBox.addActionListener(e ->
             {
                 try {
@@ -227,6 +292,49 @@ public class TransactionPanel extends javax.swing.JPanel {
             requestIDComboBox.setSelectedIndex(0);
             // trigger initial load
             requestIDComboBox.getActionListeners()[0].actionPerformed(null);
+        }*/
+
+        for (Transaction t : panelTransactions) {
+            if (t.getType() != type) continue;
+
+            String user = t.getUserName();
+            String txId = t.getTransactionId();
+
+            userTransactionMap
+                .computeIfAbsent(user, k -> new LinkedHashMap<>())
+                .computeIfAbsent(txId, k -> new ArrayList<>())
+                .add(t);
+        }
+
+        userNameComboBox.removeAllItems();
+
+        for (String user : userTransactionMap.keySet()) {
+            userNameComboBox.addItem(user);
+        }
+
+        userNameComboBox.addActionListener(e -> {
+            Object sel = userNameComboBox.getSelectedItem();
+            if (sel == null) return;
+
+            loadTransactionIdsForUser(sel.toString());
+        });
+
+        requestIDComboBox.addActionListener(e -> {
+            Object sel = requestIDComboBox.getSelectedItem();
+            if (sel == null) return;
+
+            String txId = sel.toString();
+            String user = userNameComboBox.getSelectedItem().toString();
+
+            List<Transaction> list = userTransactionMap
+                .get(user)
+                .get(txId);
+
+            loadTransactions(list, sourceName);
+        });
+
+        if (userNameComboBox.getItemCount() > 0) {
+            userNameComboBox.setSelectedIndex(0);
         }
 
         // wire up search for transactions (works for both request and delivery)
@@ -235,13 +343,77 @@ public class TransactionPanel extends javax.swing.JPanel {
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(transactionTbl.getModel());
         transactionTbl.setRowSorter(sorter);
 
-        sortByComboBox.addActionListener(e -> applySorting());
         orderComboBox.addActionListener(e -> applySorting());
+
     }
 
+    private void loadTransactionIdsForUser(String user) {
+        requestIDComboBox.removeAllItems();
+
+        Map<String, List<Transaction>> txMap = userTransactionMap.get(user);
+        if (txMap == null || txMap.isEmpty()) {
+            clearTable();
+            return;
+        }
+
+        Map<String, LocalDate> latestDateById = new HashMap<>();
+
+        for (Map.Entry<String, List<Transaction>> e : txMap.entrySet()) {
+            LocalDate latest = LocalDate.MIN;
+            for (Transaction t : e.getValue()) {
+                if (t.getDateCreated() != null && t.getDateCreated().isAfter(latest)) {
+                    latest = t.getDateCreated();
+                }
+            }
+            latestDateById.put(e.getKey(), latest);
+        }
+
+        List<String> sortedIds = new ArrayList<>(latestDateById.keySet());
+        sortedIds.sort((a, b) -> latestDateById.get(b).compareTo(latestDateById.get(a)));
+
+        for (String id : sortedIds) {
+            requestIDComboBox.addItem(id);
+        }
+
+        // 🔥 auto-load latest
+        requestIDComboBox.setSelectedIndex(0);
+    }
+    private void clearTable() {
+        DefaultTableModel model = (DefaultTableModel) transactionTbl.getModel();
+        model.setRowCount(0);
+    }
+
+
+
+    //public accessors used by GUITransactions to export receipts
+    public String getSelectedTransactionId() {
+        Object sel = requestIDComboBox.getSelectedItem();
+        return sel == null ? null : sel.toString();
+    }
+
+    //to get the transaction for the selected id in the combobox, from getSelectedTransactionId();
+    public List<Transaction> getTransactionsForSelectedId() {
+        String selected = getSelectedTransactionId();
+        if (selected == null) return new ArrayList<>();
+        List<Transaction> filtered = new ArrayList<>();
+        for (Transaction t : panelTransactions) {
+            if (t.getType() == type && selected.equals(t.getTransactionId())) filtered.add(t);
+        }
+        return filtered;
+    }
+
+    public TransactionType getTransactionType() { return this.type; }
+
+    public String getSourceName() { return this.sourceName; }
+    
+    public List<Transaction> getAllTransactions() {
+        return new ArrayList<>(this.panelTransactions);
+    }
+
+    //set up the table for the transactions, depending if requests or delivers
     private void loadTransactions(List<Transaction> transactions, String source)
     {
-        // if there are no transactions for this selection, clear the table model
+        //if there are no transactions for this selection, clear the table model
         if(transactions == null || transactions.isEmpty()) {
             DefaultTableModel emptyModel;
             if (type == TransactionType.REQUEST) {
@@ -250,7 +422,7 @@ public class TransactionPanel extends javax.swing.JPanel {
                 );
             } else {
                 emptyModel = new DefaultTableModel(
-                    new String[] {"Item Code", "Item Name", "Quantity", "Unit", source, "Date Delivered", "Date Completed"}, 0
+                    new String[] {"Item Code", "Item Name", "Quantity", "Unit", "Date Delivered", "Date Completed"}, 0
                 );
             }
             transactionTbl.setModel(emptyModel);
@@ -262,13 +434,13 @@ public class TransactionPanel extends javax.swing.JPanel {
         if (type == TransactionType.REQUEST) 
         {
             model = new DefaultTableModel(
-                new String[] {"Item Code", "Item Name", "Quantity", "Unit", "Date Requested", "Date Completed"}, 0
+                new String[] {"Item Code", "Item Name", "Quantity", "To Release", "Unit", "Date Requested", "Date Approved", "Date Completed"}, 0
             );
         } 
         else 
         { // DELIVERY
             model = new DefaultTableModel(
-                new String[] {"Item Code", "Item Name", "Quantity", "Unit", source, "Date Delivered", "Date Completed"}, 0
+                new String[] {"Item Code", "Item Name", "Quantity", "Unit", "Date Delivered", "Date Completed"}, 0
             );
         }
 
@@ -279,11 +451,31 @@ public class TransactionPanel extends javax.swing.JPanel {
             try {
                 if (type == TransactionType.REQUEST) 
                 {
-                    // only include requests that are completed or released nothing
+                    //only include requests that are completed or released nothing
                     boolean completed = t.getDateCompleted() != null;
-                    boolean releasedNothing = t.getStatus() != null && (t.getStatus().equalsIgnoreCase("Released Nothing") || t.getStatus().equalsIgnoreCase("Completed (Released Nothing)"));
+                    boolean releasedNothing = t.getStatus() != null && (t.getStatus().equalsIgnoreCase("Released Nothing") || t.getStatus().equalsIgnoreCase("Partially Released"));
                     if (!completed && !releasedNothing) continue;
 
+                    int cols = model.getColumnCount();
+                    Object[] row = new Object[cols];
+                    row[0] = t.getItemCode();
+                    row[1] = t.getItemName();
+                    row[2] = t.getQuantity();
+                    row[3] = t.getQuantityToBeReleased();
+                    row[4] = t.getUnit();
+                    if (cols > 5) row[5] = t.getDateCreated();
+                    if (cols > 7) row[6] = t.getDateApproved();
+                    if (cols > 7) row[7] = t.getDateCompleted();
+                    
+                    model.addRow(row);
+
+                    requesterOrReceiverLbl.setText("Requested By");
+                    releasedOrDeliveredBy.setText("Released By");
+                    releasedOrDeliveredByLbl.setText(t.getReleasedOrDeliveredBy());
+                } 
+                else 
+                { 
+                    // DELIVERY
                     int cols = model.getColumnCount();
                     Object[] row = new Object[cols];
                     row[0] = t.getItemCode();
@@ -292,23 +484,15 @@ public class TransactionPanel extends javax.swing.JPanel {
                     row[3] = t.getUnit();
                     if (cols > 4) row[4] = t.getDateCreated();
                     if (cols > 5) row[5] = t.getDateCompleted();
+                    
                     model.addRow(row);
-                } 
-                else 
-                { // DELIVERY
-                    int cols = model.getColumnCount();
-                    Object[] row = new Object[cols];
-                    row[0] = t.getItemCode();
-                    row[1] = t.getItemName();
-                    row[2] = t.getQuantity();
-                    row[3] = t.getUnit();
-                    if (cols > 4) row[4] = t.getSource();
-                    if (cols > 5) row[5] = t.getDateCreated();
-                    if (cols > 6) row[6] = t.getDateCompleted();
-                    model.addRow(row);
+
+                    requesterOrReceiverLbl.setText("Received By");
+                    releasedOrDeliveredBy.setText("Delivered By");
+                    releasedOrDeliveredByLbl.setText(t.getReleasedOrDeliveredBy());
                 }
             } catch (Exception ex) {
-                // log the problematic transaction and continue so one bad line doesn't break the entire view
+                //log the problematic transaction and continue so one bad line doesn't break the entire view
                 System.err.println("Error adding transaction to table for ID=" + (t==null?"<null>":t.getTransactionId()) + ": " + ex);
                 ex.printStackTrace();
                 continue;
@@ -316,7 +500,7 @@ public class TransactionPanel extends javax.swing.JPanel {
         }
         transactionTbl.setModel(model);
 
-        // ensure sorter matches the new model
+        //ensure sorter matches the new model
         TableRowSorter<TableModel> newSorter = new TableRowSorter<>(transactionTbl.getModel());
         transactionTbl.setRowSorter(newSorter);
 
@@ -345,6 +529,7 @@ public class TransactionPanel extends javax.swing.JPanel {
         }
     }
 
+    //for searching
     private void searching(List<Transaction> transactions)
     {
         JPopupMenu popup = new JPopupMenu();
@@ -420,6 +605,7 @@ public class TransactionPanel extends javax.swing.JPanel {
             public void changedUpdate(DocumentEvent e) { update(); }
         });
 
+        //to display as a JOptionPane the Transaction Details
         suggestionList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 String selected = suggestionList.getSelectedValue();
@@ -462,24 +648,14 @@ public class TransactionPanel extends javax.swing.JPanel {
         });
     }
 
+    //to apply sorting
     private void applySorting()
     {
         TableRowSorter<TableModel> sorter = (TableRowSorter<TableModel>) transactionTbl.getRowSorter();
 
-        String sortBy = sortByComboBox.getSelectedItem().toString();
         String order = orderComboBox.getSelectedItem().toString();
 
         int columnIndex = 0;
-
-        switch(sortBy)
-        {
-            case "Name":
-                columnIndex = 1;
-                break;
-            case "Status":
-                columnIndex = 4;
-                break;
-        }
 
         SortOrder sortOrder = order.equals("Ascending")
             ? SortOrder.ASCENDING : SortOrder.DESCENDING;
@@ -496,13 +672,17 @@ public class TransactionPanel extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel departmentNameLbl;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> orderComboBox;
+    private javax.swing.JLabel releasedOrDeliveredBy;
+    private javax.swing.JLabel releasedOrDeliveredByLbl;
     private javax.swing.JComboBox<String> requestIDComboBox;
+    private javax.swing.JLabel requesterOrReceiverLbl;
     private javax.swing.JTextField searchTxtField;
-    private javax.swing.JComboBox<String> sortByComboBox;
     private javax.swing.JTable transactionTbl;
+    private javax.swing.JComboBox<String> userNameComboBox;
     // End of variables declaration//GEN-END:variables
 }

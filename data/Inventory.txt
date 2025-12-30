@@ -1,11 +1,13 @@
-a4BP,A4 Bond Paper,2025-12-16,16,Ream
-AT,Adhesive Tape,2025-12-16,12,Piece
-bb,baby powder,2025-12-16,12,Bottle
-bbko123,Chocolate,2025-12-16,65,Piece
-blbp,HBW Black Ballpen,2025-12-16,11,Box
-bubp,HBW Blue Ballpen,2025-12-16,28,Box
-rbp,HBW Read Ballpen,2025-12-16,33,Box
-pc,Mongol Pencil,2025-12-16,17,Box
-fstnr,Paper Fastener,2025-12-17,20,Box
-stapWire,Staple Wire,2025-12-16,17,Box
-stap,Stapler,2025-12-16,13,Piece
+AT,Adhesive Tape,2025-12-28,31,Piece
+bb,baby powder,2025-12-18,15,Bottle
+bbko123,Chocolate,2025-12-28,46,Piece
+blbp,HBW Black Ballpen,2025-12-27,21,Box
+bubp,HBW Blue Ballpen,2025-12-28,48,Box
+rbp,HBW Read Ballpen,2025-12-28,44,Box
+LongBP,Long Bond Paper,2025-12-19,28,Ream
+pc,Mongol Pencil,2025-12-28,30,Box
+fstnr,Paper Fastener,2025-12-27,16,Box
+enk,Printer Ink,2025-12-19,14,Piece
+stapWire,Staple Wire,2025-12-27,20,Box
+stap,Stapler,2025-12-28,6,Piece
+tnr,Toner,2025-12-19,25,Piece

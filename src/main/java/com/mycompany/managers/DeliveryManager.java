@@ -77,7 +77,7 @@ public class DeliveryManager {
         return false; // Item not found
     }
 
-    public boolean saveDeliveries(JTable table, String supplierName, String filePath)
+    public boolean saveDeliveries(JTable table, String supplierName, String supplierStaffName, String filePath, User loginUser)
     {
         boolean savedDelivery = false;
         if(table.isEditing())
@@ -89,6 +89,8 @@ public class DeliveryManager {
 
         String date = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
         String dateCompleted = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
+
+        // generate one delivery ID for this batch (all items in this save call share the same ID)
         String deliveryId = generateDeliveryID(filePath);
 
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true)))
@@ -105,8 +107,8 @@ public class DeliveryManager {
 
                     processDelivery(itemCode, deliveredQty);
 
-                    String line = String.join(",", deliveryId, itemCode, itemName,
-                                            String.valueOf(deliveredQty), unit, date, dateCompleted, supplierName);
+                    String line = String.join(",", deliveryId, loginUser.getUsername(), itemCode, itemName,
+                                            String.valueOf(deliveredQty), unit, date, dateCompleted, supplierName, supplierStaffName);
 
                     bw.write(line);
                     bw.newLine();
@@ -167,33 +169,61 @@ public class DeliveryManager {
     public String generateDeliveryID(String filePath)
     {
         String date = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE);
-
         int counter = 1;
 
         File file = new File(filePath);
-        if(file.exists())
-        {
-            try (BufferedReader br = new BufferedReader(new FileReader(file)))
-            {
+        if (file.exists()) {
+            Set<String> existingRequestIds = new HashSet<>();
+
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line;
-                while((line = br.readLine()) != null)
-                {
+                while ((line = br.readLine()) != null) {
                     String[] parts = line.split(",");
-                    if(parts.length > 0 && parts[0].startsWith("DEL" + date))
-                    {
+                    if (parts.length > 0) {
+                        String requestId = parts[0];
+                        // Only count request IDs starting with today's date
+                        if (requestId.startsWith("DEL" + date)) {
+                            existingRequestIds.add(requestId);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            counter = existingRequestIds.size() + 1; // next request number
+        }
+
+        String counterPart = String.format("%03d", counter);
+        return "DEL" + date + "-" + counterPart;
+    }
+
+    /**
+     * Returns the next counter number for today's deliveries based on existing file entries.
+     * This does not write to the file; caller should use the returned value and increment locally
+     * when creating multiple delivery IDs in the same operation.
+     */
+    /*public int getNextDeliveryCounter(String filePath) {
+        String date = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE);
+        int counter = 1;
+
+        File file = new File(filePath);
+        if (file.exists()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts.length > 0 && parts[0].startsWith("DEL" + date)) {
                         counter++;
                     }
                 }
             } catch (Exception e) {
-                // TODO: handle exception
                 e.printStackTrace();
             }
         }
 
-        String counterPart = String.format("%03d", counter);
-
-        return "DEL" + date + "-" + counterPart;
-    }
+        return counter;
+    }*/
 
     public void addNewItem(String itemCode, String itemName, int quantity, String unit, String filePath, JPanel panel) {
         List<Delivery> allItems = new ArrayList<>();

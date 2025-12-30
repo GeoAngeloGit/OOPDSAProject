@@ -1,0 +1,12 @@
+Request Weekly Report
+Source: LCC Daraga
+Date Range: 2025-12-11 to 2025-12-16
+------------------------------------------------------------
+RequestID         Item Code    Item Name                      Quantity Unit     Status           Date Created Date Released
+REQ20251216-001   a4BP         A4 Bond Paper                  4        Ream     Pending          2025-12-16    
+REQ20251216-001   AT           Adhesive Tape                  3        Piece    Pending          2025-12-16    
+REQ20251216-001   bbko123      Chocolate                      5        Piece    Pending          2025-12-16    
+REQ20251216-001   rbp          HBW Read Ballpen               5        Box      Pending          2025-12-16    
+REQ20251216-002   bbko123      Chocolate                      4        Piece    Completed        2025-12-16   2025-12-16
+REQ20251216-002   blbp         HBW Black Ballpen              4        Box      Completed        2025-12-16   2025-12-16
+REQ20251216-002   bubp         HBW Blue Ballpen               4        Box      Completed        2025-12-16   2025-12-16

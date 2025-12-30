@@ -101,13 +101,9 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
             requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestStatusPnlLayout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
-                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestStatusPnlLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(logoutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 325, Short.MAX_VALUE)
                 .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(createRequestLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -118,6 +114,10 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(transactionsLbl)
                 .addGap(36, 36, 36))
+            .addGroup(requestStatusPnlLayout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         requestStatusPnlLayout.setVerticalGroup(
             requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,9 +138,9 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
                         .addComponent(logoutLbl)
                         .addGap(23, 23, 23)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -189,8 +189,10 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
     {
         initComponents();
 
+        //set the labels
         setLbl(loginUser);
 
+        //hash map of the dept with its dept txt file
         Map<String, String> deptFiles = new HashMap<>();
 
         if(loginUser.getRole().equalsIgnoreCase("admin"))
@@ -203,6 +205,7 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
             deptFiles.put("LCC Ayala", "data/lcc_ayala_branch_requests.txt");
             deptFiles.put("LCC Daraga", "data/lcc_daraga_branch_requests.txt");   
 
+            //for the department, to display the RequestStatusPanel
             for(String dept : deptFiles.keySet())
             {
                 String filePath = deptFiles.get(dept);
@@ -210,7 +213,9 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
                 requestsTabbedPane.addTab(dept, statusPanel);
             }
         }
-        else{
+        else
+        {
+            //set the tabbedpane for the request status
             requestsTabbedPane.setVisible(false);
             RequestStatusPanel statusPanel = new RequestStatusPanel(loginUser,loginUser.getDepartment(), loginUser.getFilePath(), requestStatusPnl, TransactionType.REQUEST);
             requestStatusPnl.setLayout(new BorderLayout());
@@ -224,9 +229,7 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
 
     }
 
-
-
-
+    //set labels
     private void setLbl(User loginUser)
     {
         // logout acts like a logout button
@@ -240,6 +243,8 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
                 dispose();
             }
         });
+
+        //label for home, to go back to home depending on the loginUser
         homeLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         homeLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         homeLbl.setToolTipText("Go back Home");
@@ -265,6 +270,7 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
             }
         });
 
+        //label for createRequest to go back to create request according to loginUser
         createRequestLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         createRequestLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
@@ -297,6 +303,7 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
 
         requestStatusLbl.setFont(new Font("Verdana", Font.BOLD, 12));
 
+        //for the deliveries
         deliveriesLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         deliveriesLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         deliveriesLbl.setToolTipText("View Requests of Departments");
@@ -309,6 +316,7 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
             }
         });
 
+        //and to the transactions
         transactionsLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         transactionsLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         transactionsLbl.setToolTipText("View All Transactions");
@@ -328,6 +336,7 @@ public class GUIRequestStatusForAdmin extends javax.swing.JFrame {
         });
     }
 
+    //to add department tab, in the tabbedpane
     public void addDepartmentTab(String dept, RequestStatusPanel panel)
     {
         requestsTabbedPane.addTab(dept, panel);

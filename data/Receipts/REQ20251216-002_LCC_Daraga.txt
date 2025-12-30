@@ -1,0 +1,9 @@
+Request Receipt
+Request ID: REQ20251216-002
+Department: LCC Daraga
+Date: 2025-12-16
+------------------------------------------------------------
+ItemCode     ItemName                       Quantity Unit     Status           DateCompleted
+bbko123      Chocolate                      4        Piece    Completed        2025-12-18  
+blbp         HBW Black Ballpen              4        Box      Completed        2025-12-18  
+bubp         HBW Blue Ballpen               4        Box      Completed        2025-12-18  

@@ -1,0 +1,11 @@
+Request Receipt
+Request ID: REQ20251218-001
+Department: Engineering
+Date: 2025-12-18
+------------------------------------------------------------
+ItemCode     ItemName                       Quantity Unit     Status           DateCompleted
+a4BP         A4 Bond Paper                  0        Ream     Released Nothing 2025-12-18  
+AT           Adhesive Tape                  5        Piece    Completed        2025-12-18  
+blbp         HBW Black Ballpen              2        Box      Completed        2025-12-18  
+enk          Printer Ink                    1        Piece    Completed        2025-12-18  
+stapWire     Staple Wire                    3        Box      Completed        2025-12-18  

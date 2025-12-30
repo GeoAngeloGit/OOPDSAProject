@@ -1,0 +1,13 @@
+Delivery Receipt
+Delivery ID: DEL20251228-007
+Supplier: Avengers
+Date Created: 2025-12-28
+------------------------------------------------------------
+Item Code    Item Name                      Quantity Unit     Date Completed
+stap         Stapler                        18       Piece    2025-12-28  
+
+
+Delivered By: Thor
+
+
+Received By: Admin1

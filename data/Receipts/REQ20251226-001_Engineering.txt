@@ -1,0 +1,9 @@
+Request Receipt
+Request ID: REQ20251226-001
+Department: Engineering
+Date: 2025-12-26
+------------------------------------------------------------
+ItemCode     ItemName                       Quantity Unit     Status           DateCompleted
+AT           Adhesive Tape                  2        Piece    Completed        2025-12-27  
+bbko123      Chocolate                      3        Piece    Completed        2025-12-27  
+bubp         HBW Blue Ballpen               2        Box      Completed        2025-12-27  

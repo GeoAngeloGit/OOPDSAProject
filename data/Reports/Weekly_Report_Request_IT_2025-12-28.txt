@@ -1,0 +1,12 @@
+Request Weekly Report
+Source: IT
+Date Range: 2025-12-23 to 2025-12-28
+------------------------------------------------------------
+RequestID         Requested By      Released By       Item Code    Item Name                      Quantity Unit     Status           Date Created Date Approved Date Released
+REQ20251228-001   Madam Hazel       Admin2            stap         Stapler                        14       Piece    Completed        2025-12-28   2025-12-28     2025-12-28
+REQ20251228-002   Ben               Admin2            stap         Stapler                        0        Piece    Released Nothing 2025-12-28   2025-12-28     2025-12-28
+REQ20251228-003   Madam Hazel       Admin1            stap         Stapler                        3        Piece    Completed        2025-12-28   2025-12-28     2025-12-28
+REQ20251228-004   Ben               Admin1            stap         Stapler                        3        Piece    Completed        2025-12-28   2025-12-28     2025-12-28
+
+
+Prepared By: Admin1

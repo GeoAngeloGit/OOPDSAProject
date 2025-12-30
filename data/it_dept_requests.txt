@@ -1,0 +1,8 @@
+REQ20251228-001,2025-12-28,Benedict,bbko123,Chocolate,2,Piece,Completed,2025-12-28,2025-12-28,Admin2,0
+REQ20251228-001,2025-12-28,Benedict,bubp,HBW Blue Ballpen,3,Box,Rejected,2025-12-28,,,0
+REQ20251228-001,2025-12-28,Benedict,LongBP,Long Bond Paper,2,Ream,Completed,2025-12-28,2025-12-28,Admin2,0
+REQ20251228-002,2025-12-28,Benedict,bb,baby powder,5,Bottle,Approved,2025-12-28,,,0
+REQ20251228-002,2025-12-28,Benedict,blbp,HBW Black Ballpen,5,Box,Approved,2025-12-28,,,0
+REQ20251228-002,2025-12-28,Benedict,rbp,HBW Read Ballpen,5,Box,Approved,2025-12-28,,,0
+REQ20251228-003,2025-12-28,Benedict,stap,Stapler,18,Piece,Completed,2025-12-28,2025-12-28,Admin2,0
+REQ20251228-004,2025-12-28,Madam Hazel,stap,Stapler,3,Piece,Completed,2025-12-28,2025-12-28,Admin2,0

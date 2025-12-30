@@ -293,9 +293,12 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
     }
 
 
+    //constructor for the Delivery inventory
     public GUIDeliveryInventory(User loginUser)
     {
         initComponents();
+
+        //set labels
         // make logout behave like a logout button
         logoutLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         logoutLbl.setToolTipText("Logout");
@@ -370,17 +373,19 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
             }
         });
         
-
+        //load inventory
         ItemsManager itemsManager = new ItemsManager();
         itemsManager.loadInventory();
         List<Items> itemList = itemsManager.getItems();
 
+        //to set the table
         DefaultTableModel model = (DefaultTableModel) deliverInventoryTbl.getModel();
         model.setRowCount(0);
 
         deliverInventoryTbl.setFillsViewportHeight(true);
         deliverInventoryTbl.setRowHeight(24);
 
+        //alternating color
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
@@ -402,6 +407,7 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
             deliverInventoryTbl.getColumnModel().getColumn(i).setCellRenderer(renderer);
         }
 
+        //put the data about the items in the table
         for(Items item : itemsManager.getItems())
         {
             model.addRow(new Object[]
@@ -415,6 +421,7 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
             );
         }
 
+        //for the searching
         JPopupMenu popup = new JPopupMenu();
         popup.setFocusable(false);
 
@@ -464,18 +471,23 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
             }
         }));
 
+        //for sorting
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(deliverInventoryTbl.getModel());
         deliverInventoryTbl.setRowSorter(sorter);
 
         orderComboBox.addActionListener(e -> applySorting());
 
+        //spinner for the quantity
         deliverInventoryTbl.getColumnModel().getColumn(4).setCellEditor(new SpinnerEditor(true));
 
+        //view deliveries, variable name was reused
         viewRequestBtn.addActionListener(e -> showRequestedItems(deliverInventoryTbl));
 
+        //instantiate DeliveryManager
         DeliveryManager deliveryManager = new DeliveryManager();
-        // populate deliveryManager items from inventory file so deliveries can update inventory
+        //populate deliveryManager items from inventory file so deliveries can update inventory
         deliveryManager.loadDeliveryInventory();
+        //add details about the suplier name
         deliverBtn.addActionListener(e -> 
             {
                 String supplierName = JOptionPane.showInputDialog(
@@ -485,7 +497,14 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
                         JOptionPane.PLAIN_MESSAGE
                 );
 
-                if (supplierName == null || supplierName.trim().isEmpty()) {
+                String supplierStaffName = JOptionPane.showInputDialog(
+                        this, 
+                        "Enter Supplier Staff Name:", 
+                        "Supplier Info", 
+                        JOptionPane.PLAIN_MESSAGE
+                );
+
+                if (supplierName == null || supplierName.trim().isEmpty() || supplierStaffName == null || supplierStaffName.trim().isEmpty()) {
                     JOptionPane.showMessageDialog(
                             this,
                             "Supplier name is required to process delivery.",
@@ -495,8 +514,9 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
                     return; // stop processing
                 }
 
-                boolean savedDelivery = deliveryManager.saveDeliveries(deliverInventoryTbl, supplierName, 
-                    "data/deliveries.txt");
+                //returns if successful or not
+                boolean savedDelivery = deliveryManager.saveDeliveries(deliverInventoryTbl, supplierName, supplierStaffName,
+                    "data/deliveries.txt", loginUser);
                 
                 if(!savedDelivery)
                 {
@@ -512,7 +532,7 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
                 }
 
                 
-
+                //for the next step, create new delivery or view inventory
                 int choice = JOptionPane.showOptionDialog(
                     this,
                     "Delivery successfully processed!\nWhat do you want to do next?",
@@ -541,7 +561,7 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
     }
 
 
-
+    //move the search item on the top of the table
     private void moveRowToTop(String name) {
         DefaultTableModel model = (DefaultTableModel) deliverInventoryTbl.getModel();
 
@@ -570,6 +590,7 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
 
     }
 
+    //apply sorting
     private void applySorting()
     {
         TableRowSorter<TableModel> sorter = (TableRowSorter<TableModel>) deliverInventoryTbl.getRowSorter();
@@ -588,6 +609,7 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
         sorter.sort();
     }
 
+    //show delivered items, variable names is reused
     private void showRequestedItems(JTable table)
     {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -650,6 +672,7 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, scrollPane, "Requested Items", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    //add new item with all of the data
     private void addNewItemAction()
     {
         String itemCode = JOptionPane.showInputDialog(this, "Enter Item Code:");
@@ -678,14 +701,14 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
         String unit = JOptionPane.showInputDialog(this, "Enter Unit:");
         if(unit == null || unit.trim().isEmpty()) return;
 
-        // Ask for supplier name so the addition is also recorded as a delivery
+        //Ask for supplier name so the addition is also recorded as a delivery
         String supplierName = JOptionPane.showInputDialog(this, "Enter Supplier Name:");
         if (supplierName == null || supplierName.trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Supplier name is required to record initial delivery.", "Missing Supplier", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // 2️⃣ Call the DeliveryManager method to add the new item and record delivery
+        //Call the DeliveryManager method to add the new item and record delivery
         DeliveryManager manager = new DeliveryManager(); // or use existing instance
         boolean recorded = manager.addNewItemWithDelivery(itemCode, itemName, quantity, unit, "data/Inventory.txt", requestInventoryPnl, supplierName, "data/deliveries.txt");
 
@@ -693,7 +716,7 @@ public class GUIDeliveryInventory extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Failed to record initial delivery. Item may have been added to inventory but delivery was not saved.", "Warning", JOptionPane.WARNING_MESSAGE);
         }
 
-        // 3️⃣ Refresh table
+        //Refresh table
         manager.loadDeliveryInventory(); // reload items from Inventory.txt
         DefaultTableModel model = (DefaultTableModel) deliverInventoryTbl.getModel();
         model.setRowCount(0); // clear existing rows

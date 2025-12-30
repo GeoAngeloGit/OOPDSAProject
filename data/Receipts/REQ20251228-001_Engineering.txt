@@ -1,0 +1,16 @@
+Request Receipt
+Request ID: REQ20251228-001
+Department: Engineering
+Date Created: 2025-12-28
+------------------------------------------------------------
+Item Code    Item Name                      Quantity To Release   Unit     Status               Date Approved/Rejected    Date Completed
+bb           baby powder                    4        0            Bottle   Completed            2025-12-28                2025-12-28  
+blbp         HBW Black Ballpen              5        0            Box      Rejected             2025-12-28                            
+enk          Printer Ink                    4        0            Piece    Completed            2025-12-28                2025-12-28  
+stap         Stapler                        6        0            Piece    Completed            2025-12-28                2025-12-28  
+
+
+Requested By: Joe
+
+
+Released By: Admin1

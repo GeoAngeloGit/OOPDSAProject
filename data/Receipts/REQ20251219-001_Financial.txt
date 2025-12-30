@@ -1,0 +1,11 @@
+Request Receipt
+Request ID: REQ20251219-001
+Department: Financial
+Date: 2025-12-19
+------------------------------------------------------------
+ItemCode     ItemName                       Quantity Unit     Status           DateCompleted
+AT           Adhesive Tape                  3        Piece    Completed        2025-12-19  
+bbko123      Chocolate                      5        Piece    Completed        2025-12-19  
+bubp         HBW Blue Ballpen               3        Box      Rejected                     
+LongBP       Long Bond Paper                3        Ream     Rejected                     
+fstnr        Paper Fastener                 3        Box      Completed        2025-12-19  

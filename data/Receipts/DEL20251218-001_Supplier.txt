@@ -1,0 +1,17 @@
+Delivery Receipt
+Delivery ID: DEL20251218-001
+Supplier: Supplier
+Date: 2025-12-18
+------------------------------------------------------------
+ItemCode     ItemName                       Quantity Unit     DateCompleted
+AT           Adhesive Tape                  4        Piece    2025-12-18  
+bb           baby powder                    4        Bottle   2025-12-18  
+blbp         HBW Black Ballpen              5        Box      2025-12-18  
+bubp         HBW Blue Ballpen               8        Box      2025-12-18  
+LongBP       Long Bond Paper                4        Ream     2025-12-18  
+pc           Mongol Pencil                  3        Box      2025-12-18  
+AT           Adhesive Tape                  3        Piece    2025-12-18  
+bbko123      Chocolate                      4        Piece    2025-12-18  
+bubp         HBW Blue Ballpen               5        Box      2025-12-18  
+LongBP       Long Bond Paper                4        Ream     2025-12-18  
+tnr          Toner                          20       Piece    2025-12-18  

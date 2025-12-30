@@ -1,0 +1,10 @@
+Request Weekly Report
+Source: Financial
+Date Range: 2025-12-11 to 2025-12-16
+------------------------------------------------------------
+RequestID         Item Code    Item Name                      Quantity Unit     Status           Date Created Date Released
+REQ20251215-001   blbp         HBW Black Ballpen              3        Box      Completed        2025-12-15     2025-12-15
+REQ20251215-001   rbp          HBW Read Ballpen               4        Box      Completed        2025-12-15     2025-12-15
+REQ20251216-001   a4BP         A4 Bond Paper                  6        Ream     Completed        2025-12-16     2025-12-16
+REQ20251216-001   AT           Adhesive Tape                  5        Piece    Completed        2025-12-16     2025-12-16
+REQ20251216-001   pc           Mongol Pencil                  5        Box      Pending          2025-12-16               

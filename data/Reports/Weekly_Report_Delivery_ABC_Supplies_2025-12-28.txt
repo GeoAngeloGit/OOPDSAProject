@@ -1,0 +1,11 @@
+Delivery Weekly Report
+Source: ABC Supplies
+Date Range: 2025-12-23 to 2025-12-28
+------------------------------------------------------------
+DeliveryID        Delivered By Received By                    Item Code Item Name Quantity             Unit
+DEL20251228-001   Julius            Admin1            AT           Adhesive Tape                  3        Piece    2025-12-28     2025-12-28
+DEL20251228-001   Julius            Admin1            bbko123      Chocolate                      3        Piece    2025-12-28     2025-12-28
+DEL20251228-001   Julius            Admin1            bubp         HBW Blue Ballpen               2        Box      2025-12-28     2025-12-28
+
+
+Prepared By: Admin1

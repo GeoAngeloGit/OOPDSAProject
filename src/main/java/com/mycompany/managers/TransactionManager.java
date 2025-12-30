@@ -30,6 +30,7 @@ public class TransactionManager
 {
     private final Map<String, String> deptFiles = new LinkedHashMap<>();
     
+    //load all transactions
     public List<Transaction> loadAllTransactions() throws IOException
     {
         List<Transaction> transactions = new ArrayList<>();
@@ -40,11 +41,12 @@ public class TransactionManager
         return transactions;
     }
 
+    //load request transactions
     private List<Transaction> loadRequestTransactions() throws FileNotFoundException, IOException 
     {
-        // TODO Auto-generated method stub
         List<Transaction> list = new ArrayList<>();
 
+        //for each entry with dept name and its file path
         for(Map.Entry<String, String> entry : getDeptFiles().entrySet())
         {
             String dept = entry.getKey();
@@ -53,9 +55,12 @@ public class TransactionManager
             File file = new File(filePath);
             if(!file.exists()) continue;
 
+            //read the line
             try(BufferedReader br = new BufferedReader(new FileReader(file)))
             {
                 String line;
+
+                //read line, and get each part of the line
                 while((line = br.readLine()) != null)
                 {
                     String[] parts = line.split(",", -1);
@@ -63,20 +68,33 @@ public class TransactionManager
 
                     String transactionId = parts[0];
                     String dateRequested = parts[1];
-                    String itemCode = parts[2];
-                    String itemName = parts[3];
-                    int quantity = Integer.parseInt(parts[4]);
-                    String unit = parts[5];
-                    String status = parts[6];
+                    String userName = parts[2];
+                    String itemCode = parts[3];
+                    String itemName = parts[4];
+                    int quantity = Integer.parseInt(parts[5]);
+                    String unit = parts[6];
+                    String status = parts[7];
+                    LocalDate dateApproved = null;
+
+                    if (parts.length >= 9 && !parts[8].isEmpty()) {
+                        dateApproved = tryParseDate(parts[8]);
+                    }
+                    String releasedBy = null;
 
                     LocalDate dateReq = tryParseDate(dateRequested);
                     LocalDate dateCompleted = null;
-                    if (parts.length >= 8 && !parts[7].isEmpty()) {
-                        dateCompleted = tryParseDate(parts[7]);
+                    if (parts.length >= 11 && !parts[9].isEmpty()) {
+                        dateCompleted = tryParseDate(parts[9]);
+                        releasedBy = parts[10];
+                    }
+                    int quantityToBeReleased = 0;
+                    if (parts.length >= 12 && !parts[11].isEmpty()) {
+                        quantityToBeReleased = Integer.parseInt(parts[11]);
                     }
 
-                    Transaction transaction = new Transaction(transactionId, TransactionType.REQUEST, itemCode, itemName,
-                        quantity, unit, dept, status, dateReq, dateCompleted);
+                    //instantiate Transaction class
+                    Transaction transaction = new Transaction(transactionId, TransactionType.REQUEST, userName, itemCode, itemName,
+                        quantity, quantityToBeReleased,unit, dept, releasedBy, status, dateReq, dateApproved, dateCompleted);
 
                     list.add(transaction);
                 }   
@@ -85,10 +103,12 @@ public class TransactionManager
         return list;
     }
 
+    //load delivery tranactions
     private List<Transaction> loadDeliveryTransactions() throws IOException {
 
         List<Transaction> list = new ArrayList<>();
 
+        //read each line through the file, and store in the String array
         try (BufferedReader br = new BufferedReader(new FileReader("data/deliveries.txt"))) {
             String line;
 
@@ -98,17 +118,24 @@ public class TransactionManager
                 if (p.length < 8) continue;
 
                 Transaction t = new Transaction(
-                    p[0], // deliveryId
-                    TransactionType.DELIVERY,
-                    p[1], // itemCode
-                    p[2], // itemName
-                    Integer.parseInt(p[3]),
-                    p[4], // unit
-                    p[7], // supplier
-                "", // status (deliveries have no status)
-                tryParseDate(p[5]), // dateDelivered
-                tryParseDate(p[6])  // dateCompleted
+                    p[0],                        // deliveryId (DEL...)
+                    TransactionType.DELIVERY,   // type
+                    p[1],
+                    p[2],                        // itemCode
+                    p[3],                        // itemName
+                    Integer.parseInt(p[4]),      // quantity
+                    0,
+                    p[5],                        // unit
+                    p[8],                        // supplier (source)
+                    p[9],
+                    "",                          // status (not applicable)
+                    tryParseDate(p[6]),          // dateDelivered
+                    null,
+                    tryParseDate(p[7])           // dateCompleted
                 );
+
+                // VERY IMPORTANT: store who created/received it
+                t.setUserName(p[1]);             // admin username
 
                 list.add(t);
             }
@@ -117,6 +144,7 @@ public class TransactionManager
         return list;
     }
 
+    //store the key value pair of the each department with the file paths of their txt file
     public Map<String, String> getDeptFiles()
     {
         deptFiles.put("Engineering", "data/engineering_dept_requests.txt");
@@ -129,6 +157,7 @@ public class TransactionManager
         return deptFiles;
     }
 
+    //try parse the String to the DateTimeFormatter BASIC_ISO_DATE
     private LocalDate tryParseDate(String s) {
         if (s == null || s.trim().isEmpty()) return null;
         s = s.trim();

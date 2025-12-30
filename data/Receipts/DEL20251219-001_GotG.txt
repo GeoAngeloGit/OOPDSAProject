@@ -1,0 +1,10 @@
+Delivery Receipt
+Delivery ID: DEL20251219-001
+Supplier: GotG
+Date: 2025-12-19
+------------------------------------------------------------
+ItemCode     ItemName                       Quantity Unit     DateCompleted
+pc           Mongol Pencil                  5        Box      2025-12-19  
+enk          Printer Ink                    4        Piece    2025-12-19  
+stapWire     Staple Wire                    4        Box      2025-12-19  
+tnr          Toner                          5        Piece    2025-12-19  

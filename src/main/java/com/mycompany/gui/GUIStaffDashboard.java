@@ -52,6 +52,7 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
         requestStatusLbl = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        staffnameLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +111,9 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Contact ");
 
+        staffnameLbl.setForeground(new java.awt.Color(255, 255, 255));
+        staffnameLbl.setText("jLabel1");
+
         javax.swing.GroupLayout staffDashboardPnlLayout = new javax.swing.GroupLayout(staffDashboardPnl);
         staffDashboardPnl.setLayout(staffDashboardPnlLayout);
         staffDashboardPnlLayout.setHorizontalGroup(
@@ -137,7 +141,10 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
                             .addComponent(toKosaLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(staffDashboardPnlLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(logoutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(logoutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(staffDashboardPnlLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(staffnameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         staffDashboardPnlLayout.setVerticalGroup(
@@ -152,7 +159,9 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
                     .addComponent(requestStatusLbl))
                 .addGap(8, 8, 8)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
+                .addGap(18, 18, 18)
+                .addComponent(staffnameLbl)
+                .addGap(36, 36, 36)
                 .addComponent(welcomeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(toKosaLbl)
@@ -219,6 +228,7 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
     {
         initComponents();
 
+        //set labels
         // Make logout behave like a logout button: return to login screen
         logoutLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         logoutLbl.setToolTipText("Logout");
@@ -233,6 +243,7 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
 
         homeLbl.setFont(new Font("Alexandria", Font.BOLD, 14));
 
+        //if clicked goes to GUIRequestInventory to request items with User parameter
         requestLbl.setFont(new Font("Alexandria", Font.PLAIN, 14));
         requestLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         requestLbl.setToolTipText("Create a Request");
@@ -245,6 +256,8 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
                 dispose();
             }
         });
+
+        //if clicked goes to GUIRequestStatus with User parameter
         requestStatusLbl.setFont(new Font("Alexandria", Font.PLAIN, 14));
         requestStatusLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         requestStatusLbl.setToolTipText("View Request Status");
@@ -265,8 +278,12 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
             }
         });
 
+        staffnameLbl.setText("Hello, " + loginUser.getUsername());
+
         setWelcomeLbls();
     }
+
+    //welcome labels in the dashboard
     private void setWelcomeLbls()
     {
         welcomeLbl.setText("Welcome");
@@ -298,6 +315,7 @@ public class GUIStaffDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel requestLbl;
     private javax.swing.JLabel requestStatusLbl;
     private javax.swing.JPanel staffDashboardPnl;
+    private javax.swing.JLabel staffnameLbl;
     private javax.swing.JLabel toKosaLbl;
     private javax.swing.JLabel welcomeLbl;
     // End of variables declaration//GEN-END:variables

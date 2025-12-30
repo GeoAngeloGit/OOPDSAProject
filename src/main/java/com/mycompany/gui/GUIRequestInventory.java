@@ -278,6 +278,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
     {
         initComponents();
 
+        //set labels
         // logout acts as logout button -> open login screen and dispose
         logoutLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         logoutLbl.setToolTipText("Logout");
@@ -290,6 +291,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
             }
         });
 
+        //if clicked goes to GUIStaff/HeadDashboard to request items with User parameter
         homeLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         homeLbl.setToolTipText("Go back to Home");
         homeLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -312,6 +314,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
 
         requestLbl.setFont(new Font("Verdana", Font.BOLD, 14));
 
+        //if clicked goes to GUIRequestStatus with User parameter, depending with User role
         requestStatusLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         requestStatusLbl.setToolTipText("View Request Status");
         requestStatusLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -345,16 +348,20 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         });
         
 
+        //instantiate ItemsManager to get its methods
         ItemsManager itemsManager = new ItemsManager();
         itemsManager.loadInventory();
         List<Items> itemList = itemsManager.getItems();
 
+        //get the model of the table to edit its column, for sorting, and overall look
         DefaultTableModel model = (DefaultTableModel) requestInventoryTbl.getModel();
         model.setRowCount(0);
 
+        //fill the table's viewport heaight, and set each row height row 
         requestInventoryTbl.setFillsViewportHeight(true);
         requestInventoryTbl.setRowHeight(24);
 
+        //declare a DefaultTableCellRenderer to have a alternating color for the rows
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
@@ -376,6 +383,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
             requestInventoryTbl.getColumnModel().getColumn(i).setCellRenderer(renderer);
         }
 
+        //add to the model table the itemCode, itemName, quantity, and its unit
         for(Items item : itemsManager.getItems())
         {
             model.addRow(new Object[]
@@ -389,20 +397,25 @@ public class GUIRequestInventory extends javax.swing.JFrame {
             );
         }
 
+        //declare a JPopupMenu for the search feature
         JPopupMenu popup = new JPopupMenu();
         popup.setFocusable(false);
 
+        //JList for the suggestionList, and JScrollPane for the dropdown of suggestionList
         JList<String> suggestionList = new JList<>();
         JScrollPane scrollPane = new JScrollPane(suggestionList);
         scrollPane.setPreferredSize(new Dimension(searchTxtField.getWidth(), 100));
         popup.add(scrollPane);
 
+        //to function the search text field
         searchTxtField.getDocument().addDocumentListener(new DocumentListener() {
             public void update()
             {
+                //get the text from the searchTxtField
                 String text = searchTxtField.getText().toLowerCase();
                 DefaultListModel<String> model = new DefaultListModel<>();
 
+                //to get the items that matches with the searched text
                 for (Items item : itemList) {
                     if (item.getItemName().toLowerCase().contains(text) && !text.isEmpty()) {
                         model.addElement(item.getItemName());
@@ -424,10 +437,12 @@ public class GUIRequestInventory extends javax.swing.JFrame {
             public void changedUpdate(DocumentEvent e) { update(); }
         });
 
+        //once the suggestion from the suggestionList is clicked
         suggestionList.addMouseListener((new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e)
             {
+                //to move the selectedName to the top of the table
                 String selectedName = suggestionList.getSelectedValue();
                 if(selectedName == null) return;
 
@@ -438,18 +453,24 @@ public class GUIRequestInventory extends javax.swing.JFrame {
             }
         }));
 
+        //to sort the table based on the selected parameter
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(requestInventoryTbl.getModel());
         requestInventoryTbl.setRowSorter(sorter);
 
+        //to applySorting
         orderComboBox.addActionListener(e -> applySorting());
 
+        //for the spinner, in the quantity row
         requestInventoryTbl.getColumnModel().getColumn(4).setCellEditor(new SpinnerEditor(false));
 
+        //to show the requested items
         viewRequestBtn.addActionListener(e -> showRequestedItems(requestInventoryTbl));
 
+        //to process the request
         RequestManager requestManager = new RequestManager();
         requestBtn.addActionListener(e -> 
             {
+                //gets if the saving is successful
                 boolean savedRequest = requestManager.saveRequests(requestInventoryTbl, loginUser.getDepartment(), 
                     loginUser.getRole(), loginUser.getFilePath(), loginUser);
                 
@@ -467,7 +488,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                 }
 
                 
-
+                //next step by the user, if the user want to create new request or view request status
                 int choice = JOptionPane.showOptionDialog(
                     this,
                     "Request successfully created!",
@@ -479,11 +500,13 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                     "Create New Request"
                 );
                 
+                //if zero goes to GUIRequestInventory
                 if(choice == 0)
                 {   
                     dispose();
                     new GUIRequestInventory(loginUser).setVisible(true);
                 }
+                //if one goes to GUIRequestStatus
                 else if(choice == 1)
                 {
                     dispose();
@@ -498,8 +521,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         );
     }
 
-
-
+    //to move the selected items and its data to the top of the table
     private void moveRowToTop(String name) {
         DefaultTableModel model = (DefaultTableModel) requestInventoryTbl.getModel();
 
@@ -528,6 +550,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
 
     }
 
+    //to apply the sorting
     private void applySorting()
     {
         TableRowSorter<TableModel> sorter = (TableRowSorter<TableModel>) requestInventoryTbl.getRowSorter();
@@ -536,6 +559,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
 
         int columnIndex = 0;
 
+        //if ascending or descending using SortOrder
         SortOrder sortOrder = order.equals("Ascending")
             ? SortOrder.ASCENDING : SortOrder.DESCENDING;
         
@@ -546,13 +570,16 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         sorter.sort();
     }
 
+    //showReqeustedItems based on the input quantity/ies of the user
     private void showRequestedItems(JTable table)
     {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
+        //List of requested Rows
         List<Object[]> requestedRows = new ArrayList<>();
         for(int i = 0; i < model.getRowCount(); i ++)
         {
+            //check if object in the cell is a number
             Object quantityObject = model.getValueAt(i, 4);
             int quantity = 0;
             if(quantityObject instanceof Number)
@@ -560,6 +587,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
                 quantity = ((Number) quantityObject).intValue();
             }
 
+            //if quantity > 0, get the itemName and its unit
             if(quantity > 0)
             {
                 String itemName = model.getValueAt(i, 1).toString();
@@ -568,12 +596,14 @@ public class GUIRequestInventory extends javax.swing.JFrame {
             }
         }
 
+        //catch if requestedrows is empty
         if(requestedRows.isEmpty())
         {
             JOptionPane.showMessageDialog(this, "No items have been requested.", "Requested Items", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
+        //set the table of requested items that will be displayed in the JOptionPane of requested Items
         String[] columnNames = {"Item Name", "Quantity", "Unit"};
         Object[][] data = requestedRows.toArray(new Object[0][]);
         JTable requestedTable = new JTable(data, columnNames);
@@ -581,6 +611,7 @@ public class GUIRequestInventory extends javax.swing.JFrame {
         requestedTable.setFillsViewportHeight(true);
         requestedTable.setRowHeight(24);
 
+        //alternating colors of rows
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,

@@ -13,33 +13,45 @@ import java.util.List;
  * @author USER
  */
 public class Request {
+    //attributes
     private String requestId;
+    private String staffName;
     private String itemCode;
     private String itemName;
     private LocalDate dateCreated;
+    private LocalDate dateApproved;
     private LocalDate dateCompleted;
     private int quantity;
     private int originalQuantity;
+    private int quantityToBeReleased;
     private String unit;
     private String status;
 
-    public Request(String requestId, String itemCode, String itemName, 
-        LocalDate dateCreated, LocalDate dateCompleted, int quantity, String unit, String status)
+    //constructor
+    public Request(String requestId, String staffName, String itemCode, String itemName, 
+        LocalDate dateCreated, LocalDate dateApproved, LocalDate dateCompleted, int quantity, int quantityToBeReleased, String unit, String status)
         {
             this.requestId = requestId;
+            this.staffName = staffName;
             this.itemCode = itemCode;
             this.itemName = itemName;
             this.dateCreated = dateCreated;
+            this.dateApproved = dateApproved;
             this.dateCompleted = dateCompleted;
             this.quantity = quantity;
             this.originalQuantity = quantity;
+            this.quantityToBeReleased = quantityToBeReleased;
             this.unit = unit;
             this.status = status;
         }
-    
+    //getters and setters
     public LocalDate getDateCreated() 
     { 
         return dateCreated; 
+    }
+    public LocalDate getDateApproved() 
+    { 
+        return dateApproved; 
     }
     public LocalDate getDateCompleted() 
     { 
@@ -48,6 +60,10 @@ public class Request {
     public String getRequestId() 
     { 
         return requestId; 
+    }
+    public String getStaffName()
+    {
+        return staffName;
     }
     public String getItemName() 
     { 
@@ -65,6 +81,10 @@ public class Request {
     {
         return quantity;
     }
+    public int getQuantityToBeReleased()
+    {
+        return quantityToBeReleased;
+    }
     public int getOriginalQuantity()
     {
         return originalQuantity;
@@ -77,6 +97,9 @@ public class Request {
 
     public void setRequestId(String requestId) {
         this.requestId = requestId;
+    }
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
     }
 
     public void setItemCode(String itemCode) {
@@ -96,6 +119,9 @@ public class Request {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+    public void setQuantityToBeReleased(int quantityToBeReleased) {
+        this.quantityToBeReleased = quantityToBeReleased;
     }
 
     public void setUnit(String unit) {

@@ -54,7 +54,7 @@ public class GUIRequestStatus extends javax.swing.JFrame {
         requestStatusLbl = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         requestsTabbedPane = new javax.swing.JTabbedPane();
-        homeLbl1 = new javax.swing.JLabel();
+        logOutLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,9 +76,9 @@ public class GUIRequestStatus extends javax.swing.JFrame {
 
         requestsTabbedPane.setBackground(new java.awt.Color(255, 255, 255));
 
-        homeLbl1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        homeLbl1.setForeground(new java.awt.Color(255, 255, 255));
-        homeLbl1.setText("KOSA");
+        logOutLbl.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        logOutLbl.setForeground(new java.awt.Color(255, 255, 255));
+        logOutLbl.setText("KOSA");
 
         javax.swing.GroupLayout requestStatusPnlLayout = new javax.swing.GroupLayout(requestStatusPnl);
         requestStatusPnl.setLayout(requestStatusPnlLayout);
@@ -87,8 +87,8 @@ public class GUIRequestStatus extends javax.swing.JFrame {
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestStatusPnlLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(homeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logOutLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 469, Short.MAX_VALUE)
                 .addComponent(homeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(createRequestLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,9 +96,9 @@ public class GUIRequestStatus extends javax.swing.JFrame {
                 .addComponent(requestStatusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
             .addGroup(requestStatusPnlLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         requestStatusPnlLayout.setVerticalGroup(
             requestStatusPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,12 +114,12 @@ public class GUIRequestStatus extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, requestStatusPnlLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(homeLbl1)
+                        .addComponent(logOutLbl)
                         .addGap(20, 20, 20)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(requestsTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,8 +162,9 @@ public class GUIRequestStatus extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new GUIRequestStatus().setVisible(true));
     }
 
-    private Map<String, List<Request>> requestsMap;   // <-- CLASS FIELD
+    private Map<String, List<Request>> requestsMap;
 
+    //for head or staff
     public GUIRequestStatus(User loginUser) throws IOException
     {
         initComponents();
@@ -172,6 +173,7 @@ public class GUIRequestStatus extends javax.swing.JFrame {
 
         Map<String, String> deptFiles = new HashMap<>();
 
+        //map for department
         if(loginUser.getRole().equalsIgnoreCase("admin"))
         {
             deptFiles.put("Engineering", "data/engineering_dept_requests.txt");
@@ -189,7 +191,8 @@ public class GUIRequestStatus extends javax.swing.JFrame {
                 requestsTabbedPane.addTab(dept, statusPanel);
             }
         }
-        else{
+        else
+        {
             requestsTabbedPane.setVisible(false);
             RequestStatusPanel statusPanel = new RequestStatusPanel(loginUser,loginUser.getDepartment(), loginUser.getFilePath(), requestStatusPnl, TransactionType.REQUEST);
             requestStatusPnl.setLayout(new BorderLayout());
@@ -203,11 +206,21 @@ public class GUIRequestStatus extends javax.swing.JFrame {
 
     }
 
-
-
-
+    //set lbales
     private void setLbl(User loginUser)
     {
+        // logout acts as logout button -> open login screen and dispose
+        logOutLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        logOutLbl.setToolTipText("Logout");
+        logOutLbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                GUILogin login = new GUILogin();
+                login.setVisible(true);
+                dispose();
+            }
+        });
+
         homeLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         homeLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         homeLbl.setToolTipText("Go back Home");
@@ -274,13 +287,11 @@ public class GUIRequestStatus extends javax.swing.JFrame {
     }
 
     
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel createRequestLbl;
     private javax.swing.JLabel homeLbl;
-    private javax.swing.JLabel homeLbl1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel logOutLbl;
     private javax.swing.JLabel requestStatusLbl;
     private javax.swing.JPanel requestStatusPnl;
     private javax.swing.JTabbedPane requestsTabbedPane;

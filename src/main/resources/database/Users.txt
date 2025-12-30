@@ -1,15 +1,23 @@
-KOSA_Admin,KOSA@Adm#2025,admin,Admin Dept,requests_admin.txt
-EngDeptHead01,EngHd01!@#,head,Engineering Dept,engineering_dept_requests.txt
-EngDept01,Eng01$Stf!,staff,Engineering Dept,engineering_dept_requests.txt
-ITDeptHead02,ITHd02#@!,head,IT Dept,it_dept_requests.txt
-ITDept02,IT02*Stf$,staff,IT Dept,it_dept_requests.txt
-FinDeptHead03,FinHd03$%!,head,Financial Dept,financial_dept_requests.txt
-FinDept03,Fin03@Stf*,staff,Financial Dept,financial_dept_requests.txt
-HRDeptHead04,HRHd04!*#,head,Human Resource Dept,human_resource_dept_requests.txt
-HRDept04,HR04$Stf!,staff,Human Resource Dept,human_resource_dept_requests.txt
-LogDeptHead05,LogHd05!$#,head,Logistics Dept,logistics_dept_requests.txt
-LogDept05,Log05@Stf*,staff,Logistics Dept,logistics_dept_requests.txt
-LCCDaragaHead06,LCCDRP06!@#,head,LCC Daraga Branch,lcc_daraga_branch_requests.txt
-LCCDaraga06,LCCDRPstaff06@#$,staff,LCC Daraga Branch,lcc_daraga_branch_requests.txt
-LCCAyalaHead07,LCCAyalaHd07*&^,head,LCC Ayala Branch,lcc_ayala_branch_requests.txt
-LCCAyala07,LCCAyalast07!@#,staff,LCC Ayala Branch,lcc_ayala_branch_requests.txt
+Admin1,KOSA@Adm#2025,admin,Admin Dept,data/requests_admin.txt,ACTIVE
+Admin2,KOSA@Adm#2025,admin,Admin Dept,data/requests_admin.txt,ACTIVE
+Sir Martin,EngHd01!@#,head,Engineering Dept,data/engineering_dept_requests.txt,ACTIVE
+Joe,Eng01$Stf!,staff,Engineering Dept,data/engineering_dept_requests.txt,ACTIVE
+Joey,Eng01$Stf!,staff,Engineering Dept,data/engineering_dept_requests.txt,ACTIVE
+Madam Hazel,ITHd02#@!,head,IT Dept,data/it_dept_requests.txt,ACTIVE
+Ben,IT02*Stf$,staff,IT Dept,data/it_dept_requests.txt,ACTIVE
+Benedict,IT02*Stf$,staff,IT Dept,data/it_dept_requests.txt,ACTIVE
+Sir Henry,FinHd03$%!,head,Financial Dept,data/financial_dept_requests.txt,ACTIVE
+Bill,Fin03@Stf*,staff,Financial Dept,data/financial_dept_requests.txt,ACTIVE
+Billy,Fin03@Stf*,staff,Financial Dept,data/financial_dept_requests.txt,ACTIVE
+Sir Harold,HRHd04!*#,head,Human Resource Dept,data/human_resource_dept_requests.txt,ACTIVE
+Nic,HR04$Stf!,staff,Human Resource Dept,data/human_resource_dept_requests.txt,ACTIVE
+Nicole,HR04$Stf!,staff,Human Resource Dept,data/human_resource_dept_requests.txt,ACTIVE
+Madam Averyl,LogHd05!$#,head,Logistics Dept,data/logistics_dept_requests.txt,ACTIVE
+Terry,Log05@Stf*,staff,Logistics Dept,data/logistics_dept_requests.txt,ACTIVE
+Terrence,Log05@Stf*,staff,Logistics Dept,data/logistics_dept_requests.txt,ACTIVE
+Madam Jill,LCCDRP06!@#,head,LCC Daraga Branch,data/lcc_daraga_branch_requests.txt,ACTIVE
+Dally,LCCDRPstaff06@#$,staff,LCC Daraga Branch,data/lcc_daraga_branch_requests.txt,ACTIVE
+Dallom,LCCDRPstaff06@#$,staff,LCC Daraga Branch,data/lcc_daraga_branch_requests.txt,ACTIVE
+Sir Mark,LCCAyalaHd07*&^,head,LCC Ayala Branch,data/lcc_ayala_branch_requests.txt,ACTIVE
+Lester,LCCAyalast07!@#,staff,LCC Ayala Branch,data/lcc_ayala_branch_requests.txt,ACTIVE
+Lambo,LCCAyalast07!@#,staff,LCC Ayala Branch,data/lcc_ayala_branch_requests.txt,ACTIVE

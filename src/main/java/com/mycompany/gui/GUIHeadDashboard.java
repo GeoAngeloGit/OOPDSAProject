@@ -14,6 +14,13 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
+import com.mycompany.managers.RequestManager;
 
 /**
  *
@@ -50,6 +57,7 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         logoutLbl = new javax.swing.JLabel();
+        accountManagerLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +107,11 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
         logoutLbl.setForeground(new java.awt.Color(255, 255, 255));
         logoutLbl.setText("KOSA");
 
+        accountManagerLbl.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        accountManagerLbl.setForeground(new java.awt.Color(255, 255, 255));
+        accountManagerLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        accountManagerLbl.setText("Account Manager");
+
         javax.swing.GroupLayout headDashboardLayout = new javax.swing.GroupLayout(headDashboard);
         headDashboard.setLayout(headDashboardLayout);
         headDashboardLayout.setHorizontalGroup(
@@ -113,7 +126,9 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
                 .addComponent(requestLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(requestStatusLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addGap(39, 39, 39)
+                .addComponent(accountManagerLbl)
+                .addGap(45, 45, 45))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headDashboardLayout.createSequentialGroup()
                 .addContainerGap(301, Short.MAX_VALUE)
                 .addGroup(headDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -135,7 +150,8 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
                         .addGroup(headDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(homeLbl)
                             .addComponent(requestLbl)
-                            .addComponent(requestStatusLbl))
+                            .addComponent(requestStatusLbl)
+                            .addComponent(accountManagerLbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headDashboardLayout.createSequentialGroup()
                         .addContainerGap()
@@ -197,6 +213,8 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
     public GUIHeadDashboard(User loginUser)
     {
         initComponents();
+
+        //set labels
         // logout label behaves as logout button
         logoutLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         logoutLbl.setToolTipText("Logout");
@@ -210,6 +228,7 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
         });
         homeLbl.setFont(new Font("Verdana", Font.BOLD, 14));
 
+        //if clicked goes to GUIRequestInventory to request items with User parameter
         requestLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         requestLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         requestLbl.setToolTipText("Create a Request");
@@ -223,6 +242,7 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
             }
         });
 
+        //if clicked goes to GUIRequestStatus with User parameter
         requestStatusLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
         requestStatusLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
         requestStatusLbl.setToolTipText("Update Request Status");
@@ -241,10 +261,24 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
                 dispose();
             }
         });
+        accountManagerLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
+        accountManagerLbl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        accountManagerLbl.setToolTipText("Manager Staffs' Account");
+        accountManagerLbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt)
+            {
+                GUIAccountManager accountManager = new GUIAccountManager(loginUser);
+                accountManager.setVisible(true);
+            }
+        });
 
         setWelcomeLbls();
+        // check for pending requests in head's department and prompt
+         SwingUtilities.invokeLater(() -> checkPendingRequests(loginUser));
     }
     
+    //welcome labels in the dashboard
     private void setWelcomeLbls()
     {
         welcomeLbl.setText("Welcome");
@@ -265,8 +299,51 @@ public class GUIHeadDashboard extends javax.swing.JFrame {
         descriptionLbl.setFont(new Font("Verdana", Font.PLAIN, 12));
     }
     
+    //check pending requests for the head's department and prompt navigation
+    private void checkPendingRequests(User loginUser)
+    {
+        try
+        {
+            RequestManager rm = new RequestManager();
+            Map<String, List<Request>> requestsMap = rm.loadAllRequests(loginUser.getFilePath());
+
+            int pendingCount = 0;
+            for(List<Request> reqList : requestsMap.values())
+            {
+                for(Request r : reqList)
+                {
+                    if(r.getStatus() != null && r.getStatus().equalsIgnoreCase("Pending"))
+                    {
+                        pendingCount++;
+                    }
+                }
+            }
+
+            if(pendingCount > 0)
+            {
+                String message = "You have " + pendingCount + " pending request(s) from your department.\n" +
+                        "Do you want to go to Request Status to review them?";
+
+                int option = JOptionPane.showConfirmDialog(headDashboard, message, "Pending Requests",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+                if(option == JOptionPane.YES_OPTION)
+                {
+                    GUIRequestStatus reqStatus = new GUIRequestStatus(loginUser);
+                    reqStatus.setVisible(true);
+                    dispose();
+                }
+            }
+        }
+        catch(IOException ex)
+        {
+            logger.log(java.util.logging.Level.SEVERE, "Failed to load requests", ex);
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel accountManagerLbl;
     private javax.swing.JLabel descriptionLbl;
     private javax.swing.JPanel headDashboard;
     private javax.swing.JLabel homeLbl;

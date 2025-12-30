@@ -35,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RequestManager {
 
+    //check if the request is successfully saved
     public boolean saveRequests(JTable table, String department, String role, String filePath, User loginUser)
     {
         boolean savedRequest = false;
@@ -45,9 +46,11 @@ public class RequestManager {
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
 
+        //get the date and requestId
         String date = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
         String requestId = generateRequestID(department, filePath);
 
+        //write the filepath with the requests
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true)))
         {
             for(int i = 0; i < model.getRowCount(); i++)
@@ -60,6 +63,7 @@ public class RequestManager {
                     quantity = ((Number) quantityObj).intValue();
                 }
 
+                //if quantity > 0 save the request in the file
                 if(quantity > 0)
                 {
                     savedRequest = true;
@@ -70,11 +74,24 @@ public class RequestManager {
                     String status = role.equalsIgnoreCase("staff")
                         ? "Pending" : "Approved";
 
-                    String line = String.join(",", requestId, date, itemCode,
-                            itemName, String.valueOf(quantity), unit, status);
+                    if(role.equalsIgnoreCase("head"))
+                    {
+                        String dateApproved = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
 
-                    bw.write(line);
-                    bw.newLine();
+                        String line = String.join(",", requestId, date, loginUser.getUsername(), itemCode,
+                            itemName, String.valueOf(quantity), unit, status, dateApproved);
+                        
+                        bw.write(line);
+                        bw.newLine();
+                    }
+                    else
+                    {
+                        String line = String.join(",", requestId, date, loginUser.getUsername(), itemCode,
+                            itemName, String.valueOf(quantity), unit, status);
+                        
+                        bw.write(line);
+                        bw.newLine();
+                    }
                 }
             }
 
@@ -118,7 +135,10 @@ public class RequestManager {
 //
 //        return "REQ" + date + "-" + counterPart;
 //    }
+
+    //generate id to have unique id, using the date
     public String generateRequestID(String department, String filePath) {
+        //get the date today for the requestId
         String date = LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE);
         int counter = 1;
 
@@ -126,6 +146,7 @@ public class RequestManager {
         if (file.exists()) {
             Set<String> existingRequestIds = new HashSet<>();
 
+            //read the file go get the next number of the requestId
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = br.readLine()) != null) {
@@ -142,47 +163,69 @@ public class RequestManager {
                 e.printStackTrace();
             }
 
-            counter = existingRequestIds.size() + 1; // next request number
+            // next request number
+            counter = existingRequestIds.size() + 1; 
         }
 
+        //for the String requestId REQyyyyMMdd-counter
         String counterPart = String.format("%03d", counter);
         return "REQ" + date + "-" + counterPart;
     }
 
-
-
+    //load all requests
     public Map<String, List<Request>> loadAllRequests(String filePath) throws IOException
     {
+        //set the requests map with String requestId, and list of request
         Map<String, List<Request>> requestsMap = new LinkedHashMap<>();
 
+        //read the file of request of the department 
         try(BufferedReader br = new BufferedReader(new FileReader(filePath)))
         {
             String line;
+
+            //read each line
             while((line = br.readLine()) != null)
             {
                 String[] parts = line.split(",");
-                // Accept both 7-field (no completion date) and 8-field (with completion date)
-                if(parts.length < 7) continue;
+                //accept both 7-field (no completion date) and 8-field (with completion date)
+                if(parts.length < 8) continue;
 
+                //declare each part of the file as follows
                 String requestId = parts[0];
                 LocalDate date = LocalDate.parse(parts[1]);
-                String itemCode = parts[2];
-                String itemName = parts[3];
-                int quantity = Integer.parseInt(parts[4]);
-                String unit = parts[5];
-                String status = parts[6];
-                LocalDate dateCompleted = null;
+                String staffName = parts[2];
+                String itemCode = parts[3];
+                String itemName = parts[4];
+                int quantity = Integer.parseInt(parts[5]);
+                String unit = parts[6];
+                String status = parts[7];
+                LocalDate dateApproved = null;
 
-                if(parts.length >= 8 && parts[7] != null && !parts[7].trim().isEmpty()) {
+                if(parts.length >= 9 && parts[8] != null && !parts[8].trim().isEmpty()) {
                     try {
-                        dateCompleted = LocalDate.parse(parts[7]);
+                        dateApproved = LocalDate.parse(parts[8]);
                     } catch (Exception ex) {
                         // ignore parse errors and keep dateCompleted null
                     }
                 }
+                LocalDate dateCompleted = null;
 
-                Request request = new Request(requestId, itemCode, itemName, date, dateCompleted, quantity, unit, status);
+                if(parts.length >= 10 && parts[9] != null && !parts[9].trim().isEmpty()) {
+                    try {
+                        dateCompleted = LocalDate.parse(parts[9]);
+                    } catch (Exception ex) {
+                        // ignore parse errors and keep dateCompleted null
+                    }
+                }
+                int quantityToBeReleased = 0;
+                if (parts.length >= 12 && !parts[11].isEmpty()) {
+                    quantityToBeReleased = Integer.parseInt(parts[11]);
+                }
 
+                //call the Request Constructor with the following arguements
+                Request request = new Request(requestId, staffName, itemCode, itemName, date, dateApproved, dateCompleted, quantity, quantityToBeReleased, unit, status);
+
+                //add the Request request in the requestsMap to be returned
                 requestsMap.putIfAbsent(requestId, new ArrayList<>());
                 requestsMap.get(requestId).add(request);
             }
@@ -192,7 +235,7 @@ public class RequestManager {
     }
 
     //to update if the requested item is either approved or rejected
-    public void updateRequestStatus(String filePath, Request updatedRequest) throws IOException
+    public void updateRequestStatus(String filePath, Request updatedRequest, User loginUser) throws IOException
     {
         List<String> lines = new ArrayList<>();
 
@@ -206,19 +249,26 @@ public class RequestManager {
                 if(parts.length == 0) continue;
 
                 String requestId = parts[0];
-                String itemCode = parts[2];
+                String itemCode = parts[3];
 
                 //if matches change status
                 if(requestId.equals(updatedRequest.getRequestId()) && itemCode.equals(updatedRequest.getItemCode()))
                 {
-                    if(parts.length <= 8) parts = Arrays.copyOf(parts,8);
+                    if(parts.length <= 9) parts = Arrays.copyOf(parts,12);
                     
-                    parts[4] = String.valueOf(updatedRequest.getQuantity());
-                    parts[6] = updatedRequest.getStatus();
+                    parts[5] = String.valueOf(updatedRequest.getQuantity());
+                    parts[7] = updatedRequest.getStatus();
+                    parts[8] = LocalDate.now().format(DateTimeFormatter.ISO_DATE);
 
                     //date completed
-                    parts[7] = updatedRequest.getDateCompleted() != null 
+                    parts[9] = updatedRequest.getDateCompleted() != null 
                         ? updatedRequest.getDateCompleted().toString() : "";
+
+                    parts[10] = updatedRequest.getDateCompleted() != null 
+                        ? loginUser.getUsername().toString() : "";
+                    
+                    parts[11] = updatedRequest.getQuantityToBeReleased() != 0 
+                        ? String.valueOf(updatedRequest.getQuantityToBeReleased()) : String.valueOf(0);
                 }
 
                 lines.add(String.join(",", parts));

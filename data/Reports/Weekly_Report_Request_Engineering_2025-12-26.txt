@@ -1,0 +1,12 @@
+Request Weekly Report
+Source: Engineering
+Date Range: 2025-12-21 to 2025-12-26
+------------------------------------------------------------
+RequestID         Requested By      Released By       Item Code    Item Name                      Quantity Unit     Status           Date Created Date Approved Date Released
+REQ20251226-002   Joey              Admin2            bb           baby powder                    3        Bottle   Completed        2025-12-26   2025-12-28     2025-12-26
+REQ20251226-002   Joey                                blbp         HBW Black Ballpen              3        Box      Rejected         2025-12-26   2025-12-28               
+REQ20251226-002   Joey              Admin2            rbp          HBW Read Ballpen               2        Box      Completed        2025-12-26   2025-12-28     2025-12-26
+REQ20251226-002   Joey              Admin2            pc           Mongol Pencil                  2        Box      Completed        2025-12-26   2025-12-28     2025-12-26
+
+
+Prepared By: Admin1
